@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 4d4e50f8acea73859f5e839616f13f90a42291c4
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 61ff4edfaedb22ea88d6bb0be2390ff734879942
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97486221"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588433"
 ---
-# <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>教程：在 ASP.NET Core 中开始使用 Razor Pages
+# <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>教程：在 ASP.NET Core 中开始使用 Razor Pages
 
 作者：[Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -37,7 +37,7 @@ ms.locfileid: "97486221"
 
 在本系列结束时，你将拥有一个管理电影数据库的应用。  
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)（[如何下载](xref:index#how-to-download-a-sample)）。
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)（[如何下载](xref:index#how-to-download-a-sample)）。
 
 在本教程中，你将了解：
 
@@ -66,7 +66,7 @@ ms.locfileid: "97486221"
 
 ---
 
-## <a name="create-a-no-locrazor-pages-web-app"></a>创建 Razor 页面 Web 应用
+## <a name="create-a-razor-pages-web-app"></a>创建 Razor 页面 Web 应用
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -185,7 +185,7 @@ ms.locfileid: "97486221"
 
 在本系列结束时，你将拥有一个管理电影数据库的应用。  
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)（[如何下载](xref:index#how-to-download-a-sample)）。
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)（[如何下载](xref:index#how-to-download-a-sample)）。
 
 在本教程中，你将了解：
 
@@ -214,7 +214,7 @@ ms.locfileid: "97486221"
 
 ---
 
-## <a name="create-a-no-locrazor-pages-web-app"></a>创建 Razor 页面 Web 应用
+## <a name="create-a-razor-pages-web-app"></a>创建 Razor 页面 Web 应用
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -327,7 +327,7 @@ ms.locfileid: "97486221"
 
 在本系列结束时，你将拥有一个管理电影数据库的应用。  
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start)（[如何下载](xref:index#how-to-download-a-sample)）。
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start)（[如何下载](xref:index#how-to-download-a-sample)）。
 
 在本教程中，你将了解：
 
@@ -356,7 +356,7 @@ ms.locfileid: "97486221"
 
 ---
 
-## <a name="create-a-no-locrazor-pages-web-app"></a>创建 Razor 页面 Web 应用
+## <a name="create-a-razor-pages-web-app"></a>创建 Razor 页面 Web 应用
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

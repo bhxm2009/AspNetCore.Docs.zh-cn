@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/background-services
-ms.openlocfilehash: 4b877c64a881fec15ac9e9bd74ffdde0b5fa60f9
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: 9d95d7c9a33bcf2f4a603d815269752124133ee6
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99530172"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589694"
 ---
 # <a name="host-aspnet-core-signalr-in-background-services"></a>SignalR在后台服务中托管 ASP.NET Core
 
@@ -37,12 +37,12 @@ ms.locfileid: "99530172"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/3.x)[（如何下载）](xref:index#how-to-download-a-sample)
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/background-service/samples/3.x)[（如何下载）](xref:index#how-to-download-a-sample)
 
 ::: moniker-end
 ::: moniker range="<= aspnetcore-2.2"
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/2.2)[（如何下载）](xref:index#how-to-download-a-sample)
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/background-service/samples/2.2)[（如何下载）](xref:index#how-to-download-a-sample)
 
 ::: moniker-end
 
@@ -161,6 +161,6 @@ public partial class ClockHubClient : IClock, IHostedService
 ## <a name="additional-resources"></a>其他资源
 
 * [入门](xref:tutorials/signalr)
-* [集线器](xref:signalr/hubs)
+* [中心](xref:signalr/hubs)
 * [发布到 Azure](xref:signalr/publish-to-azure-web-app)
 * [强类型中心](xref:signalr/hubs#strongly-typed-hubs)

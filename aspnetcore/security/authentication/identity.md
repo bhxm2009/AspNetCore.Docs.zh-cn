@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 4fa49f795b78b88e00bd32d04f74acd8689383b2
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: 7141808b3190db2c882d562d753cd68fe3f985ff
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102394468"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589733"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>ASP.NET Core 简介 Identity
 
@@ -52,7 +52,7 @@ Identity 通常使用 SQL Server 数据库配置以存储用户名、密码和�
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample) ([如何下载](xref:index#how-to-download-a-sample)) 。
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([如何下载](xref:index#how-to-download-a-sample)) 。
 
 <a name="adi"></a>
 
@@ -63,7 +63,7 @@ Identity 通常使用 SQL Server 数据库配置以存储用户名、密码和�
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * 选择 " **文件**" " > **新建** > **项目**"。
-* 选择“ASP.NET Core Web 应用程序”。 将项目命名为 **WebApp1** ，使其命名空间与项目下载相同。 单击“确定”。 
+* 选择“ASP.NET Core Web 应用程序”。 将项目命名为 **WebApp1** ，使其命名空间与项目下载相同。 单击" **确定**"。
 * 选择 ASP.NET Core **Web 应用程序**，然后选择 " **更改身份验证**"。
 * 选择 **单个用户帐户** ，然后单击 **"确定"**。
 
@@ -183,7 +183,7 @@ PowerShell 使用分号作为命令分隔符。 使用 PowerShell 时，请对�
 [!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=9)]
 
 <!-- .NET 5 fixes this, see
-https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
+https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
 -->
 [!INCLUDE[](~/includes/disableVer.md)]
 
@@ -273,7 +273,7 @@ Identity了解更多详细信息：
 
 ## <a name="next-steps"></a>后续步骤
 
-* [ASP.NET Core Identity 源代码](https://github.com/dotnet/aspnetcore/tree/master/src/Identity)
+* [ASP.NET Core Identity 源代码](https://github.com/dotnet/aspnetcore/tree/main/src/Identity)
 * 有关使用 SQLite 进行配置的信息，请参阅 [此 GitHub 问题](https://github.com/dotnet/AspNetCore.Docs/issues/5131) Identity 。
 * [配置 Identity](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
@@ -294,7 +294,7 @@ ASP.NET Core Identity 是将登录功能添加到 ASP.NET Core 应用的成员�
 
 Identity 可以使用 SQL Server 数据库配置以存储用户名、密码和配置文件数据。 另外，还可以使用另一个永久性存储，例如 Azure 表存储。
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) ([如何下载](xref:index#how-to-download-a-sample)) 。
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) ([如何下载](xref:index#how-to-download-a-sample)) 。
 
 在本主题中，你将了解如何使用 Identity 注册、登录和注销用户。 有关创建使用的应用程序的更多详细说明 Identity ，请参阅本文末尾的后续步骤部分。
 
@@ -317,7 +317,7 @@ Identity 可以使用 SQL Server 数据库配置以存储用户名、密码和�
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * 选择 " **文件**" " > **新建** > **项目**"。
-* 选择“ASP.NET Core Web 应用程序”。 将项目命名为 **WebApp1** ，使其命名空间与项目下载相同。 单击“确定”。 
+* 选择“ASP.NET Core Web 应用程序”。 将项目命名为 **WebApp1** ，使其命名空间与项目下载相同。 单击" **确定**"。
 * 选择 ASP.NET Core **Web 应用程序**，然后选择 " **更改身份验证**"。
 * 选择 **单个用户帐户** ，然后单击 **"确定"**。
 

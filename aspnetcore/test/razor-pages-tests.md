@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: test/razor-pages-tests
-ms.openlocfilehash: 2486eb8c9fd0fc33ea77b0fedd99795218d7f4ca
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: a67f51561d0a165db04418f2040ffe68e3ebe8ce
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93058033"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588485"
 ---
-# <a name="no-locrazor-pages-unit-tests-in-aspnet-core"></a>ASP.NET Core 中的 Razor Pages 单元测试
+# <a name="razor-pages-unit-tests-in-aspnet-core"></a>ASP.NET Core 中的 Razor Pages 单元测试
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -43,7 +43,7 @@ ASP.NET Core 支持 Razor Pages 应用的单元测试。 数据访问层 (DAL) �
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [使用 dotnet test 和 xUnit 在 .NET Core 中进行 C# 单元测试](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/razor-pages-tests/samples)（[如何下载](xref:index#how-to-download-a-sample)）
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples)（[如何下载](xref:index#how-to-download-a-sample)）
 
 示例项目包含两个应用：
 
@@ -227,7 +227,7 @@ ASP.NET Core 支持 Razor Pages 应用的单元测试。 数据访问层 (DAL) �
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [使用 dotnet test 和 xUnit 在 .NET Core 中进行 C# 单元测试](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/razor-pages-tests/samples)（[如何下载](xref:index#how-to-download-a-sample)）
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples)（[如何下载](xref:index#how-to-download-a-sample)）
 
 示例项目包含两个应用：
 

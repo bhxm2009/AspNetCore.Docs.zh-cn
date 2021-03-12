@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: 55993f951bfe910fb179fdb25b8d04f81d4ee2c9
-ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
+ms.openlocfilehash: 44e6570090de9c5f3550d18a30fcde758fb16f85
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/29/2021
-ms.locfileid: "99057455"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588518"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>ASP.NET Core 中的 URL 重写中间件
 
@@ -47,7 +47,7 @@ URL 重写是根据一个或多个预定义规则修改请求 URL 的行为。 U
 > [!NOTE]
 > URL 重写可能会降低应用的性能。 如果可行，应限制规则的数量和复杂度。
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/)（[如何下载](xref:index#how-to-download-a-sample)）
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/)（[如何下载](xref:index#how-to-download-a-sample)）
 
 ## <a name="url-redirect-and-url-rewrite"></a>URL 重定向和 URL 重写
 
@@ -77,7 +77,7 @@ URL 重写是服务器端操作，它从与客户端请求的资源地址不同�
 
 ## <a name="url-rewriting-sample-app"></a>URL 重写示例应用
 
-可使用[示例应用](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/)了解 URL 重写中间件的功能。 该应用程序应用重定向和重写规则，并显示多个方案的重定向或重写的 URL。
+可使用[示例应用](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/)了解 URL 重写中间件的功能。 该应用程序应用重定向和重写规则，并显示多个方案的重定向或重写的 URL。
 
 ## <a name="when-to-use-url-rewriting-middleware"></a>何时使用 URL 重写中间件
 
@@ -399,7 +399,7 @@ URL 重写是根据一个或多个预定义规则修改请求 URL 的行为。 U
 > [!NOTE]
 > URL 重写可能会降低应用的性能。 如果可行，应限制规则的数量和复杂度。
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/)（[如何下载](xref:index#how-to-download-a-sample)）
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/)（[如何下载](xref:index#how-to-download-a-sample)）
 
 ## <a name="url-redirect-and-url-rewrite"></a>URL 重定向和 URL 重写
 
@@ -429,7 +429,7 @@ URL 重写是服务器端操作，它从与客户端请求的资源地址不同�
 
 ## <a name="url-rewriting-sample-app"></a>URL 重写示例应用
 
-可使用[示例应用](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/)了解 URL 重写中间件的功能。 该应用程序应用重定向和重写规则，并显示多个方案的重定向或重写的 URL。
+可使用[示例应用](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/)了解 URL 重写中间件的功能。 该应用程序应用重定向和重写规则，并显示多个方案的重定向或重写的 URL。
 
 ## <a name="when-to-use-url-rewriting-middleware"></a>何时使用 URL 重写中间件
 
