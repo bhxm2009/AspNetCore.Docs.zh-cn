@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/middleware
-ms.openlocfilehash: 0f1f5dfcb9595270a9659a02141f7d1eba5c44ef
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 11473bbf8b4e2d67d15798a5d87ee01761682f9a
+ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587692"
+ms.lasthandoff: 03/12/2021
+ms.locfileid: "103413465"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>ASP.NET Core 中的响应缓存中间件
 
@@ -49,7 +49,7 @@ ms.locfileid: "102587692"
 [!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=17)]
 
 > [!WARNING]
-> <xref:Owin.CorsExtensions.UseCors%2A><xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>使用[CORS 中间件](xref:security/cors)之前，必须先调用。
+> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A><xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>使用[CORS 中间件](xref:security/cors)之前，必须先调用。
 
 示例应用添加标头以在后续请求时控制缓存：
 
@@ -136,7 +136,7 @@ if (responseCachingFeature != null)
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
 
-## <a name="troubleshooting"></a>故障排除
+## <a name="troubleshooting"></a>疑难解答
 
 如果缓存行为与预期不符，请确认响应是可缓存的并且能够通过缓存提供服务。 检查请求的传入标头和响应的传出标头。 启用 [日志记录](xref:fundamentals/logging/index) 以帮助进行调试。
 
@@ -280,7 +280,7 @@ if (responseCachingFeature != null)
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
 
-## <a name="troubleshooting"></a>故障排除
+## <a name="troubleshooting"></a>疑难解答
 
 如果缓存行为与预期不符，请确认响应是可缓存的并且能够通过缓存提供服务。 检查请求的传入标头和响应的传出标头。 启用 [日志记录](xref:fundamentals/logging/index) 以帮助进行调试。
 

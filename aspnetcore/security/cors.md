@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cors
-ms.openlocfilehash: 7afa8105e0ab007153d5c3e8238765d4e9f22641
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: b057e5e08b8a4d0f9bcd68f92102cad309655acc
+ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586795"
+ms.lasthandoff: 03/12/2021
+ms.locfileid: "103413504"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a> (CORS) 启用跨域请求 ASP.NET Core
 
@@ -71,7 +71,7 @@ ms.locfileid: "102586795"
 通过命名策略使用 [[EnableCors]](#attr) 属性，可在限制支持 CORS 的终结点时提供最佳控制。
 
 > [!WARNING]
-> <xref:Owin.CorsExtensions.UseCors%2A> 使用时，必须调用 <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> `UseResponseCaching` 。
+> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> 必须按正确的顺序调用。 有关详细信息，请参阅 [中间件顺序](xref:fundamentals/middleware/index#middleware-order)。 例如，在 `UseCors` 使用时，必须调用 <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> `UseResponseCaching` 。
 
 以下各节详细介绍了每种方法。
 
@@ -89,7 +89,7 @@ CORS 中间件处理跨域请求。 以下代码将 CORS 策略应用到具有�
 * 调用 <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> 扩展方法并指定  `_myAllowSpecificOrigins` CORS 策略。 `UseCors` 添加 CORS 中间件。 必须将对的调用 `UseCors` 置于之后 `UseRouting` 但在之前 `UseAuthorization` 。 有关详细信息，请参阅 [中间件顺序](xref:fundamentals/middleware/index#middleware-order)。
 * <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*>使用[lambda 表达式](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions)调用。 Lambda 采用 <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> 对象。 本文稍后将介绍[配置选项](#cors-policy-options)，如 `WithOrigins` 。
 * 启用 `_myAllowSpecificOrigins` 所有控制器终结点的 CORS 策略。 请参阅 [终结点路由](#ecors) ，将 CORS 策略应用到特定终结点。
-* 使用 [响应缓存中间件](xref:performance/caching/middleware)时，请 <xref:Owin.CorsExtensions.UseCors%2A> 先调用 <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> 。
+* 使用 [响应缓存中间件](xref:performance/caching/middleware)时，请 <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> 先调用 <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> 。
 
 通过终结点路由，CORS 中间件 **必须** 配置为在对和的调用之间执行 `UseRouting` `UseEndpoints` 。
 
