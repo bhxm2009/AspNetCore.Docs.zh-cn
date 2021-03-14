@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: c90ac92cf0866b78bcdb11663e76c116d714ca5d
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: eeae0ef44fc9b8a92da40481f5dbc7422ed8d43c
+ms.sourcegitcommit: d5fa39765959738eed4bcf5ee0b207cefddb4873
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589057"
+ms.lasthandoff: 03/14/2021
+ms.locfileid: "103460438"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>在 ASP.NET Core 中路由到控制器操作
 
@@ -510,10 +510,6 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
 
-标记替换也适用于属性路由定义的路由名称。
-`[Route("[controller]/[action]", Name="[controller]_[action]")]`
- 为每项操作生成一个唯一的路由名称。
-
 若要匹配文本标记替换分隔符 `[` 或 `]`，可通过重复该字符（`[[` 或 `]]`）对其进行转义。
 
 <a name="routing-token-replacement-transformers-ref-label"></a>
@@ -720,7 +716,7 @@ result: /UrlGeneration/Destination
 
 你可能希望在默认路由中遇到此问题 `{controller}/{action}/{id?}` 。 此问题在实践中很罕见，因为 `Url.Action` 始终显式指定 `controller` 和 `action` 值。
 
-多个 [Url 重载。操作](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) 采用路由值对象为除和以外的路由参数提供值 `controller` `action` 。 路由值对象经常与一起使用 `id` 。 例如，`Url.Action("Buy", "Products", new { id = 17 })`。 路由值对象：
+多个 [Url 重载。操作](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) 采用路由值对象为除和以外的路由参数提供值 `controller` `action` 。 路由值对象经常与一起使用 `id` 。 例如 `Url.Action("Buy", "Products", new { id = 17 })`。 路由值对象：
 
 * 按约定通常是匿名类型的对象。
 * 可以是 `IDictionary<>` 或 [POCO](https://wikipedia.org/wiki/Plain_old_CLR_object)) 。
