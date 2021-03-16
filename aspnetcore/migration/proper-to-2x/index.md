@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 059ddc18d0c531efaba8aab916ddbb27b42b5e2c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 7961890becc8f4513e0750f28341c9d4cf94e7ad
+ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053548"
+ms.lasthandoff: 03/12/2021
+ms.locfileid: "103413324"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>从 ASP.NET 迁移到 ASP.NET Core
 
 作者：[Isaac Levin](https://isaaclevin.com)
 
-本文可作为从 ASP.NET 应用迁移到 ASP.NET Core 的参考指南。
+本文可作为从 ASP.NET 应用迁移到 ASP.NET Core 的参考指南。 有关完整的移植指南，请参阅电子书[将现有的 ASP.NET 应用移植到 .Net Core](https://aka.ms/aspnet-porting-ebook)，。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -167,9 +167,13 @@ Web 开发的一个重要环节是提供客户端静态资产的功能。 HTML�
 > [!NOTE]
 > 若要获取在 ASP.NET Core 中提供静态文件的更深入的参考信息，请参阅[静态文件](xref:fundamentals/static-files)。
 
-## <a name="multi-value-no-loccookies"></a>多值 cookie
+## <a name="multi-value-cookies"></a>多值 cookie
 
 ASP.NET Core 不支持[多值 cookie](xref:System.Web.HttpCookie.Values)。 为每个值创建一个 cookie。
+
+## <a name="authentication-cookies-are-not-compressed-in-aspnet-core"></a>ASP.NET Core 中不压缩身份验证 cookie
+
+[!INCLUDE[](~/includes/cookies-not-compressed.md)]
 
 ## <a name="partial-app-migration"></a>部分应用迁移
 
