@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 9214fa10a2bf7d53a4cb12263a3fa69bded84b29
-ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.openlocfilehash: adf22001e7d9b8ee4f36456cd4b07d2791a7331f
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/16/2021
-ms.locfileid: "100536228"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395145"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>调试 ASP.NET Core Blazor WebAssembly
 
@@ -48,7 +48,7 @@ ms.locfileid: "100536228"
 * 出现未经处理的异常时中断。
 * 于应用启动期间在调试代理运行之前命中断点。 这包括 `Program.Main` (`Program.cs`) 中的断点和组件的 [`OnInitialized{Async}` 方法](xref:blazor/components/lifecycle#component-initialization-methods) 中的断点，其中这些组件由请求自应用的第一页加载。
 * 在非本地方案中调试（例如，[适用于 Linux 的 Windows 子系统 (WSL)](/windows/wsl/) 或 [Visual Studio Codespaces](/visualstudio/codespaces/overview/what-is-vsonline)）。
-* 在调试期间自动重新生成托管 Blazor 解决方案的后端 `*Server*` 应用，例如通过使用 [`dotnet watch run`](xref:tutorials/dotnet-watch) 运行应用。
+* 在调试期间自动重新生成托管 Blazor WebAssembly 解决方案的后端 `*Server*` 应用，例如通过使用 [`dotnet watch run`](xref:tutorials/dotnet-watch) 运行应用。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -58,6 +58,13 @@ ms.locfileid: "100536228"
 * Microsoft Edge（版本 80 或更高版本）
 
 确保防火墙或代理不会阻止与调试代理（`NodeJS` 进程）之间的通信。 有关详细信息，请参阅[防火墙配置](#firewall-configuration)部分。
+
+Visual Studio Code 用户需要以下扩展：
+
+* [适用于 Visual Studio Code 的 C# 扩展](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+* [Blazor WASM 调试扩展](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion)（使用适用于 Visual Studio Code 的 C# 扩展版本 1.23.9 或更高版本时）
+
+在 VS Code 中打开项目后可能会收到通知，告诉你需要进行其他设置才能启用调试。 如果收到请求，请从 Visual Studio Marketplace 安装所需扩展。 若要检查是否已安装此扩展，请在菜单栏中依次打开“视图” > “扩展”，或选择“活动”边栏中的“扩展”图标。
 
 Visual Studio for Mac 需要版本 8.8（内部版本 1532）或更高版本：
 
@@ -90,7 +97,7 @@ Visual Studio for Mac 需要版本 8.8（内部版本 1532）或更高版本：
 
 要在 Visual Studio 中调试 Blazor WebAssembly 应用，请按以下步骤执行：
 
-1. 创建新的 ASP.NET Core 托管 Blazor WebAssembly 应用。
+1. 创建新的托管 Blazor WebAssembly 解决方案。
 1. 按 <kbd>F5</kbd> 在调试器中运行应用。
 
    > [!NOTE]
@@ -173,7 +180,8 @@ Visual Studio for Mac 需要版本 8.8（内部版本 1532）或更高版本：
    如果收到通知，请执行以下操作：
 
    * 确认是否已安装最新的[适用于 Visual Studio Code 的 C# 扩展](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)。 若要检查是否已安装此扩展，请在菜单栏中依次打开“视图” > “扩展”，或选择“活动”边栏中的“扩展”图标。
-   * 确认已启用 JavaScript 预览调试。 在菜单栏中打开设置（依次选择“文件” > “首选项” > “设置”）。 使用关键字 `debug preview` 进行搜索。 在搜索结果中，确认是否已选中“调试”>“JavaScript:使用预览”复选框。 如果启用预览调试的选项不存在，请升级到最新版本的 VS Code 或安装 [JavaScript 调试器扩展](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly)（VS Code 1.46 或更早版本）。
+   * 使用 [适用于 Visual Studio Code 的 C# 扩展](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)**版本 1.23.9 或更高版本** 时，请确认安装了最新的的 [Blazor WASM 调试扩展](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion)。 若要检查是否已安装此扩展，请在菜单栏中依次打开“视图” > “扩展”，或选择“活动”边栏中的“扩展”图标。
+   * 确认已启用 JavaScript 预览调试。 在菜单栏中打开设置（依次选择“文件” > “首选项” > “设置”）。 使用关键字 `debug preview` 进行搜索。 在搜索结果中，设置或确认已选中“调试”>“JavaScript：使用预览”复选框。 如果启用预览调试的选项不存在，请升级到最新版本的 VS Code 或安装 [JavaScript 调试器扩展](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly)（VS Code 1.46 或更早版本）。
    * 重载窗口。
 
 1. 使用 <kbd>F5</kbd> 键盘快捷方式或菜单项启动调试。
@@ -194,7 +202,7 @@ Visual Studio for Mac 需要版本 8.8（内部版本 1532）或更高版本：
 
 ## <a name="debug-hosted-blazor-webassembly"></a>调试托管 Blazor WebAssembly
 
-1. 在 VS Code 中打开托管 Blazor WebAssembly 应用的“解决方案”文件夹。
+1. 在 VS Code 中打开托管 Blazor 解决方案文件夹的 **`Client`** 项目文件夹。
 
 1. 如果没有为项目设置启动配置，将显示以下通知。 选择 **“是”** 。
 

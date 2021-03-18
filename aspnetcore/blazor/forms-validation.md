@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 012c8794b3d239ce93ac942000c7ec4f71d06cbf
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: eb72810a5b65232aa778daa556a9b2d406807e87
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280002"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395131"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET Core Blazor 窗体和验证
 
@@ -454,7 +454,7 @@ public class CustomValidator : ComponentBase
 
 下面的示例基于：
 
-* 托管的 Blazor 解决方案，由 [Blazor 托管项目模板](xref:blazor/hosting-models#blazor-webassembly)创建。 此示例可与[安全性和 Identity 文档](xref:blazor/security/webassembly/index#implementation-guidance)中介绍的任何安全托管 Blazor 方案一起使用。
+* 从 [Blazor WebAssembly 项目模板](xref:blazor/project-structure)创建的托管 Blazor WebAssembly 解决方案。 此示例可与[安全性和 Identity 文档](xref:blazor/security/webassembly/index#implementation-guidance)中介绍的任何安全托管 Blazor 方案一起使用。
 * 前面的[内置窗体组件](#built-in-forms-components)部分中的 Starfleet Starship 数据库窗体示例。
 * Blazor 框架的 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 组件。
 * [验证器组件](#validator-components)部分中显示的 `CustomValidator` 组件。
@@ -966,7 +966,9 @@ HTML 中最合理的 `null` 等效项是空字符串 `value`。 Blazor 框架处
 
 ## <a name="validation-support"></a>验证支持
 
-<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 组件使用数据注释将验证支持附加到级联的 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>。 使用数据注释启用对验证的支持需要此显式手势。 若要使用不同于数据注释的验证系统，请用自定义实现替换 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>。 可在以下参考源中检查 ASP.NET Core 的实现[`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs)： 前面的参考源链接提供了来自存储库 `master` 分支的代码，该分支表示产品单元当前对 ASP.NET Core 下一版本的开发。 若要为其他版本选择分支，请使用 GitHub 分支选择器（例如 `release/3.1`）。
+<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 组件使用数据注释将验证支持附加到级联的 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>。 使用数据注释启用对验证的支持需要此显式手势。 若要使用不同于数据注释的验证系统，请用自定义实现替换 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>。 可在以下参考源中检查 ASP.NET Core 的实现：[`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs)。
+
+[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 Blazor 执行两种类型的验证：
 
@@ -1011,7 +1013,7 @@ Blazor 执行两种类型的验证：
 using System;
 using System.ComponentModel.DataAnnotations;
 
-private class CustomValidator : ValidationAttribute
+public class CustomValidator : ValidationAttribute
 {
     protected override ValidationResult IsValid(object value, 
         ValidationContext validationContext)
@@ -1031,22 +1033,84 @@ private class CustomValidator : ValidationAttribute
 
 ## <a name="custom-validation-class-attributes"></a>自定义验证类属性
 
-与 CSS 框架集成时，自定义验证类名称非常有用，例如[启动](https://getbootstrap.com/)。 若要指定自定义验证类名称，请创建从 `FieldCssClassProvider` 派生的类，并在 <xref:Microsoft.AspNetCore.Components.Forms.EditContext> 实例上设置该类：
+与 CSS 框架集成时，自定义验证类名称非常有用，例如[启动](https://getbootstrap.com/)。
+
+要指定自定义验证类名：
+
+* 为自定义验证提供 CSS 样式。 在下面的示例中，指定了有效样式和无效样式：
+
+```css
+.validField {
+    border-color: lawngreen;
+}
+
+.invalidField {
+    background-color: tomato;
+}
+```
+
+* 创建一个从 `FieldCssClassProvider` 派生的类，用于检查字段验证消息，并应用相应的有效或无效样式：
 
 ```csharp
-var editContext = new EditContext(model);
-editContext.SetFieldCssClassProvider(new MyFieldClassProvider());
+using System.Linq;
+using Microsoft.AspNetCore.Components.Forms;
 
-...
-
-private class MyFieldClassProvider : FieldCssClassProvider
+public class MyFieldClassProvider : FieldCssClassProvider
 {
     public override string GetFieldCssClass(EditContext editContext, 
         in FieldIdentifier fieldIdentifier)
     {
         var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
 
-        return isValid ? "good field" : "bad field";
+        return isValid ? "validField" : "invalidField";
+    }
+}
+```
+
+* 在窗体的 <xref:Microsoft.AspNetCore.Components.Forms.EditContext> 实例上设置该类：
+
+```razor
+...
+
+<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
+    ...
+</EditForm>
+
+...
+
+@code {
+    private EditContext editContext;
+    private Model model = new Model();
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(model);
+        editContext.SetFieldCssClassProvider(new MyFieldClassProvider());
+    }
+
+    private void HandleValidSubmit()
+    {
+        ...
+    }
+}
+```
+
+上面的示例检查所有窗体字段的有效性，并对每个字段应用样式。 如果窗体只应该将自定义样式应用于一部分字段，请让 `MyFieldClassProvider` 有条件地应用样式。 下面的示例仅将样式应用于 `Identifier` 字段：
+
+```csharp
+public class MyFieldClassProvider : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext,
+        in FieldIdentifier fieldIdentifier)
+    {
+        if (fieldIdentifier.FieldName == "Identifier")
+        {
+            var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
+
+            return isValid ? "validField" : "invalidField";
+        }
+
+        return string.Empty;
     }
 }
 ```

@@ -18,18 +18,18 @@ no-loc:
 - SignalR
 - Kestrel
 uid: aspnetcore-5.0
-ms.openlocfilehash: 5caa412773bf9c8e3bed5ebc529d48b886de6956
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 64e068194744d6c5495d8ecaf31076c7a1c1f349
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253067"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102585794"
 ---
 # <a name="whats-new-in-aspnet-core-50"></a>ASP.NET Core 5.0 的新增功能
 
 本文重点介绍 ASP.NET Core 5.0 中最重要的更改，并提供相关文档的链接。
 
-## <a name="aspnet-core-mvc-and-no-locrazor-improvements"></a>ASP.NET Core MVC 和 Razor 改进
+## <a name="aspnet-core-mvc-and-razor-improvements"></a>ASP.NET Core MVC 和 Razor 改进
 
 ### <a name="model-binding-datetime-as-utc"></a>通过模型绑定将日期/时间绑定到 UTC
 
@@ -154,7 +154,7 @@ Blazor 具有内置的 `InputRadio` 和 `InputRadioGroup` 组件，这些组件�
 
 Blazor 事件现在支持 `ontoggle` DOM 事件。 有关详细信息，请参阅 <xref:blazor/components/event-handling#event-argument-types>。
 
-### <a name="set-ui-focus-in-no-locblazor-apps"></a>将 UI 焦点设置在 Blazor 应用中
+### <a name="set-ui-focus-in-blazor-apps"></a>将 UI 焦点设置在 Blazor 应用中
 
 对元素引用使用 `FocusAsync` 便捷方法，以便将 UI 焦点设置到该元素。 有关详细信息，请参阅 <xref:blazor/components/event-handling#focus-an-element>。
 
@@ -188,15 +188,15 @@ Blazor 在标准 [JavaScript 模块](https://developer.mozilla.org/docs/Web/Java
 
 调试 Blazor WebAssembly 应用在 ASP.NET Core 5.0 中得到了改进。 此外，Visual Studio for Mac 上现在也支持调试。 有关详细信息，请参阅 <xref:blazor/debug>。
 
-### <a name="microsoft-no-locidentity-v20-and-msal-v20"></a>Microsoft Identity v2.0 和 MSAL v2.0
+### <a name="microsoft-identity-v20-and-msal-v20"></a>Microsoft Identity v2.0 和 MSAL v2.0
 
 Blazor 安全性现在使用 Microsoft Identity v2.0（[`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web) 和 [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI)）和 MSAL v2.0。 有关详细信息，请参阅[Blazor 安全性和 Identity 节点](xref:blazor/security/index)中的主题。
 
-### <a name="protected-browser-storage-for-no-locblazor-server"></a>Blazor Server 受保护的浏览器存储
+### <a name="protected-browser-storage-for-blazor-server"></a>Blazor Server 受保护的浏览器存储
 
 Blazor Server 应用现在可以使用内置支持在浏览器中存储应用状态，这已受到保护，无法使用 ASP.NET Core 数据保护进行篡改。 数据可以存储在本地浏览器存储或会话存储中。 有关详细信息，请参阅 <xref:blazor/state-management>。
 
-### <a name="no-locblazor-webassembly-prerendering"></a>Blazor WebAssembly 预呈现
+### <a name="blazor-webassembly-prerendering"></a>Blazor WebAssembly 预呈现
 
 跨托管模型改进了组件集成，Blazor WebAssembly 应用现在可以在服务器上预呈现输出。 <!-- UNCOMMENT AFTER https://github.com/dotnet/AspNetCore.Docs/pull/19887 MERGES: For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps> and <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>. -->
 
@@ -224,19 +224,19 @@ Blazor WebAssembly 应用面向整个 .NET API 外围应用，但由于浏览器
 
 ## SignalR
 
-### <a name="no-locsignalr-hub-filters"></a>SignalR 中心筛选器
+### <a name="signalr-hub-filters"></a>SignalR 中心筛选器
 
 SignalR 中心筛选器（在 ASP.NET SignalR 中称为“中心管道”）是一项功能，它允许代码在调用中心方法之前和之后运行。 在调用中心方法之前和之后运行代码类似于中间件在 HTTP 请求之前和之后运行代码。 常见用途包括日志记录、错误处理和参数验证。
 
 有关详细信息，请参阅[在 ASP.NET Core SignalR 中使用中心筛选器](xref:signalr/hub-filters)。
 
-### <a name="no-locsignalr-parallel-hub-invocations"></a>SignalR 并行中心调用
+### <a name="signalr-parallel-hub-invocations"></a>SignalR 并行中心调用
 
 ASP.NET Core SignalR 现在能够处理并行中心调用。 可以更改默认行为，以允许客户端一次调用多个中心方法：
 
 [!code-csharp[](~/release-notes/sample/StartupSignalRhubs.cs?name=snippet)]
 
-### <a name="added-messagepack-support-in-no-locsignalr-java-client"></a>在 SignalR Java 客户端中添加了 Messagepack 支持
+### <a name="added-messagepack-support-in-signalr-java-client"></a>在 SignalR Java 客户端中添加了 Messagepack 支持
 
 新包 ([com.microsoft.signalr.messagepack](https://mvnrepository.com/artifact/com.microsoft.signalr.messagepack)) 将 MessagePack 支持添加到 SignalR Java 客户端。 若要使用 MessagePack 中心协议，请将 `.withHubProtocol(new MessagePackHubProtocol())` 添加到连接生成器：
 
@@ -278,7 +278,7 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
         });
   ```
 
-### <a name="no-lockestrel-endpoint-specific-options-via-configuration"></a>通过配置的 Kestrel 终结点特定选项
+### <a name="kestrel-endpoint-specific-options-via-configuration"></a>通过配置的 Kestrel 终结点特定选项
 
 添加了通过[配置](xref:fundamentals/configuration/index)来配置 Kestrel 的终结点特定选项的支持。 终结点特定的配置包括：
 
@@ -359,7 +359,7 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
 
 ## <a name="authentication-and-authorization"></a>身份验证和授权
 
-### <a name="azure-active-directory-authentication-with-microsoftno-locidentityweb"></a>使用 Microsoft.Identity.Web 的 Azure Active Directory 身份验证
+### <a name="azure-active-directory-authentication-with-microsoftidentityweb"></a>使用 Microsoft.Identity.Web 的 Azure Active Directory 身份验证
 
 ASP.NET Core 项目模板现在与 <xref:Microsoft.Identity.Web?displayProperty=fullName> 集成，以处理使用 [Azure Active Directory](/azure/active-directory/fundamentals/active-directory-whatis) (Azure AD) 的身份验证。 [Microsoft.Identity.Web package](https://www.nuget.org/packages/Microsoft.Identity.Web/) 提供：
 
@@ -374,7 +374,7 @@ ASP.NET Core 项目模板现在与 <xref:Microsoft.Identity.Web?displayProperty=
 
 ### <a name="custom-handling-of-authorization-failures"></a>自定义处理授权失败
 
-现在，使用由[授权](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A)[中间件](xref:fundamentals/middleware/index)调用的新 [IAuthorizationMiddlewareResultHandler](https://github.com/dotnet/aspnetcore/blob/v5.0.0-rc.1.20451.17/src/Security/Authorization/Policy/src/IAuthorizationMiddlewareResultHandler.cs) 接口可以更轻松地自定义处理授权失败。 默认实现保持不变，但可以在“依赖关系注入”中注册自定义处理程序，这允许基于授权失败的原因发出自定义 HTTP 响应。 请参阅用于演示 `IAuthorizationMiddlewareResultHandler` 的使用情况的[此示例](https://github.com/dotnet/aspnetcore/blob/master/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs)。
+现在，使用由[授权](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A)[中间件](xref:fundamentals/middleware/index)调用的新 [IAuthorizationMiddlewareResultHandler](https://github.com/dotnet/aspnetcore/blob/v5.0.0-rc.1.20451.17/src/Security/Authorization/Policy/src/IAuthorizationMiddlewareResultHandler.cs) 接口可以更轻松地自定义处理授权失败。 默认实现保持不变，但可以在“依赖关系注入”中注册自定义处理程序，这允许基于授权失败的原因发出自定义 HTTP 响应。 请参阅用于演示 `IAuthorizationMiddlewareResultHandler` 的使用情况的[此示例](https://github.com/dotnet/aspnetcore/blob/main/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs)。
 
 ### <a name="authorization-when-using-endpoint-routing"></a>使用终结点路由时的授权
 
@@ -390,7 +390,7 @@ ASP.NET Core 项目模板现在与 <xref:Microsoft.Identity.Web?displayProperty=
 
 可以使用新的 <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> 和 `WriteAsJsonAsync` 扩展方法从 `HttpRequest` 和 `HttpResponse` 读取和写入 JSON 数据。 这些扩展方法使用 [System.Text.Json](xref:System.Text.Json) 序列化程序来处理 JSON 数据。 新的 `HasJsonContentType` 扩展方法还可以检查请求是否具有 JSON 内容类型。
 
-JSON 扩展方法可与[终结点路由](xref:fundamentals/routing)结合使用，以编程方式创建 JSON API，我们称之为“路由到代码”*_。 这是一个新选项，适用于想要以轻量级方式创建基本 JSON API 的开发人员。 例如，只有少量终结点的 Web 应用可能选择使用路由到代码，而不是 ASP.NET Core MVC 的全部功能：
+JSON 扩展方法可以与 [终结点路由](xref:fundamentals/routing)结合使用，以按照编程样式创建 JSON API，我们将这种做法称为 ***Route-to-code***。 这是一个新选项，适用于想要以轻量级方式创建基本 JSON API 的开发人员。 例如，只有少量终结点的 Web 应用可能选择使用路由到代码，而不是 ASP.NET Core MVC 的全部功能：
 
 ```csharp
 endpoints.MapGet("/weather/{city:alpha}", async context =>
@@ -450,7 +450,7 @@ public class Program
 
 在 .NET 5 中，对 ASP.NET Core 项目运行 [dotnet watch](xref:tutorials/dotnet-watch) 将启动默认浏览器，并在对代码进行更改时自动刷新浏览器。 这意味着可以执行下列操作：
 
-_ 在文本编辑器中打开 ASP.NET Core 项目。
+* 在文本编辑器中打开 ASP.NET Core 项目。
 * 运行 `dotnet watch`。
 * 专注于代码更改，而工具处理应用的重新生成、重新启动和重新加载。
 

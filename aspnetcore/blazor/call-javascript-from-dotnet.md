@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 5b28ad594567e7bfc87e15eed419bea520125654
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: ab342f6bdc5da68f2a2ee8d9aee29911a050056d
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280308"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586613"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>在 ASP.NET Core Blazor 中从 .NET 方法调用 JavaScript 函数
 
@@ -32,7 +32,7 @@ Blazor 应用可从 .NET 方法调用 JavaScript 函数，也可从 JavaScript �
 
 本文介绍如何从 .NET 调用 JavaScript 函数。 有关如何从 JavaScript 调用 .NET 方法的信息，请参阅 <xref:blazor/call-dotnet-from-javascript>。
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/)（[如何下载](xref:index#how-to-download-a-sample)）
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/)（[如何下载](xref:index#how-to-download-a-sample)）
 
 > [!NOTE]
 > 将 JS 文件（`<script>` 标记）添加到 `wwwroot/index.html` 文件 (Blazor WebAssembly) 或 `Pages/_Host.cshtml` 文件 (Blazor Server) 中的 `</body>` 结束标记前。 确保在 Blazor framework JS 文件之前包含带有 JS 互操作方法的 JS 文件。
@@ -96,17 +96,17 @@ JavaScript 代码（如前面示例中所示的代码）也可以通过对脚本
 
 `wwwroot/exampleJsInterop.js`:
 
-[!code-javascript[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
+[!code-javascript[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
 将引用 JavaScript 文件的 `<script>` 标记置于 `wwwroot/index.html` 文件 (Blazor WebAssembly) 或 `Pages/_Host.cshtml` 文件 (Blazor Server) 中。
 
 `wwwroot/index.html` (Blazor WebAssembly):
 
-[!code-html[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=23)]
+[!code-html[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=22)]
 
 `Pages/_Host.cshtml` (Blazor Server):
 
-[!code-cshtml[](./common/samples/5.x/BlazorServerSample/Pages/_Host.cshtml?highlight=34)]
+[!code-cshtml[](~/blazor/common/samples/5.x/BlazorServerSample/Pages/_Host.cshtml?highlight=33)]
 
 请勿将 `<script>` 标记置于组件文件中，因为 `<script>` 标记无法动态更新。
 
@@ -819,4 +819,4 @@ window.exampleJSObjectReferenceNotDisposedInCSharp = () => {
 ## <a name="additional-resources"></a>其他资源
 
 * <xref:blazor/call-dotnet-from-javascript>
-* [InteropComponent.razor 示例（dotnet/AspNetCore GitHub 存储库，3.1 版本分支）](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
+* [`InteropComponent.razor` 示例（dotnet/AspNetCore GitHub 存储库 `main` 分支）](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)：`main` 分支表示产品单元针对下一个 ASP.NET Core 版本的当前开发。 要为其他版本（例如 `release/5.0`）选择分支，请使用“切换分支或标记”下拉列表来选择分支。

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 6a8fd8e3498dda9b7c10834791e64df6276e2823
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 8a593654fa31e643e7c239f361f035589c75ce98
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253015"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395248"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>使用 Nginx 在 Linux 上托管 ASP.NET Core
 
@@ -46,13 +46,9 @@ ms.locfileid: "98253015"
 
 ## <a name="prerequisites"></a>先决条件
 
-1. 使用具有 sudo 特权的标准用户帐户访问 Ubuntu 16.04 服务器。
-1. 在服务器上安装 .NET Core 运行时。
-   1. 访问[下载 .NET Core 页面](https://dotnet.microsoft.com/download/dotnet-core)。
-   1. 选择最新的 .NET Core 非预览版。
-   1. 在“运行应用”-“运行时”下的表格中，下载最新的非预览版运行时。
-   1. 选择 Linux 包管理器说明链接，然后按照 Ubuntu 版本的 Ubuntu 说明进行操作。
-1. 一个现有 ASP.NET Core 应用。
+* 使用具有 sudo 特权的标准用户帐户访问 Ubuntu 16.04 服务器。
+* 服务器上安装了最新的非预览版 [.NET 运行时](/dotnet/core/install/linux)。
+* 一个现有 ASP.NET Core 应用。
 
 升级共享框架后，可随时重启服务器托管的 ASP.NET Core 应用。
 

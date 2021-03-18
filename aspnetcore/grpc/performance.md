@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/performance
-ms.openlocfilehash: 622c6ba042c5832f99bba379fadd9aba7d7163f2
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5d19ace2e844f2159c1ba0e8bc92960bcf00d54e
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93060399"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586990"
 ---
 # <a name="performance-best-practices-with-grpc"></a>GRPC 性能最佳做法
 
@@ -205,3 +205,30 @@ while (true)
 1. 流可能会因服务或连接错误而中断。 需要在出现错误时重启流的逻辑。
 2. 对于多线程处理，`RequestStream.WriteAsync` 并不安全。 一次只能将一条消息写入流中。 通过单个流从多个线程发送消息需要制造者/使用者队列（如 <xref:System.Threading.Channels.Channel%601>）来整理消息。
 3. gRPC 流式处理方法仅限于接收一种类型的消息并发送一种类型的消息。 例如，`rpc StreamingCall(stream RequestMessage) returns (stream ResponseMessage)` 接收 `RequestMessage` 并发送 `ResponseMessage`。 Protobuf 对使用 `Any` 和 `oneof` 支持未知消息或条件消息，可以解决此限制。
+
+## <a name="send-binary-payloads"></a>发送二进制有效负载
+
+Protobuf 支持标量值类型为 `bytes` 的二进制有效负载。 C# 中生成的属性使用 `ByteString` 作为属性类型。
+
+```protobuf
+syntax = "proto3";
+
+message PayloadResponse {
+    bytes data = 1;
+}  
+```
+
+`ByteString` 实例是使用 `ByteString.CopyFrom(byte[] data)` 创建的。 此方法会分配新的 `ByteString` 和新的 `byte[]`。 数据会复制到新的字节数组中。
+
+通过使用 `UnsafeByteOperations.UnsafeWrap(ReadOnlyMemory<byte> bytes)` 创建 `ByteString` 实例，可以避免其他分配和复制操作。
+
+```csharp
+var data = await File.ReadAllBytesAsync(path);
+
+var payload = new PayloadResponse();
+payload.Data = UnsafeByteOperations.UnsafeWrap(data);
+```
+
+字节不会通过 `UnsafeByteOperations.UnsafeWrap` 进行复制，因此在使用 `ByteString` 时，不得修改字节。
+
+`UnsafeByteOperations.UnsafeWrap` 要求使用 [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) 版本 3.15.0 或更高版本。

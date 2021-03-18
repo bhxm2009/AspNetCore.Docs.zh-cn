@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: f1c7acba0b7fb7dc07da576b188e580328ff4b89
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 6d82611eb2176126652d0d6c8db3779cde70dab5
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96901153"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586236"
 ---
 # <a name="deploy-an-app-to-app-service"></a>将应用部署到应用服务
 
@@ -141,10 +141,10 @@ ms.locfileid: "96901153"
     git remote add azure-prod GIT_DEPLOYMENT_URL
     ```
 
-    b. 将本地默认分支（主）推送到 azure-prod 的远程默认分支（主）  。
+    b. 将本地默认分支（主）推送到 *azure-prod* 远程默认分支（主）。
 
     ```console
-    git push azure-prod master
+    git push azure-prod main
     ```
 
     系统将提示使用前面创建的部署凭据。 查看命令行界面中的输出。 Azure 会远程构建 ASP.NET Core 应用。
@@ -214,10 +214,10 @@ Visual Studio 会构建应用并将其部署到 Azure。 访问 Web 应用 URL�
     git remote add azure-staging <Git_staging_deployment_URL>
     ```
 
-    b. 将本地默认分支（主）推送到 azure-staging 的远程默认分支（主）  。
+    b. 将本地默认分支（主）推送到 *azure-staging* 远程默认分支（主）。
 
     ```console
-    git push azure-staging master
+    git push azure-staging main
     ```
 
     请在 Azure 构建和部署应用时稍事等待。

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/web-host
-ms.openlocfilehash: 98be96bf60441cf09a315dbd1c60e109a7a08afe
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: fa9b1941d6dcda30855a4729dfa1cd78f897d9b6
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253106"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102109970"
 ---
 # <a name="aspnet-core-web-host"></a>ASP.NET Core Web 主机
 
@@ -32,7 +32,7 @@ ASP.NET Core 应用配置和启动“主机”。 主机负责应用程序启动
 
 ::: moniker range=">= aspnetcore-3.0"
 
-本文介绍了只适用于实现后向兼容性的 Web 主机。 建议对所有应用类型使用[通用主机](xref:fundamentals/host/generic-host)。
+本文介绍了只适用于实现后向兼容性的 Web 主机。 ASP.NET Core 模板会创建一个 [.NET 通用主机](<xref:fundamentals/host/generic-host>)，建议将这个主机用于所有应用类型。
 
 ::: moniker-end
 

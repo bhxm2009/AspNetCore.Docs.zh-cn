@@ -5,7 +5,7 @@ description: 了解模板化组件如何接受一个或多个 UI 模板作为参
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/18/2020
+ms.date: 03/04/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/templated-components
-ms.openlocfilehash: 579cabd9e6b7141ec6af4c6e221b805272a2fe40
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 6c94218f3808baca18f23a53688bafdd6354e760
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280026"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589473"
 ---
 # <a name="aspnet-core-blazor-templated-components"></a>ASP.NET Core Blazor 模板化组件
 
@@ -33,132 +33,88 @@ ms.locfileid: "100280026"
 * 表组件，用户可通过它指定表的标题、行和页脚的模板。
 * 列表组件，用户可通过它指定用于呈现列表中项的模板。
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/)（[如何下载](xref:index#how-to-download-a-sample)）
-
-## <a name="template-parameters"></a>模板参数
-
 通过指定一个或多个 <xref:Microsoft.AspNetCore.Components.RenderFragment> 或 <xref:Microsoft.AspNetCore.Components.RenderFragment%601> 类型的组件参数来定义模板化组件。 呈现片段，表示要呈现的 UI 段。 <xref:Microsoft.AspNetCore.Components.RenderFragment%601> 采用可在调用呈现片段时指定的类型参数。
 
-`TableTemplate` 组件 (`TableTemplate.razor`)：
+通常，模板化组件是有类型的组件，如以下 `TableTemplate` 组件所示。 该示例中的泛型类型 `<T>` 用于呈现 `IReadOnlyList<T>` 值，在本例中，这是显示一个宠物表格的组件中的一系列宠物行。
 
-[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
+`Shared/TableTemplate.razor`:
 
-使用模板化组件时，可以使用与参数名称匹配的子元素（在以下示例中为 `TableHeader` 和 `RowTemplate`）指定模板参数：
+::: moniker range=">= aspnetcore-5.0"
 
-```razor
-<TableTemplate Items="pets">
-    <TableHeader>
-        <th>ID</th>
-        <th>Name</th>
-    </TableHeader>
-    <RowTemplate>
-        <td>@context.PetId</td>
-        <td>@context.Name</td>
-    </RowTemplate>
-</TableTemplate>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor)]
 
-@code {
-    private List<Pet> pets = new List<Pet>
-    {
-        new Pet { PetId = 2, Name = "Mr. Bigglesworth" },
-        new Pet { PetId = 4, Name = "Salem Saberhagen" },
-        new Pet { PetId = 7, Name = "K-9" }
-    };
+::: moniker-end
 
-    private class Pet
-    {
-        public int PetId { get; set; }
-        public string Name { get; set; }
-    }
-}
-```
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor)]
+
+::: moniker-end
+
+在使用模板化组件时，可以使用与参数名称匹配的子元素来指定模板参数。 在下面的示例中，`<TableHeader>...</TableHeader>` 和 `<RowTemplate>...<RowTemplate>` 为 `TableTemplate` 组件的 `TableHeader` 和 `RowTemplate` 提供 <xref:Microsoft.AspNetCore.Components.RenderFragment%601> 模板。
+
+如果要为隐式子内容指定内容参数名称（不包含任何包装子元素），请在组件元素上指定 `Context` 属性。 在下面的示例中，`Context` 属性显示在 `TableTemplate` 元素上，并应用于所有 <xref:Microsoft.AspNetCore.Components.RenderFragment%601> 模板参数。
+
+`Pages/Pets.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets1.razor)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets1.razor)]
+
+::: moniker-end
+
+或者，您可以使用 <xref:Microsoft.AspNetCore.Components.RenderFragment%601> 子元素上的 `Context` 特性更改参数名称。 在下面的示例中，`Context` 是在 `RowTemplate` 上设置的，而不是 `TableTemplate`：
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor?name=snippet&highlight=6)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor?name=snippet&highlight=6)]
+
+::: moniker-end
+
+类型为 <xref:Microsoft.AspNetCore.Components.RenderFragment%601> 的组件参数具有一个名为 `context` 的隐式参数，可使用该参数。 在以下示例中，没有设置 `Context`。 `@context.{PROPERTY}` 向模板提供宠物值，其中 `{PROPERTY}` 是一个 `Pet` 属性：
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor?name=snippet&highlight=7-8)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor?name=snippet&highlight=7-8)]
+
+::: moniker-end
+
+使用泛型类型组件时，将在可能的情况下推断类型参数。 但是，可以使用名称与类型参数匹配的属性（上文示例中的 `TItem`）显式指定类型：
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?name=snippet&highlight=1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?name=snippet&highlight=1)]
+
+::: moniker-end
+
+## <a name="generic-type-constraints"></a>泛型类型约束
 
 > [!NOTE]
 > 未来版本将支持泛型类型约束。 有关详细信息，请参阅[允许泛型类型约束 (dotnet/aspnetcore #8433)](https://github.com/dotnet/aspnetcore/issues/8433)。
-
-## <a name="template-context-parameters"></a>模板上下文参数
-
-作为元素传递的 <xref:Microsoft.AspNetCore.Components.RenderFragment%601> 类型的组件实参具有一个名为 `context` 的隐式形参（例如前面的代码示例 `@context.PetId`），但可以使用子元素上的 `Context` 属性来更改形参名称。 在下面的示例中，`RowTemplate` 元素的 `Context` 属性指定了 `pet` 参数：
-
-```razor
-<TableTemplate Items="pets">
-    <TableHeader>
-        <th>ID</th>
-        <th>Name</th>
-    </TableHeader>
-    <RowTemplate Context="pet">
-        <td>@pet.PetId</td>
-        <td>@pet.Name</td>
-    </RowTemplate>
-</TableTemplate>
-
-@code {
-    ...
-}
-```
-
-或者，可以在组件元素上指定 `Context` 属性。 指定的 `Context` 属性适用于所有指定的模板参数。 如果你想为隐式子内容指定内容参数名称（不包含任何包装子元素），这可能很有用。 在下面的示例中，`Context` 属性显示在 `TableTemplate` 元素上，并应用于所有模板参数：
-
-```razor
-<TableTemplate Items="pets" Context="pet">
-    <TableHeader>
-        <th>ID</th>
-        <th>Name</th>
-    </TableHeader>
-    <RowTemplate>
-        <td>@pet.PetId</td>
-        <td>@pet.Name</td>
-    </RowTemplate>
-</TableTemplate>
-
-@code {
-    ...
-}
-```
-
-## <a name="generic-typed-components"></a>泛型类型化组件
-
-模板化组件通常是泛型类型。 例如，泛型 `ListViewTemplate` 组件 (`ListViewTemplate.razor`) 可用于呈现 `IEnumerable<T>` 值。 若要定义泛型组件，请使用 [`@typeparam`](xref:mvc/views/razor#typeparam) 指令指定类型参数：
-
-[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
-
-使用泛型类型化组件时，将在可能的情况下推断类型参数：
-
-```razor
-<ListViewTemplate Items="pets">
-    <ItemTemplate Context="pet">
-        <li>@pet.Name</li>
-    </ItemTemplate>
-</ListViewTemplate>
-
-@code {
-    private List<Pet> pets = new List<Pet>
-    {
-        new Pet { Name = "Mr. Bigglesworth" },
-        new Pet { Name = "Salem Saberhagen" },
-        new Pet { Name = "K-9" }
-    };
-
-    private class Pet
-    {
-        public string Name { get; set; }
-    }
-}
-```
-
-否则，必须使用与类型参数的名称匹配的属性显式指定类型参数。 在下面的示例中，`TItem="Pet"` 指定类型：
-
-```razor
-<ListViewTemplate Items="pets" TItem="Pet">
-    <ItemTemplate Context="pet">
-        <li>@pet.Name</li>
-    </ItemTemplate>
-</ListViewTemplate>
-
-@code {
-    ...
-}
-```
 
 ## <a name="additional-resources"></a>其他资源
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 515da543fc6b6cca0b90968b154d91b611ea3345
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 9e7063297e124aabbdf1defd01ac90f735ef5321
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280547"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395001"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>利用 ASP.NET Core Blazor WebAssembly 生成渐进式 Web 应用程序
 
@@ -104,15 +104,17 @@ dotnet new blazorwasm -o MyBlazorPwa --pwa
   
   在上述命令中，`-o|--output` 选项将为名为 `MyBlazorPwa` 的应用创建一个新文件夹。
   
-  如果你不打算将应用转换为最新版本，则传递 `-f|--framework` 选项。 以下示例将创建 ASP.NET Core 3.1 版的应用：
+  **如果不打算将应用转换为最新版本**，则传递 `-f|--framework` 选项。 以下示例将创建 ASP.NET Core 3.1 版的应用：
   
   ```dotnetcli
   dotnet new blazorwasm -o MyBlazorPwa --pwa -f netcoreapp3.1
   ```
 
-* 通过以下 URL 导航到 ASP.NET Core GitHub 存储库，该存储库链接到 5.0 版参考源和资产。 如果你不打算将应用转换为 5.0 版，请从适用于该应用的“切换分支或标记”下拉列表中选择要使用的版本。
+* 通过以下 URL 导航到 ASP.NET Core GitHub 存储库，该 URL 链接到 `main` 分支参考源和资产。 从适用于你的应用的“切换分支或标记”下拉列表中选择要使用的版本。
 
-  [dotnet/aspnetcore（5.0 版）Blazor WebAssembly 项目模板 `wwwroot` 文件夹](https://github.com/dotnet/aspnetcore/tree/release/5.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+  [Blazor WebAssembly 项目模板`wwwroot`文件夹（dotnet/aspnetcore GitHub 存储库 `main` 分支）](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+
+  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 ::: moniker-end
 
@@ -128,12 +130,14 @@ dotnet new blazorwasm -o MyBlazorPwa --pwa
 
 * 通过以下 URL 导航到 ASP.NET Core GitHub 存储库，该存储库链接到 3.1 版参考源和资产：
 
-  [dotnet/aspnetcore（3.1 版）Blazor WebAssembly 项目模板 `wwwroot` 文件夹](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/ProjectTemplates/ComponentsWebAssembly.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+  [Blazor WebAssembly 项目模板`wwwroot`文件夹（dotnet/aspnetcore GitHub 存储库 `release 3.1` 分支）](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/ProjectTemplates/ComponentsWebAssembly.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
   > [!NOTE]
-  > ASP.NET Core 3.1 发布之后，Blazor WebAssembly 项目模板的 URL 发生了变化。 可从以下 URL 获取 5.0 或更高版本的参考资产：
+  > ASP.NET Core 3.1 发布之后，Blazor WebAssembly 项目模板的 URL 发生了变化。 任何版本的参考资产都可以从 ASP.NET Core 参考源获取。 从适用于你的应用的“切换分支或标记”下拉列表中选择要使用的版本。
   >
-  > [dotnet/aspnetcore（5.0 版）Blazor WebAssembly 项目模板 `wwwroot` 文件夹](https://github.com/dotnet/aspnetcore/tree/release/5.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+  > [Blazor WebAssembly 项目模板`wwwroot`文件夹（dotnet/aspnetcore GitHub 存储库 `main` 分支）](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+  >
+  > [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 ::: moniker-end
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: d0e6c0c31890c58aaca936fc6f1e92cb9a1ab456
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 8574bc06b7c27fbb8caf834754188dba67bcb4e3
+ms.sourcegitcommit: acfe51c35497a204f75c2a61125c9408c04493e6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96901231"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102605688"
 ---
 # <a name="aspnet-core-module"></a>ASP.NET Core 模块
 
@@ -93,7 +93,7 @@ ASP.NET Core 应用默认为进程内托管模型。
 
 * 在 ASP.NET Core 2.2.1 或更早版本中，<xref:System.IO.Directory.GetCurrentDirectory*> 会返回 IIS 所启动进程的工作目录而非应用目录（例如，对于 `w3wp.exe`，是 `C:\Windows\System32\inetsrv`）。
 
-  对于设置应用的当前目录的示例代码，请参阅 [`CurrentDirectoryHelpers` 类](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/aspnet-core-module/samples_snapshot/3.x/CurrentDirectoryHelpers.cs)。 调用 `SetCurrentDirectory` 方法。 后续 <xref:System.IO.Directory.GetCurrentDirectory*> 调用提供应用的目录。
+  对于设置应用的当前目录的示例代码，请参阅 [`CurrentDirectoryHelpers` 类](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/aspnet-core-module/samples_snapshot/3.x/CurrentDirectoryHelpers.cs)。 调用 `SetCurrentDirectory` 方法。 后续 <xref:System.IO.Directory.GetCurrentDirectory*> 调用提供应用的目录。
 
 * 在进程内托管时，不会在内部调用 <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> 来初始化用户。 因此，默认情况下不激活每次身份验证后用于转换声明的 <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> 实现。 使用 <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> 实现转换声明时，请调用 <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> 以添加身份验证服务：
 
@@ -509,7 +509,7 @@ ASP.NET Core 模块是插入 IIS 管道的本机 IIS 模块，用于：
 
 * 在 ASP.NET Core 2.2.1 或早期版本中，<xref:System.IO.Directory.GetCurrentDirectory*> 会返回 IIS 启动的进程的工作目录而非应用目录（例如，对于 w3wp.exe，是 C:\Windows\System32\inetsrv ）。
 
-  对于设置应用的当前目录的示例代码，请参阅 [CurrentDirectoryHelpers 类](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/aspnet-core-module/samples_snapshot/2.x/CurrentDirectoryHelpers.cs)。 调用 `SetCurrentDirectory` 方法。 后续 <xref:System.IO.Directory.GetCurrentDirectory*> 调用提供应用的目录。
+  对于设置应用的当前目录的示例代码，请参阅 [CurrentDirectoryHelpers 类](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/aspnet-core-module/samples_snapshot/2.x/CurrentDirectoryHelpers.cs)。 调用 `SetCurrentDirectory` 方法。 后续 <xref:System.IO.Directory.GetCurrentDirectory*> 调用提供应用的目录。
 
 * 在进程内托管时，不会在内部调用 <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> 来初始化用户。 因此，默认情况下不激活每次身份验证后用于转换声明的 <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> 实现。 使用 <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> 实现转换声明时，请调用 <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> 以添加身份验证服务：
 
@@ -1078,5 +1078,5 @@ ASP.NET Core 模块安装程序使用 TrustedInstaller 帐户的权限运行。 
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/azure-apps/index>
-* [ASP.NET Core 模块引用源[默认分支（主）]](https://github.com/dotnet/aspnetcore/tree/master/src/Servers/IIS/AspNetCoreModuleV2)：使用“分支”下拉列表选择特定版本（例如，`release/3.1`）。
+* [ASP.NET Core 模块引用源[默认分支（主）]](https://github.com/dotnet/aspnetcore/tree/main/src/Servers/IIS/AspNetCoreModuleV2)：使用“分支”下拉列表选择特定版本（例如，`release/3.1`）。
 * <xref:host-and-deploy/iis/modules>

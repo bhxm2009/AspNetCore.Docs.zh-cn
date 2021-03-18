@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 811ec08eb457fcf0697a64dc4990d29082454f73
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: fee4473aede3fd213314c51a18284b4e4ad95b2b
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280866"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394663"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>ASP.NET Core Blazor 状态管理
 
@@ -254,7 +254,7 @@ ASP.NET Core 受保护的浏览器存储将 [ASP.NET Core 数据保护](xref:sec
 
 可将 `@using` 指令放在应用的 `_Imports.razor` 文件而不是组件中。 使用 `_Imports.razor` 文件可使命名空间可用于应用的较大部分或整个应用。
 
-若要在基于 Blazor Server 项目模板的应用的 `Counter` 组件中保留 `currentCount` 值，请修改 `IncrementCount` 方法以使用 `ProtectedSessionStore.SetAsync`：
+若要在基于 [Blazor Server 项目模板](xref:blazor/project-structure)的应用的 `Counter` 组件中保留 `currentCount` 值，请修改 `IncrementCount` 方法以使用 `ProtectedSessionStore.SetAsync`：
 
 ```csharp
 private async Task IncrementCount()
@@ -502,7 +502,7 @@ ASP.NET Core 受保护的浏览器存储将 [ASP.NET Core 数据保护](xref:sec
 
 可将 `@using` 语句放置在 `_Imports.razor` 文件而不是组件中。 使用 `_Imports.razor` 文件可使命名空间可用于应用的较大部分或整个应用。
 
-若要在基于 Blazor Server 项目模板的应用的 `Counter` 组件中保留 `currentCount` 值，请修改 `IncrementCount` 方法以使用 `ProtectedSessionStore.SetAsync`：
+若要在基于 [Blazor Server 项目模板](xref:blazor/project-structure)的应用的 `Counter` 组件中保留 `currentCount` 值，请修改 `IncrementCount` 方法以使用 `ProtectedSessionStore.SetAsync`：
 
 ```csharp
 private async Task IncrementCount()

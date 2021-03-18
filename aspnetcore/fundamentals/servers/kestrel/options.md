@@ -19,18 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/kestrel/options
-ms.openlocfilehash: 198d509a68224077d3764cc836121b89e96c6853
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 48b4af2dfc925c4444c2bd0e43d04f2f0f3ddd17
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253830"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587003"
 ---
 # <a name="configure-options-for-the-aspnet-core-kestrel-web-server"></a>为 ASP.NET Core Kestrel Web 服务器配置选项
 
 Kestrel Web 服务器具有约束配置选项，这些选项在面向 Internet 的部署中尤其有用。
 
-若要在调用 `ConfigureWebHostDefaults` 后提供其他配置，请使用 `ConfigureKestrel`：
+若要在调用 <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> 后提供其他配置，请使用 <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel%2A>：
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -53,7 +53,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-在本文后面的示例中，Kestrel 选项是采用 C# 代码配置的。 还可以使用 [配置提供程序](xref:fundamentals/configuration/index)设置 Kestrel 选项。 例如，[文件配置提供程序](xref:fundamentals/configuration/index#file-configuration-provider)可以从 appsettings.json 或 appsettings.{Environment}.json 文件加载 Kestrel 配置：
+在本文后面的示例中，Kestrel 选项是采用 C# 代码配置的。 还可以使用 [配置提供程序](xref:fundamentals/configuration/index)设置 Kestrel 选项。 例如，[文件配置提供程序](xref:fundamentals/configuration/index#file-configuration-provider)可以从 `appsettings.json` 或 `appsettings.{Environment}.json` 文件加载 Kestrel 配置：
 
 ```json
 {
@@ -104,7 +104,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 * 构建主机时配置 Kestrel：
 
-  在 Program.cs 中，将配置的 `Kestrel` 部分加载到 Kestrel 的配置中：
+  在 `Program.cs` 中，将配置的 `Kestrel` 部分加载到 Kestrel 的配置中：
 
   ```csharp
   // using Microsoft.Extensions.DependencyInjection;
@@ -136,7 +136,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 ### <a name="maximum-client-connections"></a>客户端最大连接数
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections>
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections><br>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentUpgradedConnections>
 
 可使用以下代码为整个应用设置并发打开的最大 TCP 连接数：
@@ -162,7 +162,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 public IActionResult MyActionMethod()
 ```
 
-以下示例演示如何为每个请求上的应用配置约束：
+以下示例显示了如何针对每个请求为应用配置约束：
 
 [!code-csharp[](samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=5)]
 
@@ -176,7 +176,7 @@ public IActionResult MyActionMethod()
 
 ### <a name="minimum-request-body-data-rate"></a>请求正文最小数据速率
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate><br>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinResponseDataRate>
 
 Kestrel 每秒检查一次数据是否以指定的速率（字节/秒）传入。 如果速率低于最小值，则连接超时。宽限期是 Kestrel 允许客户端将其发送速率提升到最小值的时间量。 在此期间不会检查速率。 宽限期有助于避免最初由于 TCP 慢启动而以较慢速率发送数据的连接中断。
@@ -185,7 +185,7 @@ Kestrel 每秒检查一次数据是否以指定的速率（字节/秒）传入�
 
 最小速率也适用于响应。 除了属性和接口名称中具有 `RequestBody` 或 `Response` 以外，用于设置请求限制和响应限制的代码相同。
 
-以下示例演示如何在 Program.cs 中配置最小数据速率：
+以下示例演示如何在 `Program.cs` 中配置最小数据速率：
 
 [!code-csharp[](samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=6-11)]
 
@@ -193,9 +193,9 @@ Kestrel 每秒检查一次数据是否以指定的速率（字节/秒）传入�
 
 [!code-csharp[](samples/3.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-21)]
 
-用于 HTTP/2 请求的 `HttpContext.Features` 中不存在先前示例中引用的 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature>。 由于协议支持请求多路复用，因此 HTTP/2 通常不支持基于每个请求修改速率限制。 不过，用于 HTTP/2 请求的 `HttpContext.Features` 中仍存在 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature>，因为仍可以通过将 `IHttpMinRequestBodyDataRateFeature.MinDataRate` 设置为 `null`（甚至对于 HTTP/2 请求），按请求完全禁用读取速率限制。 对于给定 HTTP/2 请求，尝试读取 `IHttpMinRequestBodyDataRateFeature.MinDataRate` 或尝试将它设置为除 `null` 以外的值会导致 `NotSupportedException` 抛出。
+用于 HTTP/2 请求的 <xref:Microsoft.AspNetCore.Http.HttpContext.Features?displayProperty=nameWithType> 中不存在先前示例中引用的 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature>。 由于协议支持请求多路复用，因此 HTTP/2 通常不支持基于每个请求修改速率限制。 不过，用于 HTTP/2 请求的 `HttpContext.Features` 中仍存在 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature>，因为仍可以通过将 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature.MinDataRate?displayProperty=nameWithType> 设置为 `null`（甚至对于 HTTP/2 请求），按请求完全禁用读取速率限制。 对于给定 HTTP/2 请求，尝试读取 `IHttpMinRequestBodyDataRateFeature.MinDataRate` 或尝试将它设置为除 `null` 以外的值会导致 <xref:System.NotSupportedException> 抛出。
 
-通过 `KestrelServerOptions.Limits` 配置的服务器范围的速率限制仍适用于 HTTP/1.x 和 HTTP/2 连接。
+通过 <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Limits?displayProperty=nameWithType> 配置的服务器范围的速率限制仍适用于 HTTP/1.x 和 HTTP/2 连接。
 
 ### <a name="request-headers-timeout"></a>请求标头超时
 
@@ -207,9 +207,13 @@ Kestrel 每秒检查一次数据是否以指定的速率（字节/秒）传入�
 
 ## <a name="http2-limits"></a>HTTP/2 限制
 
+该部分中的限制在 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.Http2?displayProperty=nameWithType> 上设置。
+
 ### <a name="maximum-streams-per-connection"></a>每个连接的最大流
 
-`Http2.MaxStreamsPerConnection` 限制每个 HTTP/2 连接的并发请求流的数量。 拒绝过多的流。
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.MaxStreamsPerConnection>
+
+限制每个 HTTP/2 连接的并发请求流的数量。 拒绝过多的流。
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -222,7 +226,9 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 ### <a name="header-table-size"></a>标题表大小
 
-HPACK 解码器解压缩 HTTP/2 连接的 HTTP 标头。 `Http2.HeaderTableSize` 限制 HPACK 解码器使用的标头压缩表的大小。 该值以八位字节提供，且必须大于零 (0)。
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.HeaderTableSize>
+
+HPACK 解码器解压缩 HTTP/2 连接的 HTTP 标头。 `HeaderTableSize` 限制 HPACK 解码器使用的标头压缩表的大小。 该值以八位字节提供，且必须大于零 (0)。
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -235,7 +241,9 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 ### <a name="maximum-frame-size"></a>最大帧大小
 
-`Http2.MaxFrameSize` 表示服务器接收或发送的 HTTP/2 连接帧有效负载的最大允许大小。 该值以八位字节提供，必须介于 2^14 (16,384) 和 2^24-1 (16,777,215) 之间。
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.MaxFrameSize>
+
+表示服务器接收或发送的 HTTP/2 连接帧有效负载的最大允许大小。 该值以八位字节提供，必须介于 2^14 (16,384) 和 2^24-1 (16,777,215) 之间。
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -248,7 +256,9 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 ### <a name="maximum-request-header-size"></a>最大请求标头大小
 
-`Http2.MaxRequestHeaderFieldSize` 表示请求标头值的允许的最大大小（用八进制表示）。 此限制适用于名称和值的压缩和未压缩表示形式。 该值必须大于零 (0)。
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.MaxRequestHeaderFieldSize>
+
+表示请求标头值的允许的最大大小（用八进制表示）。 此限制适用于名称和值的压缩和未压缩表示形式。 该值必须大于零 (0)。
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -261,7 +271,9 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 ### <a name="initial-connection-window-size"></a>初始连接窗口大小
 
-`Http2.InitialConnectionWindowSize` 表示服务器一次性缓存的最大请求主体数据大小（每次连接时在所有请求（流）中汇总，以字节为单位）。 请求也受 `Http2.InitialStreamWindowSize` 限制。 该值必须大于或等于 65,535，并小于 2^31 (2,147,483,648)。
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.InitialConnectionWindowSize>
+
+表示服务器一次性缓存的最大请求主体数据大小（每次连接时在所有请求（流）中汇总，以字节为单位）。 请求也受 `Http2.InitialStreamWindowSize` 限制。 该值必须大于或等于 65,535，并小于 2^31 (2,147,483,648)。
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -274,7 +286,9 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 ### <a name="initial-stream-window-size"></a>初始流窗口大小
 
-`Http2.InitialStreamWindowSize` 表示服务器针对每个请求（流）的一次性缓存的最大请求主体数据大小（以字节为单位）。 请求也受 `Http2.InitialConnectionWindowSize` 限制。 该值必须大于或等于 65,535，并小于 2^31 (2,147,483,648)。
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.InitialStreamWindowSize>
+
+表示服务器针对每个请求（流）的一次性缓存的最大请求主体数据大小（以字节为单位）。 请求也受 [`InitialConnectionWindowSize`](#initial-connection-window-size) 限制。 该值必须大于或等于 65,535，并小于 2^31 (2,147,483,648)。
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -294,13 +308,13 @@ Kestrel 可以配置为向连接的客户端发送 HTTP/2 ping。 HTTP/2 ping �
 
 与 HTTP/2 保持活动 ping 关联的配置选项有两个：
 
-* `Http2.KeepAlivePingInterval` 是配置 ping 间隔的 `TimeSpan`。 如果服务器在此时间段内没有收到任何帧，则服务器会向客户端发送保持活动 ping。 将此选项设置为 `TimeSpan.MaxValue` 时，会禁用保持活动 ping。 默认值为 `TimeSpan.MaxValue`。
-* `Http2.KeepAlivePingTimeout` 是配置 ping 超时的 `TimeSpan`。 如果服务器在此超时期间没有收到任何帧（如响应 ping），则连接将关闭。 将此选项设置为 `TimeSpan.MaxValue` 时，会禁用保持活动状态超时。 默认值为 20 秒。
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.KeepAlivePingDelay> 是配置 ping 间隔的 <xref:System.TimeSpan>。 如果服务器在此时间段内没有收到任何帧，则服务器会向客户端发送保持活动 ping。 将此选项设置为 <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType> 时，会禁用保持活动 ping。 默认值为 <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>。
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.KeepAlivePingTimeout> 是配置 ping 超时的 <xref:System.TimeSpan>。 如果服务器在此超时期间没有收到任何帧（如响应 ping），则连接将关闭。 将此选项设置为 <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType> 时，会禁用保持活动状态超时。 默认值为 20 秒。
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.Limits.Http2.KeepAlivePingInterval = TimeSpan.FromSeconds(30);
+    serverOptions.Limits.Http2.KeepAlivePingDelay = TimeSpan.FromSeconds(30);
     serverOptions.Limits.Http2.KeepAlivePingTimeout = TimeSpan.FromSeconds(60);
 });
 ```

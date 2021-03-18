@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: f6a93eb9d95182d29a60cc1a5c48122b9166aa84
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 4c574a630176010ab30006b53c42e5cad7f93a54
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280147"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395183"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>ASP.NET Core Blazor 事件处理
 
@@ -128,7 +128,10 @@ private void ShowMessage(MouseEventArgs e)
 
 有关更多信息，请参见以下资源：
 
-* [ASP.NET Core 引用源（dotnet/aspnetcore `master` 分支）中的 `EventArgs` 类](https://github.com/dotnet/aspnetcore/tree/master/src/Components/Web/src/Web)。 `master` 分支表示正在针对下一个 ASP.NET Core 版本开发的 API。 对于当前版本，请选择适当的 GitHub 存储库分支（例如，`release/3.1`）。
+* [ASP.NET Core 引用源（dotnet/aspnetcore `main` 分支）中的 `EventArgs` 类](https://github.com/dotnet/aspnetcore/tree/main/src/Components/Web/src/Web)
+
+  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+
 * [MDN Web 文档：GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers)：包含关于哪些 HTML 元素支持每个 DOM 事件的信息。
 
 ## <a name="lambda-expressions"></a>Lambda 表达式
@@ -174,7 +177,7 @@ private void ShowMessage(MouseEventArgs e)
 
 示例应用 (`Components/ChildComponent.razor`) 中的 `ChildComponent` 演示如何设置按钮的 `onclick` 处理程序以从示例的 `ParentComponent` 接收 <xref:Microsoft.AspNetCore.Components.EventCallback> 委托。 <xref:Microsoft.AspNetCore.Components.EventCallback> 是用 `MouseEventArgs` 键入的，这适用于来自外围设备的 `onclick` 事件：
 
-[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
 `ParentComponent` 将子级的 <xref:Microsoft.AspNetCore.Components.EventCallback%601> (`OnClickCallback`) 设置为其 `ShowMessage` 方法。
 

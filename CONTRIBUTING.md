@@ -12,7 +12,7 @@
 
 * 创建一个[问题](https://github.com/dotnet/AspNetCore.Docs/issues/new)，描述你想要执行的操作，例如更改现有项目或创建一个新项目。 我们经常要求提供新主题建议的大纲。 请等待团队批准后再投入时间参与进来。
 * 为 [aspnet/Docs](https://github.com/dotnet/AspNetCore.Docs/) 存储库创建分支，并为所做出的更改创建一个分支。
-* 提交拉取请求以掌握更改。
+* 将所做更改随着 PR 一起提交到 *主* 分支。
 * 如果拉取请求分配的标签为 “cla-required”，则[完成贡献许可协议 (CLA)](https://cla.dotnetfoundation.org/)。
 * 对 PR 请求反馈进行响应。
 
@@ -24,11 +24,11 @@
 
 ## <a name="markdown-syntax"></a>Markdown 语法
 
-文章采用 [DocFx 风格的 Markdown](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html) 编写，它是 [GitHub 风格的 Markdown (GFM)](https://guides.github.com/features/mastering-markdown/) 的超集。 有关 ASP.NET 文档中常用的 UI 功能的 DFM 语法示例，请参阅 .NET Docs 存储库风格指南中的[元数据和降价模板](https://github.com/dotnet/docs/blob/master/styleguide/template.md)。 
+文章采用 [DocFx 风格的 Markdown](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html) 编写，它是 [GitHub 风格的 Markdown (GFM)](https://guides.github.com/features/mastering-markdown/) 的超集。 有关 ASP.NET 文档中常用的 UI 功能的 DFM 语法示例，请参阅 .NET Docs 存储库风格指南中的[元数据和降价模板](https://github.com/dotnet/docs/blob/main/styleguide/template.md)。 
 
 ## <a name="folder-structure-conventions"></a>文件夹结构约定
 
-对于每个Markdown 文件，可能存在图像文件夹和示例代码文件夹。 如果文章是 [fundamentals/configuration/index.md](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/fundamentals/configuration/index.md)，则图像位于 [fundamentals/configuration/index/\_](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/_static) 中，示例应用项目文件位于 [fundamentals/configuration/index/sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample) 中。 fundamentals/configuration/index.md 文件中的图像由以下 Markdown 呈现：
+对于每个Markdown 文件，可能存在图像文件夹和示例代码文件夹。 如果文章是 [fundamentals/configuration/index.md](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/configuration/index.md)，则图像位于 [fundamentals/configuration/index/\_](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/_static) 中，示例应用项目文件位于 [fundamentals/configuration/index/sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/sample) 中。 fundamentals/configuration/index.md 文件中的图像由以下 Markdown 呈现：
 
 ```md
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
@@ -149,7 +149,7 @@ DocFX 要求：
 
 ## <a name="voice-and-tone"></a>语音和声调
 
-我们的目标是编写被广泛受众所理解的易懂文档。 为此，我们编写了写作风格指南，请参与者遵守。 有关详细信息，请参阅 .NET 存储库中的 [语气和语调指南](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md)。
+我们的目标是编写被广泛受众所理解的易懂文档。 为此，我们编写了写作风格指南，请参与者遵守。 有关详细信息，请参阅 .NET 存储库中的 [语气和语调指南](https://github.com/dotnet/docs/blob/main/styleguide/voice-tone.md)。
 
 ## <a name="microsoft-writing-style-guide"></a>Microsoft 编写风格指南
 
@@ -157,4 +157,4 @@ DocFX 要求：
 
 ## <a name="redirects"></a>重定向
 
-如果删除某篇文章、更改文章的文件名或将其移到另一个文件夹，请创建一个重定向，确保将此项目收藏为书签的人不会收到 404 Not Found 错误。 添加重定向到[主重定向文件](https://github.com/dotnet/AspNetCore.Docs/blob/master/.openpublishing.redirection.json)。
+如果删除某篇文章、更改文章的文件名或将其移到另一个文件夹，请创建一个重定向，确保将此项目收藏为书签的人不会收到 404 Not Found 错误。 向[主重定向文件](https://github.com/dotnet/AspNetCore.Docs/blob/main/.openpublishing.redirection.json)添加添加重定向。

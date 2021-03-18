@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: 524a1f85838d083ed2f01afd96601bcd5e6ce12b
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 2a5add79d60ddcbb1afdb9489fa16da692a7d6bd
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280982"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102109658"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>ASP.NET Core Blazor Server 的威胁缓解指南
 
@@ -139,7 +139,7 @@ Blazor 客户端会为每个会话建立一个连接，并且只要浏览器窗�
 
 请采取以下预防措施来防止出现上述情况：
 
-* 在 [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) 语句中包装 JS 互操作调用，以处理调用期间可能发生的错误。 有关详细信息，请参阅 <xref:blazor/fundamentals/handle-errors#javascript-interop>。
+* 在 [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) 语句中包装 JS 互操作调用，以处理调用期间可能发生的错误。 有关详细信息，请参阅 <xref:blazor/fundamentals/handle-errors?pivots=server#javascript-interop-server>。
 * 在执行任何操作之前，请验证从 JS 互操作调用返回的数据（包括错误消息）。
 
 ### <a name="net-methods-invoked-from-the-browser"></a>从浏览器调用的 .NET 方法

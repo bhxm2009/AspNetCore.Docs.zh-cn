@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/proxy-load-balancer
-ms.openlocfilehash: e63821743dad565b51d5c2360dcc2fbf0632754f
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: 28a802414fd59f684a56e2b735140438d33be740
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99530042"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102109944"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>配置 ASP.NET Core 以使用代理服务器和负载均衡器
 
@@ -56,6 +56,8 @@ ms.locfileid: "99530042"
 * [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress)：使用 `X-Forwarded-For` 标头值设置。 影响中间件如何设置 `RemoteIpAddress` 的其他设置。 有关详细信息，请参阅[转接头中间件选项](#forwarded-headers-middleware-options)。
 * [HttpContext.Request.Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme)：使用 `X-Forwarded-Proto` 标头值设置。
 * [HttpContext.Request.Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host)：使用 `X-Forwarded-Host` 标头值设置。
+
+有关上述内容的更多信息，请参阅[该 GitHub 问题](https://github.com/dotnet/AspNetCore.Docs/issues/21615)。
 
 可以配置转接头中间件[默认设置](#forwarded-headers-middleware-options)。 默认设置为：
 

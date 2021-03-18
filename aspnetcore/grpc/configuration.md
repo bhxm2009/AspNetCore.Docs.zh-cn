@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/configuration
-ms.openlocfilehash: 617c042c628dc431391f39c2ecb2d2f9c9463fa5
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 3f03d774a2223dc1fc08adcbc85cdc9a2b63dea0
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "95417586"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588888"
 ---
 # <a name="grpc-for-net-configuration"></a>适用于 .NET 的 gRPC 配置
 
@@ -62,10 +62,14 @@ gRPC 客户端配置在 `GrpcChannelOptions` 中进行设置。 下表描述了�
 | DisposeHttpClient | `false` | 如果设置为 `true` 且指定了 `HttpMessageHandler` 或 `HttpClient`，则在处置 `GrpcChannel` 时，将分别处置 `HttpHandler` 或 `HttpClient`。 |
 | LoggerFactory | `null` | 客户端用于记录有关 gRPC 调用的信息的 `LoggerFactory`。 可以通过依赖项注入来解析或使用 `LoggerFactory.Create` 来创建 `LoggerFactory` 实例。 有关配置日志记录的示例，请参阅 <xref:grpc/diagnostics#grpc-client-logging>。 |
 | MaxSendMessageSize | `null` | 可以从客户端发送的最大消息大小（以字节为单位）。 尝试发送超过配置的最大消息大小的消息会导致异常。 设置为 `null`时，消息的大小不受限制。 |
-| <span style="word-break:normal;word-wrap:normal">MaxReceiveMessageSize</span> | 4 MB | 可以由客户端接收的最大消息大小（以字节为单位）。 如果客户端收到的消息超过此限制，则会引发异常。 增大此值可使客户端接收更大的消息，但可能会对内存消耗产生负面影响。 设置为 `null`时，消息的大小不受限制。 |
+| MaxReceiveMessageSize | 4 MB | 可以由客户端接收的最大消息大小（以字节为单位）。 如果客户端收到的消息超过此限制，则会引发异常。 增大此值可使客户端接收更大的消息，但可能会对内存消耗产生负面影响。 设置为 `null`时，消息的大小不受限制。 |
 | 凭据 | `null` | 一个 `ChannelCredentials` 实例。 凭据用于将身份验证元数据添加到 gRPC 调用。 |
 | CompressionProviders | gzip | 用于压缩和解压缩消息的压缩提供程序的集合。 可以创建自定义压缩提供程序并将其添加到集合中。 默认已配置提供程序支持 gzip 压缩。 |
 | ThrowOperationCanceledOnCancellation | `false` | 如果设置为 `true`，则在取消调用或超过其截止时间时，客户端将引发 <xref:System.OperationCanceledException>。 |
+| MaxRetryAttempts | 5 | 最大重试次数。 该值限制服务配置中指定的任何重试和 hedging 尝试值。单独设置该值不会启用重试。 重试在服务配置中启用，可以使用 `ServiceConfig` 来启用。 `null` 值会删除最大重试次数限制。 有关重试的更多详细信息，请参阅“<xref:grpc/retries>”。 |
+| MaxRetryBufferSize | 16 MB | 在重试或 hedging 调用时，可用于存储发送的消息的最大缓冲区大小（以字节为单位）。 如果超出了缓冲区限制，则不会再进行重试，并且仅保留一个 hedging 调用，其他 hedging 调用将会取消。 此限制将应用于通过通道进行的所有调用。 值 `null` 移除最大重试缓冲区大小限制。 |
+| <span style="word-break:normal;word-wrap:normal">MaxRetryBufferPerCallSize</span> | 1 MB | 在重试或 hedging 调用时，可用于存储发送的消息的最大缓冲区大小（以字节为单位）。 如果超出了缓冲区限制，则不会再进行重试，并且仅保留一个 hedging 调用，其他 hedging 调用将会取消。 此限制将应用于一个调用。 值 `null` 移除每个调用的最大重试缓冲区大小限制。 |
+| ServiceConfig | `null` | gRPC 通道的服务配置。 服务配置可以用于配置 [gRPC 重试](xref:grpc/retries)。 |
 
 下面的代码：
 

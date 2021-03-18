@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 780161090d376f08b849fadb47127810d6661d0c
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 8dd11251358bbeea444661970fadf19cb1390fd3
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100279760"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394923"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>ASP.NET Core Blazor 托管模型
 
@@ -36,7 +36,7 @@ Blazor 是一种 Web 框架，专用于在基于 [WebAssembly](https://webassemb
 
 ![Blazor WebAssembly:Blazor 应用在浏览器内部的 UI 线程上运行。](hosting-models/_static/blazor-webassembly.png)
 
-如果创建了 Blazor WebAssembly 应用进行部署，但没有后端 ASP.NET Core 应用来为其文件提供服务，那么该应用被称为独立 Blazor WebAssembly 应用。 如果创建了应用进行部署，但没有后端应用来为其文件提供服务，那么该应用被称为托管的 Blazor WebAssembly 应用。 托管的 Blazor WebAssembly 应用通常使用 Web API 调用或 [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>) 通过网络与服务器交互。
+如果创建了 Blazor WebAssembly 应用进行部署，但没有后端 ASP.NET Core 应用来为其文件提供服务，那么该应用被称为独立 Blazor WebAssembly 应用。 如果创建了应用进行部署，但没有后端应用来为其文件提供服务，那么该应用被称为托管的 Blazor WebAssembly 应用。 托管的 Blazor WebAssembly **`Client`** 应用通常使用 Web API 调用或 [SignalR](xref:signalr/introduction)（<xref:tutorials/signalr-blazor>）通过网络与后端 **`Server`** 应用交互。
 
 `blazor.webassembly.js` 脚本由框架和句柄提供：
 
@@ -59,7 +59,7 @@ Blazor WebAssembly 托管模型具有以下局限性：
 
 若要创建 Blazor WebAssembly 应用，请参阅 <xref:blazor/tooling>。
 
-Blazor 托管应用模型支持 [Docker 容器](/dotnet/standard/microservices-architecture/container-docker-introduction/index)。 对于 Visual Studio 中的 Docker 支持，请右键单击托管的 Blazor WebAssembly 解决方案的 `Server` 项目，然后选择“添加” > “Docker 支持” 。
+Blazor 托管应用模型支持 [Docker 容器](/dotnet/standard/microservices-architecture/container-docker-introduction/index)。 对于 Visual Studio 中的 Docker 支持，请右键单击托管的 Blazor WebAssembly 解决方案的 **`Server`** 项目，然后选择“添加” > “Docker 支持”。
 
 ## Blazor Server
 
@@ -157,6 +157,7 @@ Blazor Server 应用预呈现以响应第一个客户端请求，这会在服务
 ## <a name="additional-resources"></a>其他资源
 
 * <xref:blazor/tooling>
+* <xref:blazor/project-structure>
 * <xref:signalr/introduction>
 * <xref:blazor/fundamentals/signalr>
 * <xref:tutorials/signalr-blazor>

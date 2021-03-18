@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: 55e2cbc01af7352facad7121c05c754e9d438ae3
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: ee6de9a13a69154eef6b677663091667d391452f
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100279883"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395053"
 ---
 # <a name="aspnet-core-blazor-routing"></a>ASP.NET Core Blazor 路由
 
@@ -59,7 +59,7 @@ ms.locfileid: "100279883"
 * 从 <xref:Microsoft.AspNetCore.Components.Routing.Router> 接收 <xref:Microsoft.AspNetCore.Components.RouteData> 以及所有路由参数。
 * 使用指定的组件的[布局](xref:blazor/layouts)来呈现该组件，包括任何后续嵌套布局。
 
-对于没有使用 [`@layout` 指令](xref:blazor/layouts#specify-a-layout-in-a-component)指定布局的组件，可选择使用布局类指定一个 <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> 参数。 框架的 Blazor 项目模板会指定 `MainLayout` 组件 (`Shared/MainLayout.razor`) 作为应用的默认布局。 有关布局的详细信息，请参阅 <xref:blazor/layouts>。
+对于没有使用 [`@layout` 指令](xref:blazor/layouts#apply-a-layout-to-a-component)指定布局的组件，可选择使用布局类指定一个 <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> 参数。 框架的 [Blazor 项目模板](xref:blazor/project-structure)会指定 `MainLayout` 组件 (`Shared/MainLayout.razor`) 作为应用的默认布局。 有关布局的详细信息，请参阅 <xref:blazor/layouts>。
 
 组件支持使用多个 [`@page` 指令](xref:mvc/views/razor#page)的多个路由模板。 以下示例组件会对 `/BlazorRoute` 和 `/DifferentBlazorRoute` 的请求进行加载。
 
@@ -102,7 +102,7 @@ ms.locfileid: "100279883"
 
 ::: moniker-end
 
-任意项都可用作 `<NotFound>` 标记的内容，例如其他交互式组件。 若要将默认布局应用于 <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> 内容，请参阅 <xref:blazor/layouts#default-layout>。
+任意项都可用作 `<NotFound>` 标记的内容，例如其他交互式组件。 若要将默认布局应用于 <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> 内容，请参阅 <xref:blazor/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>。
 
 ## <a name="route-to-components-from-multiple-assemblies"></a>从多个程序集路由到组件
 
@@ -371,7 +371,7 @@ var query = new Uri(NavigationManager.Uri).Query;
 ::: moniker-end
 
 > [!NOTE]
-> `NavMenu` 组件 (`NavMenu.razor`) 是在应用的 `Shared` 文件夹中提供的，而该文件夹是从 Blazor 项目模板生成的。
+> `NavMenu` 组件 (`NavMenu.razor`) 将在 [Blazor 项目模板](xref:blazor/project-structure)生成的应用的 `Shared` 文件夹中提供。
 
 有两个 <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> 选项可分配给 `<NavLink>` 元素的 `Match` 属性：
 

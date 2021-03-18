@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/test
-ms.openlocfilehash: 67ebfcd322ae08acf2fddae9bd6101f13fa77e7e
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 1a7b1114934f4fe7006d60bdbd0f06792d2c6935
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280711"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394546"
 ---
 # <a name="test-components-in-aspnet-core-blazor"></a>在 ASP.NET Core Blazor 中测试组件
 
@@ -100,7 +100,7 @@ bUnit 适用于常规用途的测试框架，例如 [MSTest](/dotnet/core/testin
 > [!NOTE]
 > 不同测试框架中的测试概念和测试实现相似，但不完全相同。 有关指导，请参阅测试框架的文档。
 
-下面演示了基于 `Counter` 项目模板的应用中 Blazor 组件上的 bUnit 测试的结构。 `Counter` 组件根据用户在页面中选择按钮显示并递增计数器：
+下面演示了基于 [Blazor 项目模板](xref:blazor/project-structure)，对应用中 `Counter` 组件进行的 bUnit 测试的结构。 `Counter` 组件根据用户在页面中选择按钮显示并递增计数器：
 
 ```razor
 @page "/counter"

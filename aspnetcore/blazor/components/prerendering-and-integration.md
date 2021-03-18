@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: d120440c292d15b7741260ed31af92d60db2261c
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: a0c5cc0bdc78f2ea70b8c128616ad09328ccf87d
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280065"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587380"
 ---
 # <a name="prerender-and-integrate-aspnet-core-razor-components"></a>预呈现和集成 ASP.NET Core Razor 组件
 
@@ -39,7 +39,7 @@ Razor 组件可以通过托管的 Blazor WebAssembly 解决方案集成到 Razor
 
 设置 Blazor WebAssembly 应用的预呈现：
 
-1. 将 Blazor WebAssembly 应用托管在 ASP.NET Core 应用中。 可以将独立的 Blazor WebAssembly 应用添加到 ASP.NET Core 解决方案中，也可以使用 Blazor 托管项目模板创建的托管 Blazor WebAssembly 应用。
+1. 将 Blazor WebAssembly 应用托管在 ASP.NET Core 应用中。 可以将独立的 Blazor WebAssembly 应用添加到 ASP.NET Core 解决方案中，也可以使用根据 [Blazor WebAssembly 项目模板](xref:blazor/project-structure)创建的托管 Blazor WebAssembly 应用。
 
 1. 从 Blazor WebAssembly 客户端项目中删除默认的静态 `wwwroot/index.html` 文件。
 
@@ -76,7 +76,7 @@ Razor 组件可以通过托管的 Blazor WebAssembly 解决方案集成到 Razor
 
    * 在开发环境中从应用程序生成器上调用 `UseDeveloperExceptionPage`。
    * 在应用程序生成器上调用 `UseBlazorFrameworkFiles`。
-   * 将回退从 `index.html` 页面 (`endpoints.MapFallbackToFile("index.html");`) 更改为 `_Host.cshtml` 页面。
+   * 将回退从 `index.html` 文件 (`endpoints.MapFallbackToFile("index.html");`) 更改为 `_Host.cshtml` 页面：`endpoints.MapFallbackToPage("/_Host");`。
 
    ```csharp
    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -205,6 +205,10 @@ builder.RootComponents.Add<Counter>("#my-counter");
     <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
 </head>
 ```
+
+## <a name="additional-resources"></a>其他资源
+
+* [支持预呈现身份验证](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
 
 ::: moniker-end
 

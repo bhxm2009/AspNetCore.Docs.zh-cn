@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 45ddcc9e006df2c5e86a7859efc76882b269a496
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: bca4035d625d5b6e51f2e51c194713014ccd5e90
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280388"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586535"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-blazor"></a>从 ASP.NET Core Blazor 中的 JavaScript 函数调用 .NET 方法
 
@@ -32,7 +32,7 @@ Blazor 应用可从 .NET 方法调用 JavaScript 函数，也可从 JavaScript �
 
 本文介绍如何从 JavaScript 调用 .NET 方法。 要详细了解如何通过 .NET 调用 JavaScript 函数，请参阅 <xref:blazor/call-javascript-from-dotnet>。
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/)（[如何下载](xref:index#how-to-download-a-sample)）
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/)（[如何下载](xref:index#how-to-download-a-sample)）
 
 > [!NOTE]
 > 将 JS 文件（`<script>` 标记）添加到 `wwwroot/index.html` 文件 (Blazor WebAssembly) 或 `Pages/_Host.cshtml` 文件 (Blazor Server) 中的 `</body>` 结束标记前。 确保在 Blazor framework JS 文件之前包含带有 JS 互操作方法的 JS 文件。
@@ -64,7 +64,7 @@ Blazor 应用可从 .NET 方法调用 JavaScript 函数，也可从 JavaScript �
 
 `wwwroot/exampleJsInterop.js`:
 
-[!code-javascript[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
+[!code-javascript[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
 
 如果选择了“`Trigger .NET static method ReturnArrayAsync`”按钮，请在浏览器的 Web 开发人员工具中检查控制台输出。
 
@@ -136,17 +136,17 @@ returnArrayAsyncJs: function () {
 
 `JsInteropClasses/ExampleJsInterop.cs`:
 
-[!code-csharp[](./common/samples/5.x/BlazorWebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=11-18)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=11-18)]
 
 `wwwroot/exampleJsInterop.js`:
 
-[!code-javascript[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
+[!code-javascript[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
 
 该名称将传递给 `HelloHelper` 的构造函数，该构造函数设置 `HelloHelper.Name` 属性。 执行 JavaScript 函数 `sayHello` 时，`HelloHelper.SayHello` 返回 `Hello, {Name}!` 消息，JavaScript 函数将该消息写入控制台。
 
 `JsInteropClasses/HelloHelper.cs`:
 
-[!code-csharp[](./common/samples/5.x/BlazorWebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
 
 浏览器 Web 开发人员工具中的控制台输出：
 
@@ -519,4 +519,4 @@ services.AddServerSideBlazor()
 ## <a name="additional-resources"></a>其他资源
 
 * <xref:blazor/call-javascript-from-dotnet>
-* [`InteropComponent.razor` 示例（dotnet/AspNetCore GitHub 存储库，3.1 版本分支）](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
+* [`InteropComponent.razor` 示例（dotnet/AspNetCore GitHub 存储库 `main` 分支）](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)：`main` 分支表示产品单元针对下一个 ASP.NET Core 版本的当前开发。 要为其他版本（例如 `release/5.0`）选择分支，请使用“切换分支或标记”下拉列表来选择分支。

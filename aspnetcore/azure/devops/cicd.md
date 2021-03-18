@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/cicd
-ms.openlocfilehash: 2ac7a130d223b21330d0a797c1d460fc0cf467d7
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 18b2c6ce27132844402f88b2817a07e3588d81c1
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96901205"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586262"
 ---
 # <a name="continuous-integration-and-deployment"></a>持续集成和持续部署
 
@@ -65,7 +65,7 @@ ms.locfileid: "96901205"
 1. 将本地 Git 存储库发布到新创建的 GitHub 存储库。 请执行以下命令：
 
     ```console
-    git push -u origin master
+    git push -u origin main
     ```
 
 1. 打开浏览器窗口并导航到 `https://github.com/<GitHub_username>/simple-feed-reader/`。 验证你的代码是否显示在 GitHub 存储库中。
@@ -118,7 +118,7 @@ ms.locfileid: "96901205"
 1. 如果对 GitHub 帐户启用了双因素身份验证，则需要个人访问令牌。 在这种情况下，单击“使用 GitHub 个人访问令牌授权”链接。 有关帮助，请参阅[官方 GitHub 个人访问令牌创建说明](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)。 只需要存储库范围内的权限。 否则，单击“使用 OAuth 授权”按钮。
 1. 出现提示时，请登录到你的 GitHub 帐户。 然后，选择“授权”，授予对 Azure DevOps 组织的访问权限。 如果成功，新的服务终结点随之创建。
 1. 单击“存储库”按钮旁边的省略号按钮。 从列表中选择“<GitHub_username>/simple-feed-reader”存储库。 单击“选择”按钮。
-1. 从“用于手动生成和计划生成的默认分支”下拉列表中选择默认分支（主）。 单击“继续”按钮。 此时将显示模板选择页。
+1. 从“用于手动生成和计划生成的默认分支”下拉列表中选择默认分支（“主”）。 单击“继续”按钮。 此时将显示模板选择页。
 
 ### <a name="create-the-build-definition"></a>创建生成定义
 
@@ -203,7 +203,7 @@ ms.locfileid: "96901205"
 ## <a name="commit-changes-to-github-and-automatically-deploy-to-azure"></a>提交对 GitHub 所做的更改并将其自动部署到 Azure
 
 1. 在 Visual Studio 中打开“SimpleFeedReader.sln”。
-1. 在解决方案资源管理器中，打开 Pages\Index.cshtml。 将 `<h2>Simple Feed Reader - V3</h2>` 更改为 `<h2>Simple Feed Reader - V4</h2>`。
+1. 在解决方案资源管理器中，打开 Pages\Index.cshtml  。 将 `<h2>Simple Feed Reader - V3</h2>` 更改为 `<h2>Simple Feed Reader - V4</h2>`。
 1. 按 Ctrl+Shift+B 生成应用  。
 1. 将该文件提交到 GitHub 存储库。 使用 Visual Studio“团队资源管理器”选项卡中的“更改”页，或者使用本地计算机的命令行界面执行以下操作：
 
@@ -211,7 +211,7 @@ ms.locfileid: "96901205"
     git commit -a -m "upgraded to V4"
     ```
 
-1. 将默认分支（主）中的更改推送到 GitHub 存储库的源远程库 。 在下面的命令中，将占位符 `{BRANCH}` 替换为默认分支（使用 `master`）：
+1. 将默认分支（主）中的更改推送到 GitHub 存储库的源远程库。  在下面的命令中，将占位符 `{BRANCH}` 替换为默认分支（使用 `main`）：
 
     ```console
     git push origin {BRANCH}

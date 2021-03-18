@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/websockets
-ms.openlocfilehash: 6edf2017cc889321cfb484e643b75711fd66004d
-ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
+ms.openlocfilehash: 1ed586745ba4d678272547785c6ffa77aa841392
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/09/2021
-ms.locfileid: "98058345"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588992"
 ---
 # <a name="websockets-support-in-aspnet-core"></a>ASP.NET Core 中的 WebSocket 支持
 
@@ -32,7 +32,7 @@ ms.locfileid: "98058345"
 
 本文介绍 ASP.NET Core 中 WebSocket 的入门方法。 [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) 是一个协议，支持通过 TCP 连接建立持久的双向信道。 它用于从快速实时通信中获益的应用，如聊天、仪表板和游戏应用。
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples)（[如何下载](xref:index#how-to-download-a-sample)）。 [如何运行](#sample-app)。
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples)（[如何下载](xref:index#how-to-download-a-sample)）。 [如何运行](#sample-app)。
 
 ## SignalR
 
@@ -61,6 +61,9 @@ ms.locfileid: "98058345"
 在 `Startup` 类的 `Configure` 方法中添加 WebSocket 中间件：
 
 [!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=UseWebSockets)]
+
+> [!NOTE]
+> 如果您想要接受控制器中的 WebSocket 请求，必须在 `app.UseEndpoints` 之前调用 `app.UseWebSockets`。
 
 ::: moniker range="< aspnetcore-2.2"
 
@@ -157,10 +160,10 @@ CORS 提供的保护不适用于 WebSocket。 浏览器不会：
 > 使用 IIS Express 时无需执行这些步骤
 
 1. 通过“管理”菜单或“服务器管理器”中的链接使用“添加角色和功能”向导。
-1. 选择“基于角色或基于功能的安装”。 选择“下一步”  。
-1. 选择适当的服务器（默认情况下选择本地服务器）。 选择“下一步”  。
+1. 选择“基于角色或基于功能的安装”。 选择“下一步”。
+1. 选择适当的服务器（默认情况下选择本地服务器）。 选择“下一步”。
 1. 在“角色”树中展开“Web 服务器 (IIS)”、然后依次展开“Web 服务器”和“应用程序开发”   。
-1. 选择“WebSocket 协议”。 选择“下一步”  。
+1. 选择“WebSocket 协议”。 选择“下一步”。
 1. 如果无需其他功能，请选择“下一步”。
 1. 选择“安装”  。
 1. 安装完成后，选择“关闭”以退出向导。
@@ -186,7 +189,7 @@ CORS 提供的保护不适用于 WebSocket。 浏览器不会：
 
 ## <a name="sample-app"></a>示例应用
 
-本文附带的[示例应用](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples)是一个 echo 应用。 它有一个可建立 WebSocket 连接的网页，且服务器将其收到的消息都重新发回到客户端。 示例应用未配置为使用 IIS Express 从 Visual Studio 运行，因此请在命令行界面中使用 [`dotnet run`](/dotnet/core/tools/dotnet-run) 运行应用，并在浏览器中导航到 `http://localhost:5000`。 该网页显示连接状态：
+本文附带的[示例应用](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples)是一个 echo 应用。 它有一个可建立 WebSocket 连接的网页，且服务器将其收到的消息都重新发回到客户端。 示例应用未配置为使用 IIS Express 从 Visual Studio 运行，因此请在命令行界面中使用 [`dotnet run`](/dotnet/core/tools/dotnet-run) 运行应用，并在浏览器中导航到 `http://localhost:5000`。 该网页显示连接状态：
 
 ![WebSocket 连接前网页的初始状态](websockets/_static/start.png)
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/troubleshoot
-ms.openlocfilehash: 61d4d2204886f26b4ff55bc876825012809f1dfa
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 1fd89059183300993c7fa78aa8dab1bda247a530
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253093"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586977"
 ---
 # <a name="troubleshoot-grpc-on-net-core"></a>对 .NET Core 上的 gRPC 进行故障排除
 
@@ -87,19 +87,24 @@ var client = new Greet.GreeterClient(channel);
 
 ## <a name="call-insecure-grpc-services-with-net-core-client"></a>使用 .NET Core 客户端调用不安全的 gRPC 服务
 
-如果应用使用 .NET Core 3.x，必须进行其他配置，才能使用 .NET Core 客户端调用不安全的 gRPC 服务。 gRPC 客户端必须将 `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` 开关设置为 `true` 并在服务器地址中使用 `http`：
+.NET gRPC 可以通过在服务器地址中指定 `http` 来调用不安全的 gRPC 服务。 例如，`GrpcChannel.ForAddress("http://localhost:5000")`。
 
-```csharp
-// This switch must be set before creating the GrpcChannel/HttpClient.
-AppContext.SetSwitch(
-    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+根据应用使用的 .NET 版本，调用不安全的 gRPC 服务还需要满足一些额外要求：
 
-// The port number(5000) must match the port of the gRPC server.
-var channel = GrpcChannel.ForAddress("http://localhost:5000");
-var client = new Greet.GreeterClient(channel);
-```
+* .NET 5 或更高版本要求使用 [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) 版本 2.32.0 或更高版本。
+* .NET Core 3.x 要求进行额外配置。 应用必须将 `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` 开关设置为 `true`：
+    
+    ```csharp
+    // This switch must be set before creating the GrpcChannel/HttpClient.
+    AppContext.SetSwitch(
+        "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+    
+    // The port number(5000) must match the port of the gRPC server.
+    var channel = GrpcChannel.ForAddress("http://localhost:5000");
+    var client = new Greet.GreeterClient(channel);
+    ```
 
-.NET 5 应用不需要其他配置，但若要调用不安全的 gRPC 服务，它们必须使用 `Grpc.Net.Client` 版本 2.32.0 或更高版本。
+只有 .NET Core 3.x 需要 `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` 开关。 .NET 5 中不需要任何额外配置，也没有这项要求。
 
 ## <a name="unable-to-start-aspnet-core-grpc-app-on-macos"></a>无法在 macOS 上启动 ASP.NET Core gRPC 应用
 

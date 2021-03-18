@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 6c3d2f93e43cf3660a12f1c8cef1d381b587f5ea
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: c2b2a6f049846dc2e4894b4cab8b0a1aa34762f9
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280535"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394845"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor WebAssembly 其他安全方案
 
@@ -57,7 +57,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("ServerAPI"));
 ```
 
-对于基于 Blazor WebAssembly 托管项目模板的 Blazor 应用，默认情况下，请求 URI 位于应用的基 URI 内。 因此，<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) 被分配给从项目模板生成的应用中的 <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>。
+对于基于 [Blazor WebAssembly 项目模板](xref:blazor/project-structure)的托管 Blazor 解决方案，默认情况下，请求 URI 位于应用的基本 URI 中。 因此，<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) 被分配给从项目模板生成的应用中的 <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>。
 
 配置的 <xref:System.Net.Http.HttpClient> 用于使用 [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) 模式发出授权的请求：
 
@@ -118,7 +118,7 @@ builder.Services.AddHttpClient("ServerAPI",
     .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 ```
 
-对于基于 Blazor WebAssembly 托管项目模板的 Blazor 应用，默认情况下，将 <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) 分配给 <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>。
+对于基于 [Blazor WebAssembly 项目模板](xref:blazor/project-structure)的托管 Blazor 解决方案，默认情况下，<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) 会分配给 <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>。
 
 配置的 <xref:System.Net.Http.HttpClient> 用于使用 [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) 模式发出授权的请求。 其中使用 <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A>（[`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) 包）创建客户端，在向服务器 API 发出请求时，将向 <xref:System.Net.Http.HttpClient> 提供包含访问令牌的实例。 如果请求 URI 是相对 URI，如以下示例 (`ExampleAPIMethod`) 中所示，则当客户端应用发出请求时，它将与 <xref:System.Net.Http.HttpClient.BaseAddress> 结合使用：
 
@@ -169,7 +169,7 @@ builder.Services.AddScoped(sp => new HttpClient(
     });
 ```
 
-对于基于 Blazor WebAssembly 托管项目模板的 Blazor 应用，默认情况下，将 <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> 分配给以下地址：
+对于基于 [Blazor WebAssembly 项目模板](xref:blazor/project-structure)的托管 Blazor 解决方案，默认情况下，<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> 会分配给：
 
 * <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`)。
 * `authorizedUrls` 数组的 URL。
@@ -230,7 +230,7 @@ builder.Services.AddHttpClient<WeatherForecastClient>(
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 ```
 
-对于基于 Blazor WebAssembly 托管项目模板的 Blazor 应用，默认情况下，将 <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) 分配给 <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>。
+对于基于 [Blazor WebAssembly 项目模板](xref:blazor/project-structure)的托管 Blazor 解决方案，默认情况下，<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) 会分配给 <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>。
 
 `FetchData` 组件 (`Pages/FetchData.razor`)：
 
@@ -260,7 +260,7 @@ builder.Services.AddHttpClient<WeatherForecastClient>(
         scopes: new[] { "example.read", "example.write" }));
 ```
 
-对于基于 Blazor WebAssembly 托管项目模板的 Blazor 应用，默认情况下，将 <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> 分配给以下地址：
+对于基于 [Blazor WebAssembly 项目模板](xref:blazor/project-structure)的托管 Blazor 解决方案，默认情况下，<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> 会分配给：
 
 * <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`)。
 * `authorizedUrls` 数组的 URL。
@@ -276,7 +276,7 @@ builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient",
     client => client.BaseAddress = new Uri("https://www.example.com/base"));
 ```
 
-对于基于 Blazor WebAssembly 托管项目模板的 Blazor 应用，默认情况下，将 <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) 分配给 <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>。
+对于基于 [Blazor WebAssembly 项目模板](xref:blazor/project-structure)的托管 Blazor 解决方案，默认情况下，<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) 会分配给 <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>。
 
 先前的注册是对现有安全默认 <xref:System.Net.Http.HttpClient> 注册的补充。
 
@@ -373,7 +373,7 @@ app.UseCors(policy =>
     .AllowCredentials());
 ```
 
-基于 Blazor 托管的项目模板的托管 Blazor 解决方案对客户端和服务器应用使用相同的基址。 默认情况下，将客户端应用的 <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> 设置为 `builder.HostEnvironment.BaseAddress` 的 URI。 在从 Blazor 托管的项目模板创建的托管应用的默认配置中，不需要 CORS 配置。 不由服务器项目托管，并且不共享服务器应用的基址的其他客户端应用在服务器项目中需要 CORS 配置。
+基于 [Blazor WebAssembly 项目模板](xref:blazor/project-structure)的托管 Blazor 解决方案对客户端和服务器应用使用相同的基址。 默认情况下，将客户端应用的 <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> 设置为 `builder.HostEnvironment.BaseAddress` 的 URI。 CORS 配置 **不是** 托管 Blazor 解决方案默认配置中的必需配置。 不由服务器项目托管，并且不共享服务器应用的基址的其他客户端应用在服务器项目中需要 CORS 配置。
 
 有关详细信息，请参阅 <xref:security/cors> 和示例应用的 HTTP 请求测试程序组件 (`Components/HTTPRequestTester.razor`)。
 
@@ -476,7 +476,7 @@ IP 为用户发出的令牌通常在短时间（约 1 小时）内有效，因�
 
 在身份验证操作过程中，有时要在将浏览器重定向到 IP 之前保存应用状态。 其中一种情况是使用状态容器并希望在身份验证成功后恢复状态。 可以使用自定义身份验证状态对象来保留特定于应用的状态或对其的引用，并在身份验证操作成功完成期间恢复该状态。 下面的示例演示了该方法。
 
-在应用中创建状态容器类，该类具有用于保存应用的状态值的属性。 在以下示例中，容器用于维护默认项目模板的 `Counter` 组件 (`Pages/Counter.razor`) 的计数器值。 用于序列化和反序列化容器的方法基于 <xref:System.Text.Json>。
+在应用中创建状态容器类，该类具有用于保存应用的状态值的属性。 在以下示例中，容器用于维护默认 [Blazor 项目模板](xref:blazor/project-structure)的 `Counter` 组件 (`Pages/Counter.razor`) 的计数器值。 用于序列化和反序列化容器的方法基于 <xref:System.Text.Json>。
 
 ```csharp
 using System.Text.Json;
@@ -819,7 +819,7 @@ public class CustomAccountFactory
 
 ## <a name="support-prerendering-with-authentication"></a>支持预呈现身份验证
 
-遵循任一托管 Blazor WebAssembly 应用主题中的指导后，请按照以下说明创建应用：
+遵循任一 Blazor WebAssembly 安全应用主题中的指导后，请按照以下说明创建应用：
 
 * 预呈现不需要授权的路径。
 * 不预呈现需要授权的路径。
@@ -974,7 +974,7 @@ app.UseEndpoints(endpoints =>
 
 ## <a name="use-openid-connect-oidc-v20-endpoints"></a>使用 OpenID Connect (OIDC) v2.0 终结点
 
-身份验证库和 Blazor 项目模板使用 Open ID Connect (OIDC) v1.0 终结点。 要使用 v2.0 终结点，请配置 JWT 持有者 <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> 选项。 在下面的示例中，通过向 <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> 属性追加 `v2.0` 段，将 AAD 配置为 v2.0：
+身份验证库和 [Blazor 项目模板](xref:blazor/project-structure)使用 Open ID Connect (OIDC) v1.0 终结点。 要使用 v2.0 终结点，请配置 JWT 持有者 <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> 选项。 在下面的示例中，通过向 <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> 属性追加 `v2.0` 段，将 AAD 配置为 v2.0：
 
 ```csharp
 builder.Services.Configure<JwtBearerOptions>(

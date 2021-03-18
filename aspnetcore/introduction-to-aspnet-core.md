@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: index
-ms.openlocfilehash: 4301e0d59364573767ab4cae25a4818ff84b9abc
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 3e41336d084e25319f8b1ab4c4ab3175b758d23d
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93052222"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588797"
 ---
 # <a name="introduction-to-aspnet-core"></a>ASP.NET Core 简介
 
@@ -198,8 +198,8 @@ ASP.NET Core 3.0 以及更高版本只能在 .NET Core 中运行。 有关此更
 
 很多文章和教程中都包含有示例代码链接。
 
-1. [下载 ASP.NET 存储库 zip 文件](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/master)。
-1. 解压缩 Docs-master.zip 文件。
+1. [下载 ASP.NET 存储库 zip 文件](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/main)。
+1. 解压 *Docs-main.zip* 文件。
 1. 使用示例链接中的 URL 帮助你导航到示例目录。
 
 ### <a name="preprocessor-directives-in-sample-code"></a>示例代码中的预处理器指令
@@ -244,7 +244,7 @@ Host.CreateDefaultBuilder(args)
 
 可放心忽略（或删除）代码两侧的 `#region` 和 `#endregion` 指令。 如果计划运行主题中所述的示例方案，请不要更改这些指令中的代码。 试用其他方案时，可随时更改代码。
 
-有关详细信息，请参阅[参与 ASP.NET 文档：代码片段](https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md#code-snippets)。
+有关详细信息，请参阅[参与 ASP.NET 文档：代码片段](https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md#code-snippets)。
 
 ## <a name="next-steps"></a>后续步骤
 

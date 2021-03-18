@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 04eba2e004e920e9ca799b316781857f0b0b4ca3
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: bb45b763fb24b5270c92b3ffd18f3fbc3ba1093b
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100279783"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589421"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>托管和部署 ASP.NET Core Blazor WebAssembly
 
@@ -53,7 +53,13 @@ Blazor 依赖于主机提供适当的压缩文件。 使用 ASP.NET Core 托管�
   * 从 [google/brotli GitHub repository](https://github.com/google/brotli) 中获取 JavaScript Brotli 解码器。 解码器文件被命名为 `decode.js`，并且位于存储库的 [`js` 文件夹](https://github.com/google/brotli/tree/master/js)中。
   
     > [!NOTE]
-    > [google/brotli GitHub 存储库](https://github.com/google/brotli)中的缩小版 `decode.js` 脚本 (`decode.min.js`) 中存在回归。 自行缩小脚本（例如，请参阅 [BuildBundlerMinifier 绑定和缩小](xref:client-side/bundling-and-minification#configure-bundling-and-minification)）或使用 [npm 包](https://www.npmjs.com/package/brotli)缩小脚本，直到 [TypeError in decode.min.js (google/brotli #881)](https://github.com/google/brotli/issues/881) 的问题得以解决为止。 本部分中的示例代码使用脚本的未缩小版。
+    > [google/brotli GitHub 存储库](https://github.com/google/brotli)中的缩小版 `decode.js` 脚本 (`decode.min.js`) 中存在回归。 在问题 [TypeError in decode.min.js (google/brotli #881)](https://github.com/google/brotli/issues/881) 得到解决之前，请采取以下方法之一：
+    >
+    > * 暂时使用脚本的未缩小版本。
+    > * 使用与 ASP.NET Core 兼容的第三方缩小工具在生成时自动缩小脚本。
+    > * 使用 [npm 包](https://www.npmjs.com/package/brotli)。
+    >
+    > 本部分中的示例代码使用脚本的“未缩小”版本 (`decode.js`)。
 
   * 更新应用以使用解码器。 将 `wwwroot/index.html` 中结束 `<body>` 标记内的标记更改为以下内容：
   
@@ -125,9 +131,11 @@ dotnet publish -p:BlazorEnableCompression=false
 
 客户端 Blazor WebAssembly 应用与服务器应用的其他任何静态 Web 资产一起发布到服务器应用的 `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` 文件夹。 这两个应用一起部署。 需要能够托管 ASP.NET Core 应用的 Web 服务器。 对于托管部署，Visual Studio 会在选择 `Hosted` 选项（使用 `dotnet new` 命令时为 `-ho|--hosted`）的情况下，包含 Blazor WebAssembly 应用项目模板（使用 [`dotnet new`](/dotnet/core/tools/dotnet-new) 命令时为 `blazorwasm` 模板） 。
 
-有关托管和部署 ASP.NET Core 应用的详细信息，请参阅 <xref:host-and-deploy/index>。
+有关详细信息，请参阅以下文章：
 
-若要了解如何部署到 Azure 应用服务，请参阅 <xref:tutorials/publish-to-azure-webapp-using-vs>。
+* ASP.NET Core 应用托管和部署：<xref:host-and-deploy/index>
+* 部署到 Azure 应用服务：<xref:tutorials/publish-to-azure-webapp-using-vs>
+* Blazor 项目模板：<xref:blazor/project-structure>
 
 ## <a name="hosted-deployment-with-multiple-blazor-webassembly-apps"></a>具有多个 Blazor WebAssembly 应用的托管部署
 
@@ -163,7 +171,7 @@ dotnet publish -p:BlazorEnableCompression=false
     * `Server`（文件夹）
     * `Shared`（文件夹）
     * `{SOLUTION NAME}.sln`（文件）
-    
+
     占位符 `{SOLUTION NAME}` 是解决方案的名称。
 
   * 在 Blazor WebAssembly 项目模板的 `SecondClient` 文件夹中创建一个名为 `SecondBlazorApp.Client` 的 Blazor WebAssembly 应用。
@@ -544,7 +552,7 @@ IIS 是适用于 Blazor 应用的强大静态文件服务器。 要配置 IIS �
 
 *本部分仅适用于独立的 Blazor WebAssembly 应用。托管的 Blazor 应用使用默认的 ASP.NET Core 应用 `web.config` 文件，而不使用本部分中所链接的文件。*
 
-通过 `web.config` 可将 IIS 配置为提供独立 Blazor WebAssembly 应用的 Brotli 或 Gzip 压缩的 Blazor 资产。 若要查看示例配置文件，请参阅 [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true)。
+通过 `web.config` 可将 IIS 配置为提供独立 Blazor WebAssembly 应用的 Brotli 或 Gzip 压缩的 Blazor 资产。 若要查看示例配置文件，请参阅 [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true)。
 
 在以下情况下，可能需要进一步配置示例 `web.config` 文件：
 
@@ -948,7 +956,7 @@ Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
 
 ### <a name="troubleshoot-integrity-powershell-script"></a>完整性 PowerShell 脚本故障排除
 
-使用 [`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) PowerShell 脚本来验证已发布和已部署的 Blazor 应用。 当应用出现 Blazor 框架无法识别的完整性问题时，该脚本将作为起点提供。 您的应用可能需要自定义脚本。
+使用 [`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) PowerShell 脚本来验证已发布和已部署的 Blazor 应用。 当应用出现 Blazor 框架无法识别的完整性问题时，该脚本将作为起点提供。 您的应用可能需要自定义脚本。
 
 此脚本将检查 `publish` 文件夹中的文件，并从部署的应用中下载这些文件，以检测包含完整性哈希的不同清单中的问题。 这些检查应检测最常见的问题：
 

@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: a6efbb22f8b6280bd636cd1575d8a4a2bca0bb06
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 049e7764766a4d5d535f7d7959a3554b040607c5
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97486169"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588498"
 ---
-# <a name="part-3-scaffolded-no-locrazor-pages-in-aspnet-core"></a>第 3 部分，ASP.NET Core 中已搭建基架的 Razor 页面
+# <a name="part-3-scaffolded-razor-pages-in-aspnet-core"></a>第 3 部分，ASP.NET Core 中已搭建基架的 Razor 页面
 
 作者：[Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -34,13 +34,13 @@ ms.locfileid: "97486169"
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)（[如何下载](xref:index#how-to-download-a-sample)）。
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)（[如何下载](xref:index#how-to-download-a-sample)）。
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
 
-[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)（[如何下载](xref:index#how-to-download-a-sample)）。
+[查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)（[如何下载](xref:index#how-to-download-a-sample)）。
 
 ::: moniker-end
 
@@ -118,9 +118,9 @@ Razor 可以从 HTML 转换为 C# 或 Razor 特定标记。 当 `@` 符号后跟
 
 前面突出显示的标记是 Razor 转换为 C# 的一个示例。 `{` 和 `}` 字符括住 C# 代码块。
 
-`PageModel` 基类包含 `ViewData` 字典属性，可用于将数据传递到某个视图。 可以使用键值*_模式将对象添加到 `ViewData` 字典。 在前面的示例中，`Title` 属性被添加到 `ViewData` 字典。
+`PageModel` 基类包含 `ViewData` 字典属性，可用于将数据传递到某个视图。 可以使用 ***键值*** 模式将对象添加到 `ViewData` 字典。 在前面的示例中，`Title` 属性被添加到 `ViewData` 字典。
 
-`Title` 属性用于 _Pages/Shared/_Layout.cshtml* 文件。 以下标记显示 _Layout.cshtml 文件的前几行。
+`Title` 属性用于 Pages/Shared/_Layout.cshtml 文件。 以下标记显示 _Layout.cshtml 文件的前几行。
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
 
@@ -148,7 +148,7 @@ Razor 可以从 HTML 转换为 C# 或 Razor 特定标记。 当 `@` 符号后跟
 
    前面的定位点元素是一个[标记帮助程序](xref:mvc/views/tag-helpers/intro)。 此处它是[定位点标记帮助程序](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)。 `asp-page="/Movies/Index"` 标记帮助程序属性和值可以创建指向 `/Movies/Index` Razor 页面的链接。 `asp-area` 属性值为空，因此在链接中未使用区域。 有关详细信息，请参阅[区域](xref:mvc/controllers/areas)。
 
-1. 保存所做的更改，并通过选择“RpMovie”链接测试应用。 如果遇到任何问题，请参阅 GitHub 中的 [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml) 文件。
+1. 保存所做的更改，并通过选择“RpMovie”链接测试应用。 如果遇到任何问题，请参阅 GitHub 中的 [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml) 文件。
 
 1. 测试“主页”、“RpMovie”、“创建”、“编辑”和“删除”链接    。 每个页面都设置有标题，可以在浏览器选项卡中看到标题。将某个页面加入书签时，标题用于该书签。
 
@@ -182,7 +182,7 @@ Razor 可以从 HTML 转换为 C# 或 Razor 特定标记。 当 `@` 符号后跟
 * 将保存数据。
 * 浏览器将重定向到 Index 页。
 
-### <a name="the-create-no-locrazor-page"></a>“创建 Razor”页面
+### <a name="the-create-razor-page"></a>“创建 Razor”页面
 
 检查 Pages/Movies/Create.cshtml Razor 页面文件：
 
@@ -323,7 +323,7 @@ Razor 可以从 HTML 转换为 C# 或 Razor 特定标记。 当 `@` 符号后跟
 
 前面的定位点元素是一个[标记帮助程序](xref:mvc/views/tag-helpers/intro)。 此处它是[定位点标记帮助程序](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)。 `asp-page="/Movies/Index"` 标记帮助程序属性和值可以创建指向 `/Movies/Index` Razor 页面的链接。 `asp-area` 属性值为空，因此在链接中未使用区域。 有关详细信息，请参阅[区域](xref:mvc/controllers/areas)。
 
-保存所做的更改，并通过单击“RpMovie”链接测试应用。 如果遇到任何问题，请参阅 GitHub 中的 [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml) 文件。
+保存所做的更改，并通过单击“RpMovie”链接测试应用。 如果遇到任何问题，请参阅 GitHub 中的 [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml) 文件。
 
 测试其他链接（“主页”、“RpMovie”、“创建”、“编辑”和“删除”）。 每个页面都设置有标题，可以在浏览器选项卡中看到标题。将某个页面加入书签时，标题用于该书签。
 
@@ -354,7 +354,7 @@ Razor 可以从 HTML 转换为 C# 或 Razor 特定标记。 当 `@` 符号后跟
 
 如果不存在模型错误，将保存数据，并且浏览器会重定向到Index页。
 
-### <a name="the-create-no-locrazor-page"></a>“创建 Razor”页面
+### <a name="the-create-razor-page"></a>“创建 Razor”页面
 
 检查 Pages/Movies/Create.cshtml Razor 页面文件：
 

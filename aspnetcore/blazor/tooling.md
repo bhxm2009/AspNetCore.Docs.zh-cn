@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 6b61d9a4645d273b0c78fae0388d569771c43a2d
-ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.openlocfilehash: 19270bb74326dccfee9466b7c1fa61daeab805a2
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/16/2021
-ms.locfileid: "100536241"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394455"
 ---
 # <a name="tooling-for-aspnet-core-blazor"></a>用于 ASP.NET Core Blazor 的工具
 
@@ -125,7 +125,7 @@ ms.locfileid: "100536241"
    在上述参数中：
 
    * `{SERVER APP FOLDER}` 占位符是 `Server` 项目的文件夹，通常为“`Server`”。
-   * `{PROJECT NAME}` 占位符是应用的名称，通常基于从 Blazor 项目模板生成的应用中后跟“`.Server`”的解决方案的名称。
+   * `{PROJECT NAME}` 占位符是应用的名称，在 [Blazor 项目模板](xref:blazor/project-structure)生成的应用中，该名称通常基于解决方案的名称后跟“`.Server`”。
 
    来自[将 SignalR 与 Blazor WebAssembly 应用配合使用的教程](xref:tutorials/signalr-blazor)的以下示例使用项目文件夹名称 `Server` 和项目名称 `BlazorWebAssemblySignalRApp.Server`：
 
@@ -191,7 +191,7 @@ Blazor 框架提供了一些模板，用于为每个 Blazor 托管模型（共�
 * Blazor WebAssembly 项目模板：`blazorwasm`
 * Blazor Server项目模板：`blazorserver`
 
-有关 Blazor 的托管模型的详细信息，请参阅 <xref:blazor/hosting-models>。
+有关 Blazor 的托管模型的详细信息，请参阅 <xref:blazor/hosting-models>。 有关 Blazor 项目模板的更多信息，请参阅“<xref:blazor/project-structure>”。
 
 通过将 help 选项（`-h` 或 `--help`）传递给命令行界面中的 [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI 命令，可使用模板选项：
 
@@ -199,3 +199,8 @@ Blazor 框架提供了一些模板，用于为每个 Blazor 托管模型（共�
 dotnet new blazorwasm -h
 dotnet new blazorserver -h
 ```
+
+## <a name="additional-resources"></a>其他资源
+
+* <xref:blazor/hosting-models>
+* <xref:blazor/project-structure>

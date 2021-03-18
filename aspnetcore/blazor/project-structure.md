@@ -19,20 +19,22 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/project-structure
-ms.openlocfilehash: 94b5a3d8c0f5b94ecac32e6fc5f94efeb8337f37
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: fe42c2d43b79ea959bb0ba8e5b96e6c865b2a416
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280352"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394871"
 ---
 # <a name="aspnet-core-blazor-project-structure"></a>ASP.NET Core Blazor 项目结构
 
-本文介绍了 Blazor 项目模板生成的 Blazor 应用所包含的文件和文件夹。
+本文介绍了根据 Blazor 框架项目模板之一生成的 Blazor 应用中包含哪些文件和文件夹。 有关如何使用工具以 Blazor 项目模板创建 Blazor 应用的信息，请参阅“<xref:blazor/tooling>”。 有关 Blazor 的托管模型、Blazor WebAssembly 和 Blazor Server 的信息，请参阅“<xref:blazor/hosting-models>”。
 
 ## Blazor WebAssembly
 
-Blazor WebAssembly 模板 (`blazorwasm`) 创建 Blazor WebAssembly 应用的初始文件和目录结构。 该应用中填充了一个 `FetchData` 组件的演示代码，该组件从静态资产 `weather.json` 加载数据，且用户与 `Counter` 组件交互。
+Blazor WebAssembly项目模板：`blazorwasm`
+
+Blazor WebAssembly 模板创建 Blazor WebAssembly 应用的初始文件和目录结构。 该应用中填充了一个 `FetchData` 组件的演示代码，该组件从静态资产 `weather.json` 加载数据，且用户与 `Counter` 组件交互。
 
 * `Pages` 文件夹：包含构成 Blazor 应用的可路由组件/页面 (`.razor`)。 每个页面的路由都是使用 [`@page`](xref:mvc/views/razor#page) 指令指定的。 该模板包括以下组件：
   * `Counter` 组件 (`Counter.razor`)：实现“计数器”页面。
@@ -104,7 +106,9 @@ Blazor WebAssembly 模板 (`blazorwasm`) 创建 Blazor WebAssembly 应用的初�
 
 ## Blazor Server
 
-Blazor Server 模板 (`blazorserver`) 创建 Blazor Server 应用的初始文件和目录结构。 该应用中填充了一个 `FetchData` 组件的演示代码，该组件从注册服务 `WeatherForecastService` 加载数据，且用户与 `Counter` 组件交互。
+Blazor Server项目模板：`blazorserver`
+
+Blazor Server 模板创建 Blazor Server 应用的初始文件和目录结构。 该应用中填充了一个 `FetchData` 组件的演示代码，该组件从注册服务 `WeatherForecastService` 加载数据，且用户与 `Counter` 组件交互。
 
 * `Data` 文件夹：包含 `WeatherForecast` 类和 `WeatherForecastService` 的实现，它们向应用的 `FetchData` 组件提供示例天气数据。
 
@@ -158,3 +162,8 @@ Blazor Server 模板 (`blazorserver`) 创建 Blazor Server 应用的初始文件
   * `Configure`：配置应用的请求处理管道：
     * 调用 <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> 可以为与浏览器的实时连接设置终结点。 使用 [SignalR](xref:signalr/introduction) 创建连接，该框架用于向应用添加实时 Web 功能。
     * 调用 [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) 以设置应用的根页面 (`Pages/_Host.cshtml`) 并启用导航。
+
+## <a name="additional-resources"></a>其他资源
+
+* <xref:blazor/tooling>
+* <xref:blazor/hosting-models>
