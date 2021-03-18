@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
 ms.custom: contperf-fy21q3
-ms.openlocfilehash: 47bb9b96bd5565a3a67f3cbdf9a4b6bc1f987447
-ms.sourcegitcommit: ef8d8c79993a6608bf597ad036edcf30b231843f
+ms.openlocfilehash: 4afee8c09a3eb1030bf68e7591e1686b18d5f7e9
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/09/2021
-ms.locfileid: "99975256"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394442"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>第 2 部分，将控制器添加到 ASP.NET Core MVC 应用
 
@@ -44,8 +44,8 @@ ms.locfileid: "99975256"
 
 在 MVC 应用中，视图仅显示信息。 控制器处理用户输入和交互并对其进行响应。 例如，控制器处理 URL 段和查询字符串值，并将这些值传递给模型。 该模型可使用这些值查询数据库。 例如：
 
-* `Https://localhost:5001/Home/Privacy`：指定 `Home` 控制器和 `Privacy` 操作。
-* `Https://localhost:5001/Movies/Edit/5`：是使用 `Movies` 控制器和 `Edit` 操作编辑 ID=5 的电影的请求，本教程稍后将对此进行详细介绍。
+* `https://localhost:5001/Home/Privacy`：指定 `Home` 控制器和 `Privacy` 操作。
+* `https://localhost:5001/Movies/Edit/5`：是使用 `Movies` 控制器和 `Edit` 操作编辑 ID=5 的电影的请求，本教程稍后将对此进行详细介绍。
 
 本教程的后续部分中将介绍路由数据。
 
@@ -166,7 +166,7 @@ MVC 根据入站 URL 调用控制器类以及其中的操作方法。 MVC 所用
 
 * 第三个 URL 段与路由参数 `id` 相匹配。 
 * `Welcome` 方法包含 `MapControllerRoute` 方法中匹配 URL 模板的参数 `id`。
-* 后面的 `?`（`id?` 中）表示 `id` 参数可选。
+* 尾随的 `?` 启动[查询字符串](https://wikipedia.org/wiki/Query_string)。
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Startup.cs?name=snippet_route&highlight=5)]
 

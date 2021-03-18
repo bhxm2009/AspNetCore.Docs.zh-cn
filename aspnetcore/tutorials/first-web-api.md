@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 1f7c7db857090ff0a174d37b86e1265bab40b4fd
-ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
+ms.openlocfilehash: 789cd1a867bc8c17401bbac5c02951b4bd2999b6
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/17/2021
-ms.locfileid: "100564091"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587653"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>教程：使用 ASP.NET Core 创建 Web API
 
@@ -268,8 +268,8 @@ Swagger 用于为 Web API 生成有用的文档和帮助页面。 本教程重�
 ### <a name="add-nuget-packages"></a>添加 NuGet 包
 
 * 在“工具”菜单中，依次选择“NuGet 包管理器”、“管理解决方案的 NuGet 包” 。
-* 选择“浏览”选项卡，然后在搜索框中输入“Microsoft.EntityFrameworkCore.InMemory” 。
-* 在左窗格中选择“Microsoft.EntityFrameworkCore.InMemory”。
+* 选择“浏览”选项卡，然后在搜索框中输入“`Microsoft.EntityFrameworkCore.InMemory`” 。
+* 在左窗格中，选择“`Microsoft.EntityFrameworkCore.InMemory`”。
 * 选中右窗格中的“项目”复选框，然后选择“安装” 。
 
 ![NuGet 程序包管理器](first-web-api/_static/5/vsNuGet.png)
@@ -323,8 +323,8 @@ Swagger 用于为 Web API 生成有用的文档和帮助页面。 本教程重�
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet tool install -g dotnet-aspnet-codegenerator
-dotnet tool update -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
@@ -1489,7 +1489,7 @@ jQuery 发送 HTTP POST 请求，请求正文中包含待办事项。 将 `accep
 
 ## <a name="additional-resources-21"></a>其他资源 2.1
 
-[查看或下载本教程的示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples)。 请参阅[如何下载](xref:index#how-to-download-a-sample)。
+[查看或下载本教程的示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples)。 请参阅[如何下载](xref:index#how-to-download-a-sample)。
 
 有关更多信息，请参见以下资源：
 
@@ -1501,3 +1501,4 @@ jQuery 发送 HTTP POST 请求，请求正文中包含待办事项。 将 `accep
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
 * [本教程的 YouTube 版本](https://www.youtube.com/watch?v=TTkhEyGBfAk)
+* [Microsoft Learn：使用 ASP.NET Core 创建 Web API](/learn/modules/build-web-api-aspnet-core/)
