@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 807cffb2f9b3bf89ff06c62e76d51d4040b8d91a
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: fb5ef59a74a768a1c202b49872b8a10327c96ff8
+ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589005"
+ms.lasthandoff: 03/12/2021
+ms.locfileid: "103413452"
 ---
 # <a name="static-files-in-aspnet-core"></a>ASP.NET Core 中的静态文件
 
@@ -151,7 +151,7 @@ ASP.NET Core 模板在调用 <xref:Microsoft.AspNetCore.Builder.AuthorizationApp
 
 ## <a name="serve-default-documents"></a>提供默认文档
 
-设置默认页面为访问者提供网站的起点。 若要在没有完全限定 URI 的情况下提供 `wwwroot` 的默认页面，请调用 <xref:Owin.DefaultFilesExtensions.UseDefaultFiles%2A> 方法：
+设置默认页面为访问者提供网站的起点。 若要在没有完全限定 URI 的情况下提供 `wwwroot` 的默认页面，请调用 <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> 方法：
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupEmpty.cs?name=snippet_Configure&highlight=15)]
 
