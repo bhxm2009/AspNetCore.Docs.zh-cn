@@ -28,7 +28,7 @@ ms.locfileid: "102395145"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>调试 ASP.NET Core Blazor WebAssembly
 
-可以使用基于 Chromium 的浏览器 (Edge/Chrome) 中的浏览器开发工具调试 Blazor WebAssembly 应用。 还可以使用以下集成开发环境 (IDE) 调试应用：
+可以使用基于 Chromium 的浏览器 (Microsoft Edge/Chrome) 中的浏览器开发工具调试 Blazor WebAssembly 应用。 还可以使用以下集成开发环境 (IDE) 调试应用：
 
 * Visual Studio
 * Visual Studio for Mac
