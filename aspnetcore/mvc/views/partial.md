@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 0a8e4a4fdecd657840c6c02424ffffa64d4ab473
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: fc87386a42e1806e0f877cf186ad3a36dc4b380c
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586873"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711680"
 ---
 # <a name="partial-views-in-aspnet-core"></a>ASP.NET Core 中的分部视图
 
@@ -353,7 +353,7 @@ Views/Articles/_ArticleSection.cshtml 是 Read.cshtml 标记文件引用的第�
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* [ASP.NET Core 的 Razor 语法参考](xref:mvc/views/razor)
+* <xref:mvc/views/razor>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>
 * <xref:mvc/views/view-components>
@@ -363,7 +363,7 @@ Views/Articles/_ArticleSection.cshtml 是 Read.cshtml 标记文件引用的第�
 
 ::: moniker range="< aspnetcore-2.1"
 
-* [ASP.NET Core 的 Razor 语法参考](xref:mvc/views/razor)
+* <xref:mvc/views/razor>
 * <xref:mvc/views/view-components>
 * <xref:mvc/controllers/areas>
 

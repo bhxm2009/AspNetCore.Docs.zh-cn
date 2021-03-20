@@ -1,5 +1,5 @@
 ---
-title: razor 语法参考 ASP.NET Core
+title: ASP.NET Core 的 Razor 语法参考
 author: rick-anderson
 description: 了解将 Razor 基于服务器的代码嵌入网页的标记语法。
 ms.author: riande
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: 60471232b3373039404b27c4afd1a1725d4d21eb
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 395d6b623cfd9310d8b92f822ddb82db8b38cdd8
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586860"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711667"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>ASP.NET Core 的 Razor 语法参考
 
