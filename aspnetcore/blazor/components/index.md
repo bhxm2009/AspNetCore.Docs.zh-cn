@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 7048fe7107fb71d632bf12df9d53e6f168d5a0db
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: f44eef1ebf98958e6e6ab78b4a50b24b32e2ad1e
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587458"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711342"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>创建和使用 ASP.NET Core Razor 组件
 
@@ -38,7 +38,7 @@ Blazor 应用是使用组件构建的。 组件是自包含的用户界面 (UI) 
 
 ### <a name="razor-syntax"></a>Razor 语法
 
-Blazor 应用中的 Razor 组件广泛使用 Razor 语法。 如果你不熟悉 Razor 标记语言，建议先阅读 [ASP.NET Core 的 Razor 语法参考](xref:mvc/views/razor)，然后再继续。
+Blazor 应用中的 Razor 组件广泛使用 Razor 语法。 如果你不熟悉 Razor 标记语言，建议先阅读 <xref:mvc/views/razor>，然后再继续。
 
 访问 Razor 语法上的内容时，请特别注意以下各节：
 
@@ -465,7 +465,7 @@ public string Title { get; set; } = "Panel Title from Child";
   }
   ```
   
-有关详细信息，请参阅 [ASP.NET Core 的 Razor 语法参考](xref:mvc/views/razor)。
+有关详细信息，请参阅 <xref:mvc/views/razor>。
 
 > [!WARNING]
 > 请勿创建会写入其自己的组件参数的组件，而是使用私有字段。 有关详细信息，请参阅[重写参数](#overwritten-parameters)部分。
@@ -1029,7 +1029,7 @@ HTML 元素属性基于 .NET 值有条件地呈现。 如果值为 `false` 或 `
 <input type="checkbox" />
 ```
 
-有关详细信息，请参阅 [ASP.NET Core 的 Razor 语法参考](xref:mvc/views/razor)。
+有关详细信息，请参阅 <xref:mvc/views/razor>。
 
 > [!WARNING]
 > .NET 类型为 `bool` 时，某些 HTML 属性（如 [`aria-pressed`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons)）无法正常运行。 在这些情况下，请使用 `string` 类型，而不是 `bool`。
@@ -1185,13 +1185,13 @@ Razor 组件（`.razor` 文件）不支持 [`Tag Helpers`](xref:mvc/views/tag-he
 * <xref:blazor/security/server/threat-mitigation>：包括有关如何生成必须应对资源耗尽的 Blazor Server应用的指南。
 
 <!--Reference links in article-->
-[1]: <xref:mvc/views/razor#code> "ASP.NET Core 的 Razor 语法参考"
-[2]: <xref:mvc/views/razor#using> "ASP.NET Core 的 Razor 语法参考"
-[3]: <xref:mvc/views/razor#attributes> "ASP.NET Core 的 Razor 语法参考"
-[4]: <xref:mvc/views/razor#ref> "ASP.NET Core 的 Razor 语法参考"
-[5]: <xref:mvc/views/razor#key> "ASP.NET Core 的 Razor 语法参考"
-[6]: <xref:mvc/views/razor#inherits> "ASP.NET Core 的 Razor 语法参考"
-[7]: <xref:mvc/views/razor#attribute> "ASP.NET Core 的 Razor 语法参考"
-[8]: <xref:mvc/views/razor#namespace> "ASP.NET Core 的 Razor 语法参考"
-[9]: <xref:mvc/views/razor#page> "ASP.NET Core 的 Razor 语法参考"
-[10]: <xref:mvc/views/razor#bind> "ASP.NET Core 的 Razor 语法参考"
+[1]: <xref:mvc/views/razor#code>
+[2]: <xref:mvc/views/razor#using>
+[3]: <xref:mvc/views/razor#attributes>
+[4]: <xref:mvc/views/razor#ref>
+[5]: <xref:mvc/views/razor#key>
+[6]: <xref:mvc/views/razor#inherits>
+[7]: <xref:mvc/views/razor#attribute>
+[8]: <xref:mvc/views/razor#namespace>
+[9]: <xref:mvc/views/razor#page>
+[10]: <xref:mvc/views/razor#bind>
