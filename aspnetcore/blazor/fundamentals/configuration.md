@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/configuration
-ms.openlocfilehash: 48d78f40e9254bac182ffbc534550157664bcc5b
-ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
+ms.openlocfilehash: fd2a9784e92b132d679b2065b37cb37b7dd89cde
+ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/10/2021
-ms.locfileid: "100106929"
+ms.lasthandoff: 03/12/2021
+ms.locfileid: "103413400"
 ---
 # <a name="aspnet-core-blazor-configuration"></a>ASP.NET Core Blazor 配置
 
@@ -199,7 +199,15 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## <a name="logging-configuration"></a>日志记录配置
 
-向应用的项目文件添加 [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) 的包引用。 在应用设置文件中，提供日志记录配置。 日志记录配置在 `Program.Main`中加载。
+向应用的项目文件添加 [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) 的包引用：
+
+```xml
+<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERION}" />
+```
+
+在前面的示例中，`{VERSION}` 占位符是包的版本。 包版本位于 [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) 中。
+
+在应用设置文件中，提供日志记录配置。 日志记录配置在 `Program.Main`中加载。
 
 `wwwroot/appsettings.json`:
 

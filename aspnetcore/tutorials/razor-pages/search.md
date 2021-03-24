@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: 0ffe4ed251eed551b2799c1a66424ba31137dc18
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 19e20923d5f4cd2bf8671df7558995d34da2cdf6
+ms.sourcegitcommit: d5fa39765959738eed4bcf5ee0b207cefddb4873
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589512"
+ms.lasthandoff: 03/14/2021
+ms.locfileid: "103460425"
 ---
 # <a name="part-6-add-search-to-aspnet-core-razor-pages"></a>第 6 部分，将搜索添加到 ASP.NET Core Razor 页面
 
@@ -129,7 +129,7 @@ HTML `<form>` 标记使用以下[标记帮助程序](xref:mvc/views/tag-helpers/
 
 ### <a name="add-search-by-genre-to-the-razor-page"></a>将按流派搜索添加到 Razor 页面
 
-1. 更新 Index.cshtml [`<form>` 元素] (https://developer.mozilla.org/docs/Web/HTML/Element/form) ，如以下标记中突出显示：
+1. 更新 Index.cshtml [`<form>` 元素](https://developer.mozilla.org/docs/Web/HTML/Element/form)，如以下标记中突出显示的内容所示：
 
    [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/integration-tests
-ms.openlocfilehash: 47d204a0cde258fda8c9c9b78043046e719d8f18
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 50c3f04c4add9d3dec032b5f2e95ce503466693e
+ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588030"
+ms.lasthandoff: 03/12/2021
+ms.locfileid: "103413374"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>ASP.NET Core 中的集成测试
 
@@ -347,7 +347,7 @@ protected override IWebHostBuilder CreateWebHostBuilder() =>
 
 ## <a name="disable-shadow-copying"></a>禁用卷影复制
 
-卷影复制会导致在与输出目录不同的目录中执行测试。 若要使测试正常工作，必须禁用卷影复制。 [示例应用](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples)使用 xUnit 并通过包含具有正确配置设置的 xunit.runner.json 文件来对 xUnit 禁用卷影复制。 有关详细信息，请参阅[使用 JSON 配置 xUnit](https://xunit.github.io/docs/configuring-with-json.html)。
+卷影复制会导致在与输出目录不同的目录中执行测试。 若要使测试正常工作，必须禁用卷影复制。 [示例应用](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples)使用 xUnit 并通过包含具有正确配置设置的 xunit.runner.json 文件来对 xUnit 禁用卷影复制。 有关详细信息，请参阅 [xUnit 文档](https://xunit.net/docs/configuration-files)。
 
 将包含以下内容的 xunit.runner.json 文件添加到测试项目的根：
 
