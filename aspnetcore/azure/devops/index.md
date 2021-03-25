@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/index
-ms.openlocfilehash: 10a6bae73743d3063ad2e1ab49fc418ad1d63756
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: c49ecde1ab93f37a80ff604c7be00fa309d55ea7
+ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052287"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105050953"
 ---
 # <a name="devops-with-aspnet-core-and-azure"></a>通过 ASP.NET Core 和 Azure 实现 DevOps
 
@@ -31,7 +31,7 @@ ms.locfileid: "93052287"
 
 作者：[Cam Soper](https://twitter.com/camsoper)[Scott Addie](https://twitter.com/scottaddie)
 
-本指南以[可下载 PDF 电子书](https://aka.ms/devopsbook)的形式提供。
+本指南以[可下载 PDF 电子书](https://github.com/dotnet-architecture/eBooks/blob/master/current/devops-aspnet-core/DevOps-with-ASP.NET-Core-and-Azure.pdf)的形式提供。
 
 ## <a name="welcome"></a>欢迎使用 
 
