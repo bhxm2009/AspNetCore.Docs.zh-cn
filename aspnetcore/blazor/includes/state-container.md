@@ -11,12 +11,12 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-ms.openlocfilehash: 76dbf3cae1c264fa474101bc4398da28f45a1c10
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 342cbccc5f9a61c0695d501ea2376403bfd459ca
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100254376"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104719906"
 ---
 嵌套组件通常使用链式绑定来绑定数据，如 <xref:blazor/components/data-binding> 中所述。 嵌套组件和非嵌套组件可以使用已注册的内存中状态容器来共享对数据的访问。 自定义状态容器类可以使用可分配的 <xref:System.Action>，来向应用不同部分中的组件通知状态更改。 如下示例中：
 
@@ -51,7 +51,7 @@ builder.Services.AddSingleton<StateContainer>();
 在 `Startup.ConfigureServices` (Blazor Server) 中：
 
 ```csharp
-services.AddSingleton<StateContainer>();
+services.AddScoped<StateContainer>();
 ```
 
 `Pages/Component1.razor`:

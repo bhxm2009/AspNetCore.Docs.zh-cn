@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 8dd11251358bbeea444661970fadf19cb1390fd3
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: ea39235e51fc430dc2c67b4f2cf281c416705c0b
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102394923"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711069"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>ASP.NET Core Blazor 托管模型
 
@@ -129,7 +129,7 @@ Blazor Server 应用基于 [ASP.NET CoreSignalR](xref:signalr/introduction) 构�
 
 Blazor 将关闭浏览器标签页或访问外部 URL 视为正常终止。 如果正常终止，则会立即释放线路和关联的资源。 例如，由于网络中断，客户端也可能异常地断开连接。 Blazor Server 会将断开连接的路线存储一段时间（可配置），以便客户端重新连接。
 
-Blazor Server 允许代码定义线路处理程序，后者允许在用户线路的状态发生更改时运行代码。 有关详细信息，请参阅 <xref:blazor/advanced-scenarios#blazor-server-circuit-handler>。
+Blazor Server 允许代码定义线路处理程序，后者允许在用户线路的状态发生更改时运行代码。 有关详细信息，请参阅 <xref:blazor/fundamentals/signalr?pivots=server#blazor-server-circuit-handler>。
 
 ### <a name="ui-latency"></a>UI 延迟
 

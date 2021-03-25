@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: defbc73d0c1d6aac30360cd7b83cc518a407bf98
-ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
+ms.openlocfilehash: 1173113b8bb035212cb9b84e7763970b9d5092a3
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/12/2021
-ms.locfileid: "103413439"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711604"
 ---
 # <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>第 2 部分，在 ASP.NET Core 中向 Razor 页面应用添加模型
 
@@ -173,11 +173,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 有关详细信息，请查看 [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator)。
 
-### <a name="use-sqlite-for-development-sql-server-for-production"></a>将 SQLite 用于开发，将 SQL Server 用于生产
-
-选择 SQLite 后，模板生成的代码便可用于开发。 下面的代码演示如何将 <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> 注入到 `Startup` 中。 注入 `IWebHostEnvironment`，以便应用可以在开发中使用 SQLite 并在生产中使用 SQL Server。
-
-[!code-csharp[](~/includes/RP/code/StartupDevProd.cs?name=snippet&highlight=5,10,14)]
+[!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -201,11 +197,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 *appsettings.json* 文件通过用于连接到本地数据的连接字符串进行更新。
 
-### <a name="use-sqlite-for-development-sql-server-for-production"></a>将 SQLite 用于开发，将 SQL Server 用于生产
-
-选择 SQLite 后，模板生成的代码便可用于开发。 下面的代码演示如何将 <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> 注入到 `Startup` 中。 注入 `IWebHostEnvironment`，以便应用可以在开发中使用 SQLite 并在生产中使用 SQL Server。
-
-[!code-csharp[](~/includes/RP/code/StartupDevProd.cs?name=snippet&highlight=5,10,14)]
+[!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
 ---
 
@@ -348,6 +340,7 @@ ASP.NET Core 通过[依赖关系注入](xref:fundamentals/dependency-injection)�
 下一个教程介绍由基架创建的文件。
 
 ## <a name="additional-resources"></a>其他资源
+
 
 > [!div class="step-by-step"]
 > [上一篇：入门](xref:tutorials/razor-pages/razor-pages-start)
@@ -497,7 +490,7 @@ using Microsoft.EntityFrameworkCore;
 
 * 在“模型类”下拉列表中，选择“Movie (RazorPagesMovie.Models)” 。
 * 在“数据上下文类”行中，选择 +（加号）并将生成的名称从 RazorPagesMovie.Models.RazorPagesMovieContext 更改为 RazorPagesMovie.Data.RazorPagesMovieContext   。 不需要[此更新](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html)。 它创建具有正确命名空间的数据库上下文类。
-* 选择“添加”。
+* 选择“添加”  。
 
 ![上述说明的图像。](model/_static/3/arp.png)
 
@@ -565,7 +558,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 * 在“模型类”下拉列表中，选择或键入“Movie (RazorPagesMovie.Models)” 。
 * 在“数据上下文类”行中，键入新类的名称“RazorPagesMovie.Data.RazorPagesMovieContext”。  不需要[此更新](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html)。 它创建具有正确命名空间的数据库上下文类。
-* 选择“添加”。
+* 选择“添加”  。
 
 ![上述说明的图像。](model/_static/arpMac.png)
 

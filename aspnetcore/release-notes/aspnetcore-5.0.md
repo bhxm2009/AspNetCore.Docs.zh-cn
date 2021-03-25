@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Kestrel
 uid: aspnetcore-5.0
-ms.openlocfilehash: 64e068194744d6c5495d8ecaf31076c7a1c1f349
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 75f4a49777f610a2486279c946968c300a740b52
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102585794"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711024"
 ---
 # <a name="whats-new-in-aspnet-core-50"></a>ASP.NET Core 5.0 的新增功能
 
@@ -152,7 +152,7 @@ Blazor 具有内置的 `InputRadio` 和 `InputRadioGroup` 组件，这些组件�
 
 ### <a name="ontoggle-event-support"></a>`ontoggle` 事件支持
 
-Blazor 事件现在支持 `ontoggle` DOM 事件。 有关详细信息，请参阅 <xref:blazor/components/event-handling#event-argument-types>。
+Blazor 事件现在支持 `ontoggle` DOM 事件。 有关详细信息，请参阅 <xref:blazor/components/event-handling#event-arguments>。
 
 ### <a name="set-ui-focus-in-blazor-apps"></a>将 UI 焦点设置在 Blazor 应用中
 

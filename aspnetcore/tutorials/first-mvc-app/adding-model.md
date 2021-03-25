@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: bfda45afeea67a11ad775996d94a06125df08bc6
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 8b3e88ef42914c409a7c3319945e6bc086e6b85a
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97854582"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711615"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>第 4 部分，将模型添加到 ASP.NET Core MVC 应用
 
@@ -349,6 +349,8 @@ dotnet ef database update
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
 构造函数使用[依赖关系注入](xref:fundamentals/dependency-injection)将数据库上下文 (`MvcMovieContext`) 注入到控制器中。 数据库上下文将在控制器中的每个 [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) 方法中使用。
+
+<a name="sqlite-dev"></a>
 
 ### <a name="use-sqlite-for-development-sql-server-for-production"></a>将 SQLite 用于开发，将 SQL Server 用于生产
 
