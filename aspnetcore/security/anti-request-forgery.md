@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/anti-request-forgery
-ms.openlocfilehash: 5d6f2915dd9b27142ac7d8ac55e68c6a26e41f81
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 08414bb4c4d168b672eed2cb7e6a490511ec93d4
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102585781"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105555053"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>阻止跨站点请求伪造 (XSRF/CSRF) 攻击 ASP.NET Core
 
@@ -174,11 +174,11 @@ Cookie基于的身份验证是一种常用的身份验证形式。 基于令牌�
 该令牌是唯一的且不可预测的。 该令牌还可用于确保一系列请求的正确排序 (例如，确保的请求序列为： page 1 > 第2页 > 第3页) 。 ASP.NET Core MVC 和页面模板中的所有表单都 Razor 生成防伪标记。 以下对视图示例将生成防伪令牌：
 
 ```cshtml
-<form asp-controller="Manage" asp-action="ChangePassword" method="post">
+<form asp-controller="Manage" asp-action="ChangeCode" method="post">
     ...
 </form>
 
-@using (Html.BeginForm("ChangePassword", "Manage"))
+@using (Html.BeginForm("ChangeCode", "Manage"))
 {
     ...
 }
@@ -222,7 +222,7 @@ services.AddAntiforgery(options =>
 
 &dagger;`Cookie`使用[ Cookie 生成器](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder)类的属性设置防伪属性。
 
-| 选项 | 描述 |
+| 选项 | 说明 |
 | ------ | ----------- |
 | [Cookie](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie) | 确定用于创建防伪的设置 cookie 。 |
 | [FormFieldName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | 防伪系统用于在视图中呈现防伪标记的隐藏窗体字段的名称。 |
@@ -246,12 +246,12 @@ services.AddAntiforgery(options =>
 });
 ```
 
-| 选项 | 描述 |
+| 选项 | 说明 |
 | ------ | ----------- |
 | [Cookie](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie) | 确定用于创建防伪的设置 cookie 。 |
 | [Cookie域名](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiedomain) | 的域 cookie 。 默认为 `null`。 此属性已过时，并将在将来的版本中删除。 建议的替代项为 Cookie 。域名. |
 | [Cookie名称](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiename) | cookie 的名称。 如果未设置，系统将生成一个以 [默认 Cookie 前缀](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.defaultcookieprefix) ( "开头的唯一名称。AspNetCore. 防伪. ") 。 此属性已过时，并将在将来的版本中删除。 建议的替代项为 Cookie 。路径名. |
-| [Cookie路径](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | 在上设置的路径 cookie 。 此属性已过时，并将在将来的版本中删除。 建议的替代项为 Cookie 。通道. |
+| [Cookie通道](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | 在上设置的路径 cookie 。 此属性已过时，并将在将来的版本中删除。 建议的替代项为 Cookie 。通道. |
 | [FormFieldName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | 防伪系统用于在视图中呈现防伪标记的隐藏窗体字段的名称。 |
 | [HeaderName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.headername) | 防伪系统使用的标头的名称。 如果 `null` 为，则系统仅考虑窗体数据。 |
 | [RequireSsl](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.requiressl) | 指定防伪系统是否需要 HTTPS。 如果为 `true` ，则非 HTTPS 请求会失败。 默认为 `false`。 此属性已过时，并将在将来的版本中删除。 建议使用的替代方法是设置 Cookie 。SecurePolicy. |
@@ -389,7 +389,7 @@ public class ManageController : Controller
 
 如果 cookie 使用来存储身份验证令牌，并在服务器上对 API 请求进行身份验证，则 CSRF 是一个潜在问题。 如果使用本地存储来存储令牌，可能会降低 CSRF 漏洞，因为本地存储中的值不会随每个请求自动发送到服务器。 因此，使用本地存储在客户端上存储防伪令牌并将令牌作为请求标头进行发送是建议的方法。
 
-### <a name="javascript"></a>Javascript
+### <a name="javascript"></a>JavaScript
 
 将 JavaScript 用于视图，可以使用视图中的服务创建令牌。 将 [AspNetCore 防伪 IAntiforgery](/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery) 服务插入到视图中，并调用 [GetAndStoreTokens](/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery.getandstoretokens)：
 
@@ -443,10 +443,10 @@ xhttp.onreadystatechange = function() {
         }
     }
 };
-xhttp.open('POST', '/api/password/changepassword', true);
+xhttp.open('POST', '/api/token/changeCode', true);
 xhttp.setRequestHeader("Content-type", "application/json");
 xhttp.setRequestHeader("X-CSRF-TOKEN", csrfToken);
-xhttp.send(JSON.stringify({ "newPassword": "ReallySecurePassword999$$$" }));
+xhttp.send(JSON.stringify({ "newCode": $CREDENTIAL_PLACEHOLDER$ }));
 ```
 
 ### <a name="angularjs"></a>AngularJS
