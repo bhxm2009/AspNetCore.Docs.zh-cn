@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: f44eef1ebf98958e6e6ab78b4a50b24b32e2ad1e
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: f8bd8817a7950c8fa260febabf39a386d6b5e556
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711342"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105555027"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>创建和使用 ASP.NET Core Razor 组件
 
@@ -248,32 +248,6 @@ namespace BlazorSample
 
 ## <a name="parameters"></a>参数
 
-### <a name="route-parameters"></a>路由参数
-
-组件可以接收来自 [`@page`][9] 指令所提供的路由模板的路由参数。 路由器使用路由参数来填充相应的组件参数。
-
-::: moniker range=">= aspnetcore-5.0"
-
-支持可选参数。 在下面的示例中，`text` 可选参数将 route 段的值赋给组件的 `Text` 属性。 如果该段不存在，则将 `Text` 的值设置为 `fantastic`。
-
-`Pages/RouteParameter.razor`:
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-index/RouteParameter.razor?highlight=1,6-7)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-`Pages/RouteParameter.razor`:
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-index/RouteParameter.razor?highlight=2,7-8)]
-
-不支持可选参数，因此在前面的示例中应用了两个 [`@page`][9] 指令。 第一个指令允许导航到没有参数的组件。 第二个 [`@page`][9] 指令会接收 `{text}` 路由参数，并将值赋予 `Text` 属性。
-
-::: moniker-end
-
-要了解 catch-all 路由参数 `{*pageRoute}`（它可跨多个文件夹边界捕获路径），请参阅 <xref:blazor/fundamentals/routing#catch-all-route-parameters>。
-
 ### <a name="component-parameters"></a>组件参数
 
 组件可以有组件参数，这些参数是使用带有 [`[Parameter]` 特性](xref:Microsoft.AspNetCore.Components.ParameterAttribute)的组件类上的简单或复杂公共属性定义的。 使用这些属性在标记中为组件指定参数。
@@ -383,7 +357,7 @@ public string Title { get; set; } = "Panel Title from Child";
   
   > “await”运算符只能用于异步方法中。 请考虑用“async”修饰符标记此方法，并将其返回类型更改为“Task”。
 
-  若要在前面的示例中异步获取 `Title` 参数的值，组件可以使用 [`OnInitializedAsync` 生命周期事件](xref:blazor/components/lifecycle#component-initialization-methods)，如以下示例所示：
+  若要在前面的示例中异步获取 `Title` 参数的值，组件可以使用 [`OnInitializedAsync` 生命周期事件](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync)，如以下示例所示：
   
   ```razor
   <ChildComponent Title="@title">
@@ -486,7 +460,33 @@ public DateTime StartData { get; set; }
 * 将参数属性保留为纯自动属性，以表示所提供的原始数据。
 * 创建一些其他属性或方法，用于基于参数属性提供转换后的数据。
 
-如果需要在每次收到新数据时转换接收到的参数，可以重写 `OnParametersSetAsync`。
+如果需要在每次收到新数据时转换接收到的参数，可以重写 [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync)。
+
+### <a name="route-parameters"></a>路由参数
+
+组件可以接收来自 [`@page`][9] 指令所提供的路由模板的路由参数。 路由器使用路由参数来填充相应的组件参数。
+
+::: moniker range=">= aspnetcore-5.0"
+
+支持可选参数。 在下面的示例中，`text` 可选参数将 route 段的值赋给组件的 `Text` 属性。 如果该段不存在，则将 `Text` 的值设置为 `fantastic`。
+
+`Pages/RouteParameter.razor`:
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-index/RouteParameter.razor?highlight=1,6-7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+`Pages/RouteParameter.razor`:
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-index/RouteParameter.razor?highlight=2,7-8)]
+
+不支持可选参数，因此在前面的示例中应用了两个 [`@page`][9] 指令。 第一个指令允许导航到没有参数的组件。 第二个 [`@page`][9] 指令会接收 `{text}` 路由参数，并将值赋予 `Text` 属性。
+
+::: moniker-end
+
+要了解 catch-all 路由参数 `{*pageRoute}`（它可跨多个文件夹边界捕获路径），请参阅 <xref:blazor/fundamentals/routing#catch-all-route-parameters>。
 
 ## <a name="child-content"></a>子内容
 
@@ -698,9 +698,9 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 > [!IMPORTANT]
 > 仅在呈现组件后填充 `loginDialog` 变量，其输出包含 `MyLoginDialog` 元素。 在呈现组件之前，没有任何可引用的内容。
 >
-> 若要在组件完成呈现后操作组件引用，请使用 [`OnAfterRenderAsync` 或 `OnAfterRender` 方法](xref:blazor/components/lifecycle#after-component-render)。
+> 若要在组件完成呈现后操作组件引用，请使用 [`OnAfterRender` 或 `OnAfterRenderAsync` 方法](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)。
 >
-> 若要结合使用事件处理程序和引用变量，请使用 Lambda 表达式，或在 [`OnAfterRenderAsync` 或 `OnAfterRender` 方法](xref:blazor/components/lifecycle#after-component-render)中分配事件处理程序委托。 这可确保在分配事件处理程序之前先分配引用变量。
+> 若要结合使用事件处理程序和引用变量，请使用 Lambda 表达式，或在 [`OnAfterRender` 或 `OnAfterRenderAsync` 方法](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)中分配事件处理程序委托。 这可确保在分配事件处理程序之前先分配引用变量。
 >
 > ```razor
 > <button type="button" 
@@ -955,7 +955,7 @@ Blazor 框架通常会施加安全的父级到子级参数的赋值：
 以下经修定的 `Expander` 组件：
 
 * 接受父项中的 `Expanded` 组件参数值。
-* 将组件参数值分配给 [OnInitialized 事件](xref:blazor/components/lifecycle#component-initialization-methods)中的私有字段 (`expanded`)。
+* 将组件参数值分配给 [OnInitialized 事件](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync)中的私有字段 (`expanded`)。
 * 使用私有字段来维护其内部切换状态，该状态演示如何避免直接写入参数。
 
 ```razor

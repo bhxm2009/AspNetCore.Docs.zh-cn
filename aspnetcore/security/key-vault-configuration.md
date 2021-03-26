@@ -4,7 +4,7 @@ author: rick-anderson
 description: 了解如何使用 Azure Key Vault 配置提供程序通过在运行时加载的名称/值对来配置应用。
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.custom: mvc, devx-track-azurecli
+ms.custom: mvc, devx-track-azurecli, contperf-fy21q3
 ms.date: 03/17/2021
 no-loc:
 - appsettings.json
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 91b5afe65e69ab2a5ad92e803fa9626157b605f7
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: 940458147f1a03eb2964518dc0e1b042775d693e
+ms.sourcegitcommit: 9d185d06b343ec2fb91e7c01a4b14dd924f041c4
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711251"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105614908"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>ASP.NET Core 中的 Azure Key Vault 配置提供程序
 
@@ -144,7 +144,7 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 1. 打开 **机密权限** ，并为应用提供 **Get** 和 **List** 权限。
 1. 选择 " **选择主体** "，并按名称选择注册的应用。 选择“选择”按钮  。
 1. 选择“确定”。
-1. 选择“保存”  。
+1. 选择“保存”。
 1. 部署应用。
 
 `Certificate`示例应用从中获取其配置值，其 `IConfigurationRoot` 名称与机密名称相同：
@@ -497,7 +497,7 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 1. 打开 **机密权限** ，并为应用提供 **Get** 和 **List** 权限。
 1. 选择 " **选择主体** "，并按名称选择注册的应用。 选择“选择”按钮  。
 1. 选择“确定”。
-1. 选择“保存”  。
+1. 选择“保存”。
 1. 部署应用。
 
 `Certificate`示例应用从中获取其配置值，其 `IConfigurationRoot` 名称与机密名称相同：
