@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 5eaedf6dbe5df59848b9cf8a5bda67add48db2a6
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 5b3892a13da5c72f9ac76428febc73afaaa9fc06
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586938"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638726"
 ---
 # <a name="model-binding-in-aspnet-core"></a>ASP.NET Core 中的模型绑定
 
@@ -218,7 +218,7 @@ public class Pet
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter)、[UInt32](xref:System.ComponentModel.UInt32Converter)、[UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.UriTypeConverter)
-* [Version](xref:System.ComponentModel.VersionConverter)
+* [版本](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>复杂类型
 
@@ -325,7 +325,7 @@ public class Instructor
 
 ### <a name="bindrequired-attribute"></a>[BindRequired] 属性
 
-只能应用于模型属性，不能应用于方法参数。 如果无法对模型属性进行绑定，则会导致模型绑定添加模型状态错误。 以下是一个示例：
+只能应用于模型属性，不能应用于方法参数。 如果无法对模型属性进行绑定，则会导致模型绑定添加模型状态错误。 下面是一个示例：
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
 
@@ -333,7 +333,7 @@ public class Instructor
 
 ### <a name="bindnever-attribute"></a>[BindNever] 属性
 
-只能应用于模型属性，不能应用于方法参数。 防止模型绑定设置模型的属性。 以下是一个示例：
+只能应用于模型属性，不能应用于方法参数。 防止模型绑定设置模型的属性。 下面是一个示例：
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
@@ -427,7 +427,7 @@ public class Instructor
 C # 9 引入了记录类型，这是一个很好的方法，可以在网络上简洁地表示数据。 ASP.NET Core 增加了对模型绑定和使用单个构造函数验证记录类型的支持：
 
 ```csharp
-public record Person([Required] string Name, [Range(0, 150)] int Age);
+public record Person([Required] string Name, [Range(0, 150)] int Age, [BindNever] int Id);
 
 public class PersonController
 {
@@ -451,7 +451,7 @@ Name: <input asp-for="Name" />
 Age: <input asp-for="Age" />
 ```
 
-在验证记录类型时，运行时将搜索专用于参数而不是属性的验证元数据。
+在验证记录类型时，运行时将搜索专用于参数而不是属性的绑定和验证元数据。
 
 ::: moniker-end
 
@@ -554,7 +554,7 @@ ASP.NET Core 基于 [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) 
 
 ## <a name="manual-model-binding"></a>手动模型绑定 
 
-可以使用 <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> 方法手动调用模型绑定。 `ControllerBase` 和 `PageModel` 类上均定义了此方法。 方法重载允许指定要使用的前缀和值提供程序。 如果模型绑定失败，该方法返回 `false`。 以下是一个示例：
+可以使用 <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> 方法手动调用模型绑定。 `ControllerBase` 和 `PageModel` 类上均定义了此方法。 方法重载允许指定要使用的前缀和值提供程序。 如果模型绑定失败，该方法返回 `false`。 下面是一个示例：
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
@@ -767,7 +767,7 @@ public class Pet
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter)、[UInt32](xref:System.ComponentModel.UInt32Converter)、[UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.UriTypeConverter)
-* [Version](xref:System.ComponentModel.VersionConverter)
+* [版本](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>复杂类型
 
@@ -835,13 +835,13 @@ public IActionResult OnPost(
 
 ### <a name="bindrequired-attribute"></a>[BindRequired] 属性
 
-只能应用于模型属性，不能应用于方法参数。 如果无法对模型属性进行绑定，则会导致模型绑定添加模型状态错误。 以下是一个示例：
+只能应用于模型属性，不能应用于方法参数。 如果无法对模型属性进行绑定，则会导致模型绑定添加模型状态错误。 下面是一个示例：
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
 
 ### <a name="bindnever-attribute"></a>[BindNever] 属性
 
-只能应用于模型属性，不能应用于方法参数。 防止模型绑定设置模型的属性。 以下是一个示例：
+只能应用于模型属性，不能应用于方法参数。 防止模型绑定设置模型的属性。 下面是一个示例：
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
@@ -1023,7 +1023,7 @@ ASP.NET Core 基于 [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) 
 
 ## <a name="manual-model-binding"></a>手动模型绑定
 
-可以使用 <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> 方法手动调用模型绑定。 `ControllerBase` 和 `PageModel` 类上均定义了此方法。 方法重载允许指定要使用的前缀和值提供程序。 如果模型绑定失败，该方法返回 `false`。 以下是一个示例：
+可以使用 <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> 方法手动调用模型绑定。 `ControllerBase` 和 `PageModel` 类上均定义了此方法。 方法重载允许指定要使用的前缀和值提供程序。 如果模型绑定失败，该方法返回 `false`。 下面是一个示例：
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: a3fc398569fafefc0b4634e80433a5d4e0e1b4ff
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 09d3c555570a9e0ebb78275e73d64e2553fd04cf
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060997"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638791"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>ASP.NET Core 性能最佳做法
 
@@ -67,7 +67,7 @@ ASP.NET Core 应用中的常见性能问题是阻止可能是异步的调用。 
 
 ## <a name="minimize-large-object-allocations"></a>最小化大型对象分配
 
-[.Net Core 垃圾回收器](/dotnet/standard/garbage-collection/)在 ASP.NET Core 应用中自动管理内存的分配和释放。 自动垃圾回收通常意味着开发人员无需担心如何或何时释放内存。 但是，清理未引用的对象会占用 CPU 时间，因此开发人员应最大限度地减少 [热代码路径](#understand-hot-code-paths)中的对象分配。 垃圾回收在大型对象上特别昂贵 ( # A0 85 K 字节) 。 大型对象存储在 [大型对象堆](/dotnet/standard/garbage-collection/large-object-heap) 上，需要完整的 (第2代) 垃圾回收。 与第0代和第1代回收不同，第2代回收需要临时暂停应用执行。 频繁分配和取消分配大型对象会导致性能不一致。
+[.Net Core 垃圾回收器](/dotnet/standard/garbage-collection/)在 ASP.NET Core 应用中自动管理内存的分配和释放。 自动垃圾回收通常意味着开发人员无需担心如何或何时释放内存。 但是，清理未引用的对象会占用 CPU 时间，因此开发人员应最大限度地减少 [热代码路径](#understand-hot-code-paths)中的对象分配。 垃圾回收在大型对象上特别昂贵 (> 85 K 字节) 。 大型对象存储在 [大型对象堆](/dotnet/standard/garbage-collection/large-object-heap) 上，需要完整的 (第2代) 垃圾回收。 与第0代和第1代回收不同，第2代回收需要临时暂停应用执行。 频繁分配和取消分配大型对象会导致性能不一致。
 
 建议：
 
@@ -147,7 +147,7 @@ ASP.NET Core 应用中的常见性能问题是阻止可能是异步的调用。 
 
 建议：
 
-* **请** 使用 ASP.NET Core 的 [内置支持](xref:client-side/bundling-and-minification) ，以便对客户端资产进行捆绑和缩小。
+* **请使用**[捆绑和缩减准则](xref:client-side/bundling-and-minification)，其中提及兼容的工具，并演示如何使用 ASP.NET Core 的 `environment` 标记来处理 `Development` 和 `Production` 环境。
 * **请考虑其他** 第三方工具（如 [Webpack](https://webpack.js.org/)），以实现复杂的客户端资产管理。
 
 ## <a name="compress-responses"></a>压缩响应
@@ -361,7 +361,7 @@ ASP.NET Core 不会缓冲 HTTP 响应正文。 第一次写入响应时：
 
 [!code-csharp[](performance-best-practices/samples/3.0/Startup22.cs?name=snippet3)]
 
-## <a name="do-not-call-next-if-you-have-already-started-writing-to-the-response-body"></a>如果已开始写入响应正文，请不要调用下一个 ( # A1
+## <a name="do-not-call-next-if-you-have-already-started-writing-to-the-response-body"></a>如果已开始写入响应正文，请不要调用下一个 () 
 
 仅当组件可以处理和操作响应时，才应调用组件。
 

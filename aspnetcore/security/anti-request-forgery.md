@@ -18,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/anti-request-forgery
-ms.openlocfilehash: 08414bb4c4d168b672eed2cb7e6a490511ec93d4
-ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
+ms.openlocfilehash: a46fb997719acd95204470c14a4e9eb8546d88dc
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/25/2021
-ms.locfileid: "105555053"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638778"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>阻止跨站点请求伪造 (XSRF/CSRF) 攻击 ASP.NET Core
 
-作者： [Rick Anderson](https://twitter.com/RickAndMSFT)、 [Fiyaz Hasan](https://twitter.com/FiyazBinHasan)和 [Steve Smith](https://ardalis.com/)
+作者： [Fiyaz Hasan](https://twitter.com/FiyazBinHasan)、 [Rick Anderson](https://twitter.com/RickAndMSFT)和 [Steve Smith](https://ardalis.com/)
 
 跨站点请求伪造 (也称为 XSRF 或 CSRF) 是对 web 托管应用程序的攻击，恶意 web 应用可能会影响客户端浏览器和信任该浏览器的 web 应用之间的交互。 这些攻击是可能的，因为 web 浏览器会自动向网站发送每个请求的身份验证令牌。 这种形式的攻击也称为 *一键式攻击* 或 *会话 riding* ，因为攻击利用用户以前的经过身份验证的会话。
 
@@ -174,11 +174,11 @@ Cookie基于的身份验证是一种常用的身份验证形式。 基于令牌�
 该令牌是唯一的且不可预测的。 该令牌还可用于确保一系列请求的正确排序 (例如，确保的请求序列为： page 1 > 第2页 > 第3页) 。 ASP.NET Core MVC 和页面模板中的所有表单都 Razor 生成防伪标记。 以下对视图示例将生成防伪令牌：
 
 ```cshtml
-<form asp-controller="Manage" asp-action="ChangeCode" method="post">
+<form asp-controller="Todo" asp-action="Create" method="post">
     ...
 </form>
 
-@using (Html.BeginForm("ChangeCode", "Manage"))
+@using (Html.BeginForm("Create", "Todo"))
 {
     ...
 }
@@ -251,7 +251,7 @@ services.AddAntiforgery(options =>
 | [Cookie](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie) | 确定用于创建防伪的设置 cookie 。 |
 | [Cookie域名](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiedomain) | 的域 cookie 。 默认为 `null`。 此属性已过时，并将在将来的版本中删除。 建议的替代项为 Cookie 。域名. |
 | [Cookie名称](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiename) | cookie 的名称。 如果未设置，系统将生成一个以 [默认 Cookie 前缀](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.defaultcookieprefix) ( "开头的唯一名称。AspNetCore. 防伪. ") 。 此属性已过时，并将在将来的版本中删除。 建议的替代项为 Cookie 。路径名. |
-| [Cookie通道](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | 在上设置的路径 cookie 。 此属性已过时，并将在将来的版本中删除。 建议的替代项为 Cookie 。通道. |
+| [Cookie路径](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | 在上设置的路径 cookie 。 此属性已过时，并将在将来的版本中删除。 建议的替代项为 Cookie 。通道. |
 | [FormFieldName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | 防伪系统用于在视图中呈现防伪标记的隐藏窗体字段的名称。 |
 | [HeaderName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.headername) | 防伪系统使用的标头的名称。 如果 `null` 为，则系统仅考虑窗体数据。 |
 | [RequireSsl](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.requiressl) | 指定防伪系统是否需要 HTTPS。 如果为 `true` ，则非 HTTPS 请求会失败。 默认为 `false`。 此属性已过时，并将在将来的版本中删除。 建议使用的替代方法是设置 Cookie 。SecurePolicy. |
@@ -419,12 +419,12 @@ function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0) == ' ') {
+        while (c.charAt(0) === ' ') {
             c = c.substring(1);
         }
-        if (c.indexOf(name) == 0) {
+        if (c.indexOf(name) === 0) {
             return c.substring(name.length, c.length);
         }
     }
@@ -434,19 +434,19 @@ function getCookie(cname) {
 var csrfToken = getCookie("CSRF-TOKEN");
 
 var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == XMLHttpRequest.DONE) {
-        if (xhttp.status == 200) {
-            alert(xhttp.responseText);
+xhttp.onreadystatechange = function () {
+    if (xhttp.readyState === XMLHttpRequest.DONE) {
+        if (xhttp.status === 204) {
+            alert('Todo item is created successfully.');
         } else {
             alert('There was an error processing the AJAX request.');
         }
     }
 };
-xhttp.open('POST', '/api/token/changeCode', true);
+xhttp.open('POST', '/api/items', true);
 xhttp.setRequestHeader("Content-type", "application/json");
 xhttp.setRequestHeader("X-CSRF-TOKEN", csrfToken);
-xhttp.send(JSON.stringify({ "newCode": $CREDENTIAL_PLACEHOLDER$ }));
+xhttp.send(JSON.stringify({ "name": "Learn C#" }));
 ```
 
 ### <a name="angularjs"></a>AngularJS
