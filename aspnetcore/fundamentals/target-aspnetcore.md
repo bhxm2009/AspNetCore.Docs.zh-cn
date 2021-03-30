@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/target-aspnetcore
-ms.openlocfilehash: c012658a6f48247af60c8bfd56a7d987f6aa8a68
-ms.sourcegitcommit: c1839f2992b003c92cd958244a2e0771ae928786
+ms.openlocfilehash: 454f2523a44f5c1aa12b9a27c21c6a3e933ab81a
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "93061504"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711474"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>使用类库中的 ASP.NET Core API
 
@@ -54,15 +54,15 @@ ASP.NET Core 遵从 [.NET Core 支持策略](https://dotnet.microsoft.com/platfo
 
 ## <a name="include-blazor-extensibility"></a>包括 Blazor 扩展性
 
-Blazor 支持 WebAssembly (WASM) 和服务器[托管模型](xref:blazor/hosting-models)。 除非出于特定原因无法实现支持，否则 [Razor 组件](xref:blazor/components/index)库应同时支持这两种托管模型。 Razor 组件库必须使用 [Microsoft.NET.Sdk.RazorSDK](xref:razor-pages/sdk)。
+Blazor 支持 WebAssembly (WASM) 和基于服务器的[托管模型](xref:blazor/hosting-models)。 除非出于特定原因无法同时支持这两种托管模型，否则 [Razor 组件](xref:blazor/components/index)库会同时支持这两种托管模型。 Razor 组件库必须使用 [Microsoft.NET.Sdk.RazorSDK](xref:razor-pages/sdk)。
 
 ### <a name="support-both-hosting-models"></a>同时支持两种托管模型
 
-请针对自己的编辑器使用以下说明，以同时支持 [Blazor Server](xref:blazor/hosting-models#blazor-server) 和 [Blazor WASM](xref:blazor/hosting-models#blazor-webassembly) 项目的 Razor 组件消耗。
+请针对自己的编辑器使用以下说明，以支持 [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) 和 [Blazor Server](xref:blazor/hosting-models#blazor-server) 项目使用 Razor 组件。
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-使用 Razor 类库项目模板。 应取消选中此模板的“支持页和视图”复选框。
+使用 Razor 类库项目模板。
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -78,7 +78,93 @@ dotnet new razorclasslib
 
 ---
 
-模板生成的项目执行以下操作：
+::: moniker range=">= aspnetcore-5.0"
+
+从项目模板生成的库：
+
+* 基于已安装的 SDK 面向当前的 .NET Framework。
+* 通过 `SupportedPlatform` MSBuild 项目将 `browser` 包括在内作为支持的平台，启用对平台依赖项的浏览器兼容性检查。
+* 添加对 [Microsoft.AspNetCore.Components.Web](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) 的 NuGet 包引用。
+
+示例：
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>{TARGET FRAMEWORK}</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="{VERSION}" />
+  </ItemGroup>
+
+</Project>
+```
+
+在上面的示例中：
+
+* `{TARGET FRAMEWORK}` 占位符是 [目标框架名字对象 (TFM) ](/dotnet/standard/frameworks)。
+* `{VERSION}` 占位符是 [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) 包的版本。
+
+### <a name="only-support-the-blazor-server-hosting-model"></a>仅支持 Blazor Server 托管模型
+
+类库极少只支持 [Blazor Server](xref:blazor/hosting-models#blazor-server) 应用。 如果类库需要特定于 [Blazor Server](xref:blazor/hosting-models#blazor-server) 的功能（如访问 <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> 或 <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>），或使用特定于 ASP.NET Core 的功能（如中间件、MVC 控制器或 Razor Pages），请使用以下方法之一：
+
+* 使用“支持页面和视图”复选框 (Visual Studio) 或 `dotnet new` 命令的 `-s|--support-pages-and-views` 选项创建项目时，指定库支持页面和视图：
+
+  ```dotnetcli
+  dotnet new razorclasslib -s true
+  ```
+
+* 仅在库的项目文件中提供对 ASP.NET Core 的框架引用：
+
+  ```xml
+  <Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <ItemGroup>
+      <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+  </Project>
+  ```
+
+### <a name="support-multiple-framework-versions"></a>支持多个框架版本
+
+如果库必须支持当前版本向 Blazor 添加的功能，同时还要支持一个或多个早期版本，则让库面向多个目标。 在 `TargetFrameworks` MSBuild 属性中提供以分号分隔的[目标框架名字对象 (TFM)](/dotnet/standard/frameworks) 列表：
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFrameworks>{TARGET FRAMEWORKS}</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="{VERSION}" />
+  </ItemGroup>
+
+</Project>
+```
+
+在上面的示例中：
+
+* `{TARGET FRAMEWORKS}` 占位符表示以分号分隔的 TFM 列表。 例如 `netcoreapp3.1;net5.0`。
+* `{VERSION}` 占位符是 [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) 包的版本。
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+从模板生成的项目：
 
 * 面向 .NET Standard 2.0。
 * 将 `RazorLangVersion` 属性设置为 `3.0`。 .NET Core 3.x 的默认值是 `3.0`。
@@ -101,7 +187,9 @@ dotnet new razorclasslib
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-razor-components-library.csproj)]
 
-有关包含 Razor 组件的库的详细信息，请参阅 [ASP.NET Core Razor 组件类库](xref:blazor/components/class-libraries)。
+::: moniker-end
+
+有关包含 Razor 组件的库的详细信息，请参阅 <xref:blazor/components/class-libraries>。
 
 ## <a name="include-mvc-extensibility"></a>包括 MVC 扩展性
 

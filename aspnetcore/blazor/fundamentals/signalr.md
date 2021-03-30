@@ -5,7 +5,7 @@ description: 了解如何配置和管理 Blazor SignalR 连接。
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/25/2021
+ms.date: 03/12/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/fundamentals/signalr
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 63dfd93fbc42a869211bc5cd481a8dbee6eb6c91
-ms.sourcegitcommit: 3982ff9dabb5b12aeb0a61cde2686b5253364f5d
+ms.openlocfilehash: ecac21c1f6f7cea0a221e1a78161b915ee2c755f
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/04/2021
-ms.locfileid: "102118910"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711056"
 ---
 # <a name="aspnet-core-blazor-signalr-guidance"></a>ASP.NET Core Blazor SignalR 指南
 
@@ -364,6 +364,40 @@ window.addEventListener('pagehide', () => {
 ```
 
 ::: moniker-end
+
+## <a name="blazor-server-circuit-handler"></a>Blazor Server 线路处理程序
+
+Blazor Server 允许代码定义线路处理程序，后者允许在用户线路的状态发生更改时运行代码。 线路处理程序通过从 <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> 派生并在应用的服务容器中注册该类实现。 以下线路处理程序示例跟踪打开的 SignalR 连接。
+
+`TrackingCircuitHandler.cs`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_Server/TrackingCircuitHandler.cs)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_Server/TrackingCircuitHandler.cs)]
+
+::: moniker-end
+
+线路处理程序使用 DI 注册。 每个线路实例都会创建区分范围的实例。 借助前面示例中的 `TrackingCircuitHandler` 创建单一实例服务，因为必须跟踪所有线路的状态。
+
+`Startup.cs`:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    ...
+    services.AddSingleton<CircuitHandler, TrackingCircuitHandler>();
+}
+```
+
+如果自定义线路处理程序的方法引发未处理异常，则该异常会导致 Blazor Server 线路产生严重错误。 若要容忍处理程序代码或被调用方法中的异常，请使用错误处理和日志记录将代码包装到一个或多个 [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) 语句中。
+
+当线路因用户断开连接而结束且框架正在清除线路状态时，框架会处置线路的 DI 范围。 处置范围时会处置所有实现 <xref:System.IDisposable?displayProperty=fullName> 的区分线路范围的 DI 服务。 如果有任何 DI 服务在处置期间引发未处理异常，则框架会记录该异常。
 
 ## <a name="additional-resources"></a>其他资源
 

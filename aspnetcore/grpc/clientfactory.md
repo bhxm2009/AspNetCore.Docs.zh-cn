@@ -1,10 +1,10 @@
 ---
-title: .NET Core 中的 gRPC 客户端工厂集成
+title: .NET 中的 gRPC 客户端工厂集成
 author: jamesnk
 description: 了解如何使用客户端工厂创建 gRPC 客户端。
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 05/26/2020
+ms.date: 03/19/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,14 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/clientfactory
-ms.openlocfilehash: c63bf495f558237ed801881d378953119791b8ce
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: ea5181bd44a5deafdc6634b31b9efeda2884b58c
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93060945"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711498"
 ---
-# <a name="grpc-client-factory-integration-in-net-core"></a>.NET Core 中的 gRPC 客户端工厂集成
+# <a name="grpc-client-factory-integration-in-net"></a>.NET 中的 gRPC 客户端工厂集成
+
+作者：[James Newton-King](https://twitter.com/jamesnk)
 
 gRPC 与 `HttpClientFactory` 的集成提供了一种创建 gRPC 客户端的集中方式。 它可用作[配置独立 gRPC 客户端实例](xref:grpc/client)的替代方法。 [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) NuGet 包中提供了工厂集成。
 
@@ -73,9 +75,9 @@ public class AggregatorService : Aggregator.AggregatorBase
 }
 ```
 
-## <a name="configure-httpclient"></a>配置 HttpClient
+## <a name="configure-httphandler"></a>配置 HttpHandler
 
-`HttpClientFactory` 创建 gRPC 客户端使用的 `HttpClient`。 标准 `HttpClientFactory` 方法可用于添加传出请求中间件或配置 `HttpClient` 的基础 `HttpClientHandler`：
+`HttpClientFactory` 创建 gRPC 客户端使用的 `HttpMessageHandler`。 标准 `HttpClientFactory` 方法可用于添加传出请求中间件或配置 `HttpClient` 的基础 `HttpClientHandler`：
 
 ```csharp
 services
@@ -139,9 +141,10 @@ services
     .EnableCallContextPropagation(o => o.SuppressContextNotFoundErrors = true);
 ```
 
-有关截止时间和 RPC 取消的详细信息，请参阅 [RPC 生命周期](https://www.grpc.io/docs/guides/concepts/#rpc-life-cycle)。
+有关截止时间和 RPC 取消的详细信息，请参阅 <xref:grpc/deadlines-cancellation>。
 
 ## <a name="additional-resources"></a>其他资源
 
 * <xref:grpc/client>
+* <xref:grpc/deadlines-cancellation>
 * <xref:fundamentals/http-requests>

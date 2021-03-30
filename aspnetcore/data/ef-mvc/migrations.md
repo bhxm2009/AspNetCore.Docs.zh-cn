@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: aebbc3f29b0356c7993abd83869ab21d3613bf61
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 237192b93c3cf21657c6053454952c2677111cd1
+ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589343"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105051070"
 ---
 # <a name="tutorial-part-5-apply-migrations-to-the-contoso-university-sample"></a>教程：第 5 部分 - 将迁移应用于 Contoso University 示例
 
@@ -100,7 +100,7 @@ Done. To undo this action, use 'ef migrations remove'
 
 此代码适用于输入 `migrations add InitialCreate` 命令时所创建的初始迁移。 迁移名称参数（本示例中为“InitialCreate”）用于指定文件名，并且你可以按需使用任何名称。 最好选择能概括迁移中所执行操作的字词或短语。 例如，可将后面的迁移命名为“AddDepartmentTable”。
 
-如果创建初始迁移时已存在数据库，则会生成数据库创建代码，但此代码不必运行，因为数据库已与数据库模型相匹配。 将应用部署到其中尚不存在数据库的其他环境时，此代码将运行以创建数据库，因此最好提前进行测试。 这也是提前更改连接字符串中数据库的名称的原因，这样迁移才能从头创建新数据库。
+如果创建初始迁移时已存在数据库，则会生成数据库创建代码，但此代码不必运行，因为数据库已与数据库模型相匹配。 将应用部署到其中尚不存在数据库的其他环境时，此代码将运行以创建数据库，因此最好提前进行测试。 这就是之前丢弃数据库的原因，目的是迁移可以从头开始创建一个新的数据库。
 
 ## <a name="the-data-model-snapshot"></a>数据模型快照
 

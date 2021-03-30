@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: ee6de9a13a69154eef6b677663091667d391452f
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: f3bc46da8e9b9ca1fe5afab7ccc1de9eaad16e8d
+ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102395053"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105051018"
 ---
 # <a name="aspnet-core-blazor-routing"></a>ASP.NET Core Blazor 路由
 
@@ -331,26 +331,13 @@ ASP.NET Core 5.0 或更高版本中支持 catch-all 路由参数。 有关详细
 var query = new Uri(NavigationManager.Uri).Query;
 ```
 
-若要分析查询字符串的参数，请执行以下操作：
+若要分析查询字符串的参数，一种方法是结合使用 [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) 和 [JavaScript (JS) 互操作](xref:blazor/call-javascript-from-dotnet)：
 
-* 应用可使用 <xref:Microsoft.AspNetCore.WebUtilities> API。 如果该 API 对应用不可用，请在应用的项目文件中针对 [Microsoft.AspNetCore.WebUtilities](https://www.nuget.org/packages/Microsoft.AspNetCore.WebUtilities) 添加一个包引用。
-* 在使用 <xref:Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery%2A?displayProperty=nameWithType> 分析查询字符串后获取值。
+```javascript
+export createQueryString = (string queryString) => new URLSearchParams(queryString);
+```
 
-以下 `ParseQueryString` 组件示例会分析名为 `ship` 的查询字符串参数键。 例如，URL 查询字符串键值对 `?ship=Tardis` 会捕获 `queryValue` 中的值 `Tardis`。 对于下述示例，请使用 URL `https://localhost:5001/parse-query-string?ship=Tardis` 导航到应用。
-
-`Pages/ParseQueryString.razor`:
-
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/routing/ParseQueryString.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/routing/ParseQueryString.razor)]
-
-::: moniker-end
+有关详细信息，请参阅 [Blazor JavaScript 隔离和对象引用](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references)。
 
 ## <a name="navlink-and-navmenu-components"></a>`NavLink` 和 `NavMenu` 组件
 

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/browser
-ms.openlocfilehash: 0967a70b498156d9c4ea8818ee1c80b37d9f2d87
-ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
+ms.openlocfilehash: 389915e17234d9e8bf0f03e83948daf83d479d8d
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/31/2021
-ms.locfileid: "99217474"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711264"
 ---
 # <a name="use-grpc-in-browser-apps"></a>在浏览器应用中使用 gRPC
 
@@ -135,7 +135,7 @@ HTTP/2 上的传统 gRPC 支持所有方向的流式处理。 gRPC-Web 对流式
 
 ### <a name="use-grpc-client-factory-with-grpc-web"></a>将 gRPC-Web 与 gRPC 客户端工厂一起使用
 
-可以使用 gRPC 与 [HttpClientFactory](xref:System.Net.Http.IHttpClientFactory) 的集成来创建与 gRPC-Web 兼容的 .NET 客户端。
+可以使用 [gRPC 客户端工厂](xref:grpc/clientfactory)创建 gRPC-Web 兼容的 .NET 客户端。
 
 若要将 gRPC-Web 与客户端工厂一起使用，请执行以下操作：
 
@@ -147,12 +147,12 @@ HTTP/2 上的传统 gRPC 支持所有方向的流式处理。 gRPC-Web 对流式
 
 ```csharp
 builder.Services
-    .AddGrpcClient<Greet.GreeterClient>((services, options) =>
+    .AddGrpcClient<Greet.GreeterClient>(options =>
     {
         options.Address = new Uri("https://localhost:5001");
     })
     .ConfigurePrimaryHttpMessageHandler(
-        () => new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler()));
+        () => new GrpcWebHandler(new HttpClientHandler()));
 ```
 
 有关详细信息，请参阅 <xref:grpc/clientfactory>。

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/netstandard
-ms.openlocfilehash: a6b066979dcdcdf648b8b0326bef47fe0e466266
-ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
+ms.openlocfilehash: b3df1d3b5565dc5c03988c29d2befbe1ea164f54
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/12/2021
-ms.locfileid: "103422482"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711473"
 ---
 # <a name="use-grpc-client-with-net-standard-20"></a>将 gRPC 客户端与 .NET Standard 2.0 一起使用
 
@@ -61,6 +61,18 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOp
 
 var client = new Greeter.GreeterClient(channel);
 var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
+```
+
+也可以使用 [gRPC 客户端工厂](xref:grpc/clientfactory)创建客户端。 使用 <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> 扩展方法配置 HTTP 提供程序。
+
+```csharp
+builder.Services
+    .AddGrpcClient<Greet.GreeterClient>(options =>
+    {
+        options.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigurePrimaryHttpMessageHandler(
+        () => new GrpcWebHandler(new HttpClientHandler()));
 ```
 
 有关详细信息，请参阅[使用 .Net gRPC 客户端配置 gRPC-Web](xref:grpc/browser#configure-grpc-web-with-the-net-grpc-client)。

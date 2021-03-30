@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 8a593654fa31e643e7c239f361f035589c75ce98
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: 230a2dc9ddf196b69a10df1a8632bb32f280c98e
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102395248"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711290"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>使用 Nginx 在 Linux 上托管 ASP.NET Core
 
@@ -401,16 +401,22 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 
 配置反向代理，以便进行安全 (HTTPS) 客户端连接
 
+> [!WARNING]
+> 本部分中的安全配置是一种常规配置，可以作为进一步进行自定义的起点。 我们无法为第三方工具、服务器和操作系统提供支持。 如果使用本部分中的配置，请自行承担风险。 有关更多信息，请访问以下资源：
+>
+> * [配置 HTTPS 服务器](http://nginx.org/docs/http/configuring_https_servers.html)（Nginx 文档）
+> * [mozilla.org SSL Configuration Generator](https://ssl-config.mozilla.org/#server=nginx)
+
 * 通过指定由受信任的证书颁发机构 (CA) 颁发的有效证书来配置服务器，以侦听端口 443 上的 HTTPS 流量。
 
-* 通过采用以下“/etc/nginx/nginx.conf”文件中所示的某些做法来增强安全保护。 示例包括选择更强的密码并将通过 HTTP 的所有流量重定向到 HTTPS。
+* 通过采用以下“/etc/nginx/nginx.conf”文件中所示的某些做法来增强安全保护。
+
+* 下面的示例未将服务器配置为重定向不安全的请求。 建议使用 HTTPS 重定向中间件。 有关详细信息，请参阅 <xref:security/enforcing-ssl>。
 
   > [!NOTE]
-  > 对于开发环境，我们建议使用临时重定向(302)，而不使用永久性重定向 (301)。 链接缓存会导致开发环境中的行为不稳定。
+  > 对于由服务器配置（而非 HTTPS 重定向中间件）处理安全重定向的开发环境，建议使用临时重定向 (302) 替代永久性重定向 (301)。 链接缓存会导致开发环境中的行为不稳定。
 
-* 添加 `HTTP Strict-Transport-Security` (HSTS) 标头可确保由客户端发起的所有后续请求都通过 HTTPS。
-
-  有关 HSTS 的重要指南，请参阅 <xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts>。
+* 添加 `Strict-Transport-Security` (HSTS) 标头可确保由客户端发起的所有后续请求都通过 HTTPS。 有关设置 `Strict-Transport-Security` 标头的指南，请参阅 <xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts>。
 
 * 如果将来将禁用 HTTPS，请使用以下方法之一：
 
@@ -423,10 +429,17 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 
 将 /etc/nginx/nginx.conf 配置文件的内容替换为以下文件。 示例包含一个配置文件中的 `http` 和 `server` 部分。
 
-[!code-nginx[](linux-nginx/nginx.conf?highlight=2)]
+[!code-nginx[](linux-nginx/nginx.conf)]
 
 > [!NOTE]
 > Blazor WebAssembly 应用需要更大的 `burst` 参数值才能容纳应用发出的更大量的请求。 有关详细信息，请参阅 <xref:blazor/host-and-deploy/webassembly#nginx>。
+
+> [注意] 前面的示例禁用在线证书状态协议 (OCSP) 装订。 如果启用，请确认证书支持该功能。 有关启用 OCSP 的详细信息和指南，请参阅[模块 ngx_http_ssl_module（Nginx 文档）](http://nginx.org/en/docs/http/ngx_http_ssl_module.html)一文中的以下属性：
+>
+> * `ssl_stapling`
+> * `ssl_stapling_file`
+> * `ssl_stapling_responder`
+> * `ssl_stapling_verify`
 
 #### <a name="secure-nginx-from-clickjacking"></a>保护 Nginx 免受点击劫持的侵害
 
