@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: f80c574ddb85c50713e36c7a2cceb826863c7321
-ms.sourcegitcommit: 00368bb6a5420983beaced5b62dabc1f94abdeba
+ms.openlocfilehash: 99b3b4af31683feb10c01d1a7297a3489b01c797
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/16/2021
-ms.locfileid: "103557837"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711693"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>教程：使用 ASP.NET Core 创建 Web API
 
@@ -167,6 +167,8 @@ ms.locfileid: "103557837"
 * 用于测试 WeatherForecast API 的 URL。
 * 响应代码、正文和标头。
 * 包含媒体类型、示例值和架构的下拉列表框。
+
+如果 Swagger 页面未显示，请参阅[此 GitHub 问题](https://github.com/dotnet/AspNetCore.Docs/issues/21647)。
 
 <!-- Review: Do we care the IE generates several errors. It shows the data, but with  Unrecognized response type; displaying content as text.
 -->

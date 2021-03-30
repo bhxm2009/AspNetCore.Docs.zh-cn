@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 5bb1a05f5e81730d0785c1d6a69a8cafb68f85ab
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 804ca260fd77f130499283d52a6034b9634a9c27
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586678"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711121"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>教程：在 ASP.NET MVC Web 应用中使用 EF Core 入门
 
@@ -343,7 +343,7 @@ ASP.NET Core 依赖关系注入负责将 `SchoolContext` 实例传递到控制�
 * 删除数据库。
 * 停止，然后启动应用。 将自动重新创建数据库以匹配此更改。
 
-例如，如果向 `Student` 类添加 `EmailAddress` 属性，则重新创建的表中会有新的 `EmailAddress` 列。 分类的视图不会显示新的 `EmailAddress` 属性。
+例如，如果向 `Student` 类添加 `EmailAddress` 属性，则重新创建的表中会有新的 `EmailAddress` 列。 视图不会显示新的 `EmailAddress` 属性。
 
 ## <a name="conventions"></a>约定
 
@@ -383,7 +383,7 @@ Web 服务器的可用线程是有限的，而在高负载情况下的可能所�
 
 ## <a name="limit-entities-fetched"></a>限制提取的实体数
 
-有关限制从查询返回的实体数的信息，请参阅[性能注意事项](xref:data/ef-rp/intro)。
+有关限制从查询返回的实体数的信息，请参阅[性能注意事项](xref:data/ef-rp/intro#performance-considerations)。
 
 请继续阅读下一篇教程，了解如何执行基本的 CRUD（创建、读取、更新、删除）操作。
 

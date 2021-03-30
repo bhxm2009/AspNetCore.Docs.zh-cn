@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/dotnet-watch
-ms.openlocfilehash: 84cae3b3babe28c2ebf6dba50023b020112d1bb3
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: e16ca16efd2c4998f486d3fab6bfaaa38fbf6311
+ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587575"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105051083"
 ---
 # <a name="develop-aspnet-core-apps-using-a-file-watcher"></a>使用文件观察程序开发 ASP.NET Core 应用
 
@@ -149,6 +149,7 @@ public static int Product(int a, int b)
 * `**/*.cs`
 * `*.csproj`
 * `**/*.resx`
+* 内容文件：`wwwroot/**`、`**/*.config`、`**/*.json`
 
 通过编辑 .csproj 文件，可向监视列表添加更多项。 可以单独指定项或使用 glob 模式指定。
 
@@ -173,6 +174,13 @@ public static int Product(int a, int b)
 
     <!-- exclude changes in this referenced project -->
     <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj" Watch="false" />
+</ItemGroup>
+```
+
+```xml
+<ItemGroup>
+     <!-- Exclude all Content items from being watched. -->
+    <Content Update="@(Content)" Watch="false" />
 </ItemGroup>
 ```
 

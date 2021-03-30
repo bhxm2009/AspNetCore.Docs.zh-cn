@@ -4,7 +4,7 @@ author: jamesnk
 description: 了解如何在 .NET 中利用重试进行可复原的容错 gRPC 调用。
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 02/25/2021
+ms.date: 03/18/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/retries
-ms.openlocfilehash: 613386d1fedd8b1b04081e3240b8a3aaf7b37012
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 4fda4968102740af8d1a7f37dcc588abd24ab70e
+ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589785"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105050992"
 ---
 # <a name="transient-fault-handling-with-grpc-retries"></a>暂时性故障处理与 gRPC 重试
 
@@ -31,7 +31,7 @@ ms.locfileid: "102589785"
 
 gRPC 重试是一项功能，允许 gRPC 客户端自动重试失败的调用。 本文介绍如何配置重试策略，以便在 .NET 中创建可复原的容错 gRPC 应用。
 
-gRPC 重试所要求的使用 [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) 版本 2.36.0-pre1 或更高版本。
+gRPC 重试需要 [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) 2.36.0 或更高版本。
 
 ## <a name="transient-fault-handling"></a>暂时性故障处理
 
@@ -100,6 +100,26 @@ var response = await client.SayHelloAsync(
 
 Console.WriteLine("From server: " + response.Message);
 ```
+
+### <a name="when-retries-are-valid"></a>重试何时有效
+
+如果失败状态代码与配置的状态代码匹配并且先前的尝试次数少于最大尝试次数，则会重试调用。 在某些情况下，不可重试 gRPC 调用。 已提交调用时，就会出现这种情况。
+
+在以下两种情况下，将提交 gRPC 调用：
+
+* 客户端收到响应头。 调用 `ServerCallContext.WriteResponseHeadersAsync` 或将第一个消息写入服务器响应流时，服务器会发送响应头。
+* 客户端的传出消息（如果是流式处理则为消息）已超出客户端的最大缓冲区大小。 `MaxRetryBufferSize` 和 `MaxRetryBufferPerCallSize` [在通道上配置](xref:grpc/configuration#configure-client-options)。
+
+无论状态代码是什么或以前的尝试次数是多少，提交的调用都无法重试。
+
+### <a name="streaming-calls"></a>流式处理调用
+
+流式处理调用可以与 gRPC 重试一起使用，但在将它们一起使用时，务必注意以下事项：
+
+* 服务器流式处理、双向流式处理： 在已收到第一个消息后，从服务器返回多个消息的流式处理 RPC 无法重试。
+* 客户端流式处理、双向流式处理： 传出消息超出客户端的最大缓冲区大小时，向服务器发送多个消息的流式处理 RPC 无法重试。
+
+有关详细信息，请参阅[重试何时有效](#when-retries-are-valid)。
 
 ### <a name="grpc-retry-options"></a>gRPC 重试选项
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: 135881bfb4137bc81bd0f7250f1ce191cab13dcd
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: bfcce94f2ce25f2468cc5d1456c201e2f6bad094
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586834"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711525"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>教程：了解高级方案 - ASP.NET MVC 和 EF Core
 
@@ -288,7 +288,7 @@ dotnet ef database drop
 > * 已了解 EF Core 源代码与开发计划
 > * 已了解如何使用动态 LINQ 简化代码
 
-这将完成在 ASP.NET Core MVC 应用程序中使用 Entity Framework Core 这一系列教程。 本系列使用的是新建数据库；另一种方式是从现有数据库进行模型的反向工程。
+这将完成在 ASP.NET Core MVC 应用程序中使用 Entity Framework Core 这一系列教程。 本系列使用的是新建数据库；另一种方式是[从现有数据库进行模型的反向工程](/ef/core/managing-schemas/scaffolding)。
 
 > [!div class="nextstepaction"]
 > [教程：EF Core 与 MVC，现有数据库](/ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json)

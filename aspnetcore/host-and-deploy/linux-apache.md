@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: e81ad43e1c3b86900848671d9da377a5c04a2a82
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: f7d47e26b429f31817b5e04f3104449c9748d94f
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253002"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711277"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>使用 Apache 在 Linux 上托管 ASP.NET Core
 
@@ -375,7 +375,13 @@ rich rules:
 
 ::: moniker-end
 
-配置反向代理，以便进行安全 (HTTPS) 客户端连接 
+配置反向代理，以便进行安全 (HTTPS) 客户端连接
+
+> [!WARNING]
+> 本部分中的安全配置是一种常规配置，可以作为进一步进行自定义的起点。 我们无法为第三方工具、服务器和操作系统提供支持。 如果使用本部分中的配置，请自行承担风险。 有关更多信息，请访问以下资源：
+>
+* [Apache SSL/TLS 加密](https://httpd.apache.org/docs/trunk/ssl/)（Apache 文档）
+* [mozilla.org SSL Configuration Generator](https://ssl-config.mozilla.org/#server=apache)
 
 若要为 Apache 配置 HTTPS，请使用 mod_ssl  模块。 安装了 httpd  模块时，也会安装了 mod_ssl  模块。 如果未安装，请使用 `yum` 将其添加到配置。
 
@@ -389,35 +395,45 @@ sudo yum install mod_ssl
 sudo yum install mod_rewrite
 ```
 
-修改 helloapp.conf  文件以启用 URL 重写和端口 443 上的安全通信：
+修改 helloapp.conf 文件以在端口 443 上启用安全通信。
+
+下面的示例未将服务器配置为重定向不安全的请求。 建议使用 HTTPS 重定向中间件。 有关详细信息，请参阅 <xref:security/enforcing-ssl>。
+
+> [!NOTE]
+> 对于由服务器配置（而非 HTTPS 重定向中间件）处理安全重定向的开发环境，建议使用临时重定向 (302) 替代永久性重定向 (301)。 链接缓存会导致开发环境中的行为不稳定。
+
+添加 `Strict-Transport-Security` (HSTS) 标头可确保由客户端发起的所有后续请求都通过 HTTPS。 有关设置 `Strict-Transport-Security` 标头的指南，请参阅 <xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts>。
 
 ```
 <VirtualHost *:*>
     RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
 </VirtualHost>
 
-<VirtualHost *:80>
-    RewriteEngine On
-    RewriteCond %{HTTPS} !=on
-    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
-</VirtualHost>
-
 <VirtualHost *:443>
-    ProxyPreserveHost On
-    ProxyPass / http://127.0.0.1:5000/
-    ProxyPassReverse / http://127.0.0.1:5000/
-    ErrorLog /var/log/httpd/helloapp-error.log
-    CustomLog /var/log/httpd/helloapp-access.log common
-    SSLEngine on
-    SSLProtocol all -SSLv2
-    SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:!RC4+RSA:+HIGH:+MEDIUM:!LOW:!RC4
-    SSLCertificateFile /etc/pki/tls/certs/localhost.crt
+    Protocols             h2 http/1.1
+    ProxyPreserveHost     On
+    ProxyPass             / http://127.0.0.1:5000/
+    ProxyPassReverse      / http://127.0.0.1:5000/
+    ErrorLog              /var/log/httpd/helloapp-error.log
+    CustomLog             /var/log/httpd/helloapp-access.log common
+    SSLEngine             on
+    SSLProtocol           all -SSLv3 -TLSv1 -TLSv1.1
+    SSLHonorCipherOrder   off
+    SSLCompression        off
+    SSLSessionTickets     on
+    SSLUseStapling        off
+    SSLCertificateFile    /etc/pki/tls/certs/localhost.crt
     SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+    SSLCipherSuite        ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
 </VirtualHost>
 ```
 
 > [!NOTE]
 > 此示例中使用了本地生成的证书。 SSLCertificateFile  应为域名的主证书文件。 SSLCertificateKeyFile  应为创建 CSR 时生成的密钥文件。 SSLCertificateChainFile  应为证书颁发机构提供的中间证书文件（如有）。
+>
+> 需要 Apache HTTP 服务器版本 2.4.43 或更高版本，才能使用 OpenSSL 1.1.1 运行 TLS 1.3 Web 服务器。
+
+> [注意] 前面的示例禁用在线证书状态协议 (OCSP) 装订。 有关启用 OCSP 的更多信息和指南，请参阅 [OCSP 装订（Apache 文档）](https://httpd.apache.org/docs/trunk/ssl/ssl_howto.html#ocspstapling)。
 
 保存文件，并测试配置：
 
