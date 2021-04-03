@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: a768934bf761632803b667b32afeab686ebed6f9
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: c04ff3c2a8de6e8c9d0fa0653f09da2984dc528e
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711043"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105555040"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>ASP.NET Core Blazor 事件处理
 
@@ -36,7 +36,7 @@ ms.locfileid: "104711043"
 对于事件处理：
 
 * 支持返回 <xref:System.Threading.Tasks.Task> 的异步委托事件处理程序。
-* 委托事件处理程序会自动触发 UI 呈现，因此无需手动调用 [StateHasChanged](xref:blazor/components/lifecycle#state-changes)。
+* 委托事件处理程序会自动触发 UI 呈现，因此无需手动调用 [StateHasChanged](xref:blazor/components/lifecycle#state-changes-statehaschanged)。
 * 记录异常。
 
 下面的代码：
@@ -384,7 +384,7 @@ public class CustomPasteEventArgs : EventArgs
 在 `ChildComponent` 中选择该按钮时：
 
 * 调用 `Parent` 组件的 `ShowMessage` 方法。 `message` 更新并显示在 `Parent` 组件中。
-* 回调方法 (`ShowMessage`) 中不需要对 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) 的调用。 自动调用 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> 以重新呈现 `Parent` 组件，就像子事件触发组件重新呈现于在子级中执行的事件处理程序中一样。 有关详细信息，请参阅 <xref:blazor/components/rendering>。
+* 回调方法 (`ShowMessage`) 中不需要对 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) 的调用。 自动调用 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> 以重新呈现 `Parent` 组件，就像子事件触发组件重新呈现于在子级中执行的事件处理程序中一样。 有关详细信息，请参阅 <xref:blazor/components/rendering>。
 
 <xref:Microsoft.AspNetCore.Components.EventCallback> 和 <xref:Microsoft.AspNetCore.Components.EventCallback%601> 允许异步委托。 <xref:Microsoft.AspNetCore.Components.EventCallback> 是弱类型，允许将任何类型参数传入 `InvokeAsync(Object)`。 <xref:Microsoft.AspNetCore.Components.EventCallback%601> 是强类型，需要将 `T` 参数传入可分配到 `TValue` 的 `InvokeAsync(T)` 中。
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: ab342f6bdc5da68f2a2ee8d9aee29911a050056d
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 28da7890685dd8f7ee0bfb6aaf7e1ebe79c460cc
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586613"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105554704"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>在 ASP.NET Core Blazor 中从 .NET 方法调用 JavaScript 函数
 
@@ -248,7 +248,7 @@ public static async Task TriggerClickEvent(this ElementReference elementRef,
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/component2.razor?highlight=15)]
 
 > [!IMPORTANT]
-> 仅在呈现组件后填充 `exampleButton` 变量。 如果将未填充的 <xref:Microsoft.AspNetCore.Components.ElementReference> 传递给 JavaScript 代码，则 JavaScript 代码会收到 `null` 值。 若要在组件完成呈现后操作元素引用，请使用 [`OnAfterRenderAsync` 或 `OnAfterRender` 组件生命周期方法](xref:blazor/components/lifecycle#after-component-render)。
+> 仅在呈现组件后填充 `exampleButton` 变量。 如果将未填充的 <xref:Microsoft.AspNetCore.Components.ElementReference> 传递给 JavaScript 代码，则 JavaScript 代码会收到 `null` 值。 若要在组件完成呈现后操作元素引用，请使用 [`OnAfterRenderAsync` 或 `OnAfterRender` 组件生命周期方法](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)。
 
 使用泛型类型并返回值时，请使用 <xref:System.Threading.Tasks.ValueTask%601>：
 

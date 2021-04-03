@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-https
-ms.openlocfilehash: 3af2aff477604eb19ac211753f848d08d0c67c72
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 3201eac9128e30e63a34b2e1b8736ac69fb59d8f
+ms.sourcegitcommit: 7354c2029164702d075fd3786d96a92c6d49bc6e
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588635"
+ms.lasthandoff: 04/01/2021
+ms.locfileid: "106164300"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-over-https"></a>通过 HTTPS 在 Docker 上宿主 ASP.NET Core 映像
 
@@ -31,13 +31,11 @@ ms.locfileid: "102588635"
 
 [默认情况下](./enforcing-ssl.md)，ASP.NET Core 使用 HTTPS。 [HTTPS](https://en.wikipedia.org/wiki/HTTPS) 依赖于信任、标识和加密的 [证书](https://en.wikipedia.org/wiki/Public_key_certificate) 。
 
-本文档介绍如何通过 HTTPS 运行预生成的容器映像。
-
-若要开发方案，请参阅 [通过 HTTPS 上的 Docker 开发 ASP.NET Core 应用程序](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md) 。
+本文档说明如何使用 [.net 命令行界面 (CLI) ](/dotnet/core/tools/)使用 HTTPS 运行预生成的容器映像。 有关如何在 Visual Studio 中运行 Docker 的说明，请参阅 [通过 HTTPS 开发具有 Docker 的 ASP.NET Core 应用程序](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)。
 
 此示例需要 [Docker 17.06](https://docs.docker.com/release-notes/docker-ce) 或更高版本的 [Docker 客户端](https://www.docker.com/products/docker)。
 
-## <a name="prerequisites"></a>必备条件
+## <a name="prerequisites"></a>先决条件
 
 本文档中的某些说明需要 [.Net Core 2.2 SDK](https://dotnet.microsoft.com/download) 或更高版本。
 
