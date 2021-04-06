@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: f8bd8817a7950c8fa260febabf39a386d6b5e556
-ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
+ms.openlocfilehash: d1cfc17bb444abea99cdf6570862ed8d37810c94
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/25/2021
-ms.locfileid: "105555027"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081528"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>创建和使用 ASP.NET Core Razor 组件
 
@@ -311,7 +311,46 @@ public string Title { get; set; } = "Panel Title from Child";
   * `person` 对象的 `Name` 属性。
 
   `Pages/ParentComponent.razor`:
+
+  ::: moniker range=">= aspnetcore-5.0"
+
+  ```razor
+  <ChildComponent Title="@title">
+      Title from field.
+  </ChildComponent>
   
+  <ChildComponent Title="@GetTitle()">
+      Title from method.
+  </ChildComponent>
+  
+  <ChildComponent Title="@DateTime.Now.ToLongDateString()">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  <ChildComponent Title="@person.Name">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  @code {
+      private string title = "Panel Title from Parent";
+      private Person person = new();
+      
+      private string GetTitle()
+      {
+          return "Panel Title from Parent";
+      }
+      
+      private class Person
+      {
+          public string Name { get; set; } = "Dr. Who";
+      }
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
   ```razor
   <ChildComponent Title="@title">
       Title from field.
@@ -344,6 +383,8 @@ public string Title { get; set; } = "Panel Title from Child";
       }
   }
   ```
+
+  ::: moniker-end
   
   与 Razor 页面 (`.cshtml`) 不同，在呈现组件时，Blazor 不能在 Razor 表达式中执行异步工作。 这是因为 Blazor 是为呈现交互式 UI 而设计的。 在交互式 UI 中，屏幕必须始终显示某些内容，因此阻止呈现流是没有意义的。 相反，异步工作是在一个[异步生命周期事件](xref:blazor/components/lifecycle)期间执行的。 在每个异步生命周期事件之后，组件可能会再次呈现。 不支持以下 Razor 语法：
   
@@ -357,7 +398,7 @@ public string Title { get; set; } = "Panel Title from Child";
   
   > “await”运算符只能用于异步方法中。 请考虑用“async”修饰符标记此方法，并将其返回类型更改为“Task”。
 
-  若要在前面的示例中异步获取 `Title` 参数的值，组件可以使用 [`OnInitializedAsync` 生命周期事件](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync)，如以下示例所示：
+  若要在前面的示例中异步获取 `Title` 参数的值，组件可以使用 [`OnInitializedAsync` 生命周期事件](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)，如以下示例所示：
   
   ```razor
   <ChildComponent Title="@title">
@@ -421,12 +462,35 @@ public string Title { get; set; } = "Panel Title from Child";
   > 组件属性不支持复杂内容（混合 C# 和标记）。
   
   若要支持组合值赋值，请使用方法、字段或属性。 下面的示例采用 C# 方法 `GetTitle` 将“SKU-”与产品库存号连接起来：
-  
+
+  ::: moniker range=">= aspnetcore-5.0"
+
   ```razor
   <ChildComponent Title="@GetTitle()">
       Composed title from method.
   </ChildComponent>
-  
+
+  @code {
+      private Product product = new();
+
+      private string GetTitle() => $"SKU-{product.SKU}";
+      
+      private class Product
+      {
+          public string SKU { get; set; } = "12345";
+      }
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
+  ```razor
+  <ChildComponent Title="@GetTitle()">
+      Composed title from method.
+  </ChildComponent>
+
   @code {
       private Product product = new Product();
 
@@ -438,7 +502,9 @@ public string Title { get; set; } = "Panel Title from Child";
       }
   }
   ```
-  
+
+  ::: moniker-end
+
 有关详细信息，请参阅 <xref:mvc/views/razor>。
 
 > [!WARNING]
@@ -955,7 +1021,7 @@ Blazor 框架通常会施加安全的父级到子级参数的赋值：
 以下经修定的 `Expander` 组件：
 
 * 接受父项中的 `Expanded` 组件参数值。
-* 将组件参数值分配给 [OnInitialized 事件](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync)中的私有字段 (`expanded`)。
+* 将组件参数值分配给 [`OnInitialized` 事件](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)中的私有字段 (`expanded`)。
 * 使用私有字段来维护其内部切换状态，该状态演示如何避免直接写入参数。
 
 ```razor
