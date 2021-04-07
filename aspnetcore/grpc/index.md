@@ -4,7 +4,7 @@ author: juntaoluo
 description: 了解使用 Kestrel 服务器和 ASP.NET Core 堆栈的 gRPC 服务。
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 09/20/2019
+ms.date: 03/29/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/index
-ms.openlocfilehash: 5820049aba90a2fbd06a23756b12ac9656c3b2c4
-ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
+ms.openlocfilehash: e4648641f79961d6e3c66ecf0b7629732afd2723
+ms.sourcegitcommit: 7354c2029164702d075fd3786d96a92c6d49bc6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/29/2021
-ms.locfileid: "99057507"
+ms.lasthandoff: 04/01/2021
+ms.locfileid: "106164287"
 ---
 # <a name="introduction-to-grpc-on-net"></a>.NET 上的 gRPC 的简介
 
@@ -65,7 +65,7 @@ message HelloReply {
 }
 ```
 
-通过在项目中包含 \*.proto 文件，可以自动生成用于服务、客户端和消息的 .NET 类型：
+通过在项目中包含 \*.proto 文件，可自动生成用于服务、客户端和消息的 .NET 类型：
 
 * 将包引用添加到 [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) 包。
 * 将 \*.proto 文件添加到 `<Protobuf>` 项目组。
@@ -80,7 +80,13 @@ message HelloReply {
 
 ## <a name="grpc-services-on-aspnet-core"></a>ASP.NET Core 上的 gRPC 服务
 
-gRPC 服务可以托管在 ASP.NET Core 上。 这些服务与常用的 ASP.NET Core 功能（例如日志记录、依赖关系注入(DI)、身份验证和授权）完全集成。
+gRPC 服务可以托管在 ASP.NET Core 上。 这些服务与日志记录、依赖关系注入 (DI)、身份验证和授权等 ASP.NET Core 功能完全集成。
+
+### <a name="add-grpc-services-to-an-aspnet-core-app"></a>将 gRPC 服务添加到 ASP.NET Core 应用
+
+gRPC 需要 [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) 包。 若要了解如何在 .NET 应用中配置 gRPC，请查看[配置 gRPC](xref:grpc/aspnetcore#configure-grpc)。
+
+### <a name="the-grpc-service-project-template"></a>gRPC 服务项目模板
 
 gRPC 服务项目模板提供了一个入门版服务：
 

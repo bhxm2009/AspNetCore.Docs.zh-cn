@@ -19,18 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/concurrency
-ms.openlocfilehash: cc93069899953d04d1df4e79a282c349a163b06e
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 013527216adb799a32370a85e048fbb06792338d
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586769"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638804"
 ---
 # <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>教程：处理并发 - ASP.NET MVC 和 EF Core
 
 在之前的教程中，你学习了如何更新数据。 本教程介绍如何处理多个用户同时更新同一实体时出现的冲突。
 
-你将创建可处理 Department 实体的 Web 页面并处理并发错误。 下图显示了“编辑”和“删除”页面，包括发生并发冲突时显示的一些消息。
+你将创建可处理 `Department` 实体的 Web 页面并处理并发错误。 下图显示了“编辑”和“删除”页面，包括发生并发冲突时显示的一些消息。
 
 ![“院系编辑”页](concurrency/_static/edit-error.png)
 
@@ -148,13 +148,13 @@ dotnet ef database update
 
 ## <a name="update-index-view"></a>更新“索引”视图
 
-基架引擎在索引视图中创建 RowVersion 列，但不应显示该字段。
+基架引擎在索引视图中创建了 `RowVersion` 列，但不应显示该字段。
 
 将 Views/Departments/Index.cshtml 中的代码替换为以下代码。
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
 
-这会将标题更改为“院系”，删除 RowVersion 列，并显示全名（而非管理员的名字）。
+这会将标题更改为“院系”，删除 `RowVersion` 列，并显示管理员的全名而不止是名字。
 
 ## <a name="update-edit-methods"></a>更新编辑方法
 
@@ -166,7 +166,7 @@ dotnet ef database update
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EditPost)]
 
-代码先尝试读取要更新的院系。 如果 `FirstOrDefaultAsync` 方法返回 NULL，则该院系已被另一用户删除。 此情况下，代码将使用已发布的表单值创建院系实体，以便“编辑”页重新显示错误消息。 或者，如果仅显示错误消息而未重新显示院系字段，则不必重新创建 Department 实体。
+代码先尝试读取要更新的院系。 如果 `FirstOrDefaultAsync` 方法返回 NULL，则该院系已被另一用户删除。 此情况下，代码将使用已发布的表单值创建 `Department` 实体，以便“编辑”页重新显示错误消息。 或者，如果仅显示错误消息而未重新显示院系字段，则不必重新创建 `Department` 实体。
 
 该视图将原始 `RowVersion` 值存储在隐藏字段中，且此方法在 `rowVersion` 参数中接收该值。 在调用 `SaveChanges` 之前，必须将该原始 `RowVersion` 属性值置于实体的 `OriginalValues` 集合中。
 
@@ -246,7 +246,7 @@ _context.Entry(departmentToUpdate).Property("RowVersion").OriginalValue = rowVer
 public async Task<IActionResult> DeleteConfirmed(int id)
 ```
 
-已将此参数更改为由模型绑定器创建的 Department 实体实例。 这样，EF 就可访问除记录键之外的 RowVersion 属性值。
+已将此参数更改为由模型绑定器创建的 `Department` 实体实例。 这样，EF 就可访问除记录键之外的 RowVersion 属性值。
 
 ```csharp
 public async Task<IActionResult> Delete(Department department)

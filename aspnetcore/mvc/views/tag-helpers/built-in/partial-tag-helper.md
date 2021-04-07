@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core 中的部分标记帮助程序
-author: scottaddie
+author: rick-anderson
 description: 发现 ASP.NET Core 部分标记帮助程序以及每个属性在呈现分部视图时所扮演的角色。
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-ms.openlocfilehash: 184901ad0bb6188ed908d41dabf2433c5ca7c1ce
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 4d1c2e2759168b4b1cbccd4ca430fe52dcd028b0
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587159"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106564204"
 ---
 # <a name="partial-tag-helper-in-aspnet-core"></a>ASP.NET Core 中的部分标记帮助程序
 
@@ -34,7 +34,7 @@ ms.locfileid: "102587159"
 
 [查看或下载示例代码](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/built-in/samples)（[如何下载](xref:index#how-to-download-a-sample)）
 
-## <a name="overview"></a>“概述”
+## <a name="overview"></a>概述
 
 部分标记帮助器用于在页面和 MVC 应用中呈现 [分部视图](xref:mvc/views/partial) Razor 。 请考虑：
 

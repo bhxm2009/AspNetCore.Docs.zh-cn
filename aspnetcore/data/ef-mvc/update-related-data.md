@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: dadfceca2431ace558700ae06417f01c99751419
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: c2fcc3730fa8bb117c5547b6168afa27ee039d52
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588277"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638739"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>教程：更新相关数据 - ASP.NET MVC 和 EF Core
 
@@ -51,7 +51,7 @@ ms.locfileid: "102588277"
 
 ## <a name="customize-courses-pages"></a>自定义“课程”页
 
-创建新的课程实体时，新实体必须与现有院系有关系。 为此，基架代码需包括控制器方法、创建视图和编辑视图，且视图中应包括用于选择院系的下拉列表。 下拉列表设置了 `Course.DepartmentID` 外键属性，而这正是 Entity Framework 使用适当的 Department 实体加载 `Department` 导航属性所需要的。 将用到基架代码，但需对其稍作更改，以便添加错误处理和对下拉列表进行排序。
+创建新的 `Course` 实体时，新实体必须与现有院系有关系。 为此，基架代码需包括控制器方法、创建视图和编辑视图，且视图中应包括用于选择院系的下拉列表。 下拉列表设置了 `Course.DepartmentID` 外键属性，而这正是 Entity Framework 使用适当的 `Department` 实体加载 `Department` 导航属性所需要的。 将用到基架代码，但需对其稍作更改，以便添加错误处理和对下拉列表进行排序。
 
 在 CoursesController.cs 中，删除四种 Create 和 Edit 方法，并将其替换为以下代码：
 
@@ -123,13 +123,13 @@ HttpGet `Edit` 方法根据正在编辑的课程已分配到的院系 ID 设置�
 
 ## <a name="add-instructors-edit-page"></a>添加“讲师编辑”页
 
-编辑讲师记录时，有时希望能更新讲师的办公室分配。 Instructor 实体和 OfficeAssignment 实体之间存在一对零或一的关系，这意味着代码必须处理一下情况：
+编辑讲师记录时，有时希望能更新讲师的办公室分配。 `Instructor` 实体和 `OfficeAssignment` 实体之间存在一对零或一的关系，这意味着代码必须处理一下情况：
 
-* 如果用户清除了办公室分配，并且办公室分配最初具有一个值，则删除 OfficeAssignment 实体。
+* 如果用户清除了办公室分配，并且办公室分配最初具有一个值，则删除 `OfficeAssignment` 实体。
 
-* 如果用户输入了办公室分配值，并且该值最初为空，则创建一个新的 OfficeAssignment 实体。
+* 如果用户输入了办公室分配值，并且该值最初为空，则创建一个新的 `OfficeAssignment` 实体。
 
-* 如果用户更改了办公室分配的值，则更改现有 OfficeAssignment 实体中的值。
+* 如果用户更改了办公室分配的值，则更改现有 `OfficeAssignment` 实体中的值。
 
 ### <a name="update-the-instructors-controller"></a>更新讲师控制器
 
@@ -145,9 +145,9 @@ HttpGet `Edit` 方法根据正在编辑的课程已分配到的院系 ID 设置�
 
 * 将方法名称更改为 `EditPost`，因为现在的签名与 HttpGet `Edit` 方法相同（`ActionName` 特性指定仍然使用 `/Edit/` URL）。
 
-* 使用 `OfficeAssignment` 导航属性的预先加载从数据库获取当前的 Instructor 实体。 此操作与在 HttpGet `Edit` 方法中进行的操作相同。
+* 使用 `OfficeAssignment` 导航属性的预先加载从数据库获取当前的 `Instructor` 实体。 此操作与在 HttpGet `Edit` 方法中进行的操作相同。
 
-* 将检索出的 Instructor 实体更新为模型绑定器中的值。 通过 `TryUpdateModel` 重载可以声明想包括的属性。 这样可以防止[第二个教程](crud.md)中所述的过度发布。
+* 用模型绑定器中的值更新检索到的 `Instructor` 实体。 通过 `TryUpdateModel` 重载可以声明想包括的属性。 这样可以防止[第二个教程](crud.md)中所述的过度发布。
 
     <!-- Snippets don't play well with <ul> [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?range=241-244)] -->
 
@@ -158,7 +158,7 @@ HttpGet `Edit` 方法根据正在编辑的课程已分配到的院系 ID 设置�
         i => i.FirstMidName, i => i.LastName, i => i.HireDate, i => i.OfficeAssignment))
     ```
 
-* 如果办公室位置为空，请将 Instructor.OfficeAssignment 属性设置为 NULL，以便删除 OfficeAssignment 表中的相关行。
+* 如果办公室位置为空，请将 `Instructor.OfficeAssignment` 属性设置为 NULL，以便删除 `OfficeAssignment` 表中的相关行。
 
     <!-- Snippets don't play well with <ul>  "intro/samples/cu/Controllers/InstructorsController.cs"} -->
 
@@ -187,7 +187,7 @@ HttpGet `Edit` 方法根据正在编辑的课程已分配到的院系 ID 设置�
 
 ![带课程信息的讲师“编辑”页](update-related-data/_static/instructor-edit-courses.png)
 
-Course 和 Instructor 实体之间是多对多的关系。 若要添加和删除关系，可以向 CourseAssignments 联接实体集添加实体和从中删除实体。
+`Course` 和 `Instructor` 实体之间的关系是多对多关系。 若要添加关系，可以向 `CourseAssignments` 联接实体集中添加实体；若要删除关系，可从其中删除实体。
 
 用于更改讲师所对应的课程的 UI 是一组复选框。 该复选框中会显示数据库中的所有课程，选中讲师当前对应的课程即可。 用户可以通过选择或清除复选框来更改课程分配。 如果课程的数量过大，建议使用其他方法在视图中呈现数据，但创建或删除关系的方法与操作联接实体的方法相同。
 
@@ -205,7 +205,7 @@ Course 和 Instructor 实体之间是多对多的关系。 若要添加和删除
 
 该代码为 `Courses` 导航属性添加了预先加载，并调用新的 `PopulateAssignedCourseData` 方法使用 `AssignedCourseData` 视图模型类为复选框数组提供信息。
 
-`PopulateAssignedCourseData` 方法中的代码会读取所有 Course 实体，以便使用视图模型类加载课程列表。 对每门课程而言，该代码都会检查讲师的 `Courses` 导航属性中是否存在该课程。 为高效检查某门课程是否被分配给了讲师，可将分配给该讲师的课程放置于 `HashSet` 集合中。 对于讲师分配到的课程，`Assigned` 属性则设置为 true。 视图将使用此属性来确定应将哪些复选框显示为选中状态。 最后，该列表会被传递给 `ViewData` 中的视图。
+`PopulateAssignedCourseData` 方法中的代码会读取所有 `Course` 实体，以便使用视图模型类加载课程列表。 对每门课程而言，该代码都会检查讲师的 `Courses` 导航属性中是否存在该课程。 为高效检查某门课程是否被分配给了讲师，可将分配给该讲师的课程放置于 `HashSet` 集合中。 对于讲师分配到的课程，`Assigned` 属性则设置为 true。 视图将使用此属性来确定应将哪些复选框显示为选中状态。 最后，该列表会被传递给 `ViewData` 中的视图。
 
 接下来，添加用户单击“保存”时执行的代码。 将 `EditPost` 方法替换为以下代码，并添加一个新方法，用于更新 Instructor 实体的 `Courses` 导航属性。
 
@@ -282,7 +282,7 @@ Course 和 Instructor 实体之间是多对多的关系。 若要添加和删除
 instructor.CourseAssignments = new List<CourseAssignment>();
 ```
 
-除了在控制器代码中进行此操作之外，还可以在“导师”模型中进行此操作，方法是将该属性更改为不存在集合时自动创建集合，如以下示例所示：
+除了在控制器代码中进行此操作之外，还可以在 `Instructor` 模型中进行此操作，方法是将该属性更改为不存在集合时自动创建集合，如以下示例所示：
 
 ```csharp
 private ICollection<CourseAssignment> _courseAssignments;

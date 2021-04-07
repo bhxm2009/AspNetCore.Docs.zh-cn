@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: 21d6e6fd9859cf4daf28e0bc3cf70562192844dd
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 4f3c07f2698dd68fbb80c5f34a3f3df62225e3b3
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280932"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105554676"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory"></a>使用 Azure Active Directory 保护 ASP.NET Core Blazor WebAssembly 独立应用
 
@@ -39,12 +39,13 @@ ms.locfileid: "100280932"
 >
 > 如果希望在更新 IDE 之前使用 Visual Studio 创建解决方案和 Azure 应用注册，请参阅本文的各个部分，并在 Visual Studio 创建解决方案后确认或更新应用的配置和应用的注册。
 
-在 Azure 门户的“Azure Active Directory”>“应用注册”区域中注册 AAD 应用：
+注册 AAD 应用：
 
+1. 在 Azure 门户中，导航到“Active Directory”。 在边栏中选择“应用注册”。 选择“新建注册”按钮。
 1. 提供应用的名称（例如 Blazor 独立 AAD） 。
 1. 选择支持的帐户类型。 为此体验选择“仅此组织目录中的帐户”。
 1. 将“重定向 URI”下拉列表设置为“单页应用程序(SPA)”，并提供以下重定向 URI：`https://localhost:{PORT}/authentication/login-callback`。 在 Kestrel 上运行的应用的默认端口为 5001。 如果应用在不同的 Kestrel 端口上运行，请使用应用的端口。 对于 IIS Express，可以在“调试”面板的应用属性中找到该应用随机生成的端口。 由于此时应用不存在，并且 IIS Express 端口未知，因此请在创建应用后返回到此步骤，然后更新重定向 URI。 本主题后面部分会显示一个注解，以提醒 IIS Express 用户更新重定向 URI。
-1. 取消选中“权限”>“授予对 openid 和 offline_access 权限的管理员同意”复选框。
+1. 如果使用[未经验证的发布者域](/azure/active-directory/develop/howto-configure-publisher-domain)，请清除“权限” > “授予对 openid 和 offline_access 权限的管理员同意”复选框。 如果验证了发布者域，则不会出现此复选框。
 1. 选择“注册”。
 
 记录以下信息：
@@ -63,12 +64,13 @@ ms.locfileid: "100280932"
 
 ::: moniker range="< aspnetcore-5.0"
 
-在 Azure 门户的“Azure Active Directory”>“应用注册”区域中注册 AAD 应用：
+注册 AAD 应用：
 
+1. 在 Azure 门户中，导航到“Active Directory”。 在边栏中选择“应用注册”。 选择“新建注册”按钮。
 1. 提供应用的名称（例如 Blazor 独立 AAD） 。
 1. 选择支持的帐户类型。 为此体验选择“仅此组织目录中的帐户”。
 1. 将“重定向 URI”下拉列表设置为“Web”，并提供以下重定向 URI：`https://localhost:{PORT}/authentication/login-callback` 。 在 Kestrel 上运行的应用的默认端口为 5001。 如果应用在不同的 Kestrel 端口上运行，请使用应用的端口。 对于 IIS Express，可以在“调试”面板的应用属性中找到该应用随机生成的端口。 由于此时应用不存在，并且 IIS Express 端口未知，因此请在创建应用后返回到此步骤，然后更新重定向 URI。 本主题后面部分会显示一个注解，以提醒 IIS Express 用户更新重定向 URI。
-1. 取消选中“权限”>“授予对 openid 和 offline_access 权限的管理员同意”复选框。
+1. 如果使用[未经验证的发布者域](/azure/active-directory/develop/howto-configure-publisher-domain)，请清除“权限” > “授予对 openid 和 offline_access 权限的管理员同意”复选框。 如果验证了发布者域，则不会出现此复选框。
 1. 选择“注册”。
 
 记录以下信息：
@@ -117,7 +119,9 @@ dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" -o {APP NAME} --te
 * 使用 AAD 用户帐户登录到应用。
 * 请求 Microsoft API 的访问令牌。 有关详情，请参阅：
   * [访问令牌作用域](#access-token-scopes)
-  * [快速入门：配置应用程序来公开 Web API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)。
+  * [快速入门：配置应用程序以公开 Web API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)
+  * [使用 AAD 托管：访问令牌范围（包含有关 AAD `App ID URI` 范围格式的指导）](xref:blazor/security/webassembly/hosted-with-azure-active-directory#access-token-scopes)
+  * [Microsoft Graph API 的访问令牌范围](xref:blazor/security/webassembly/graph-api)
 
 ## <a name="authentication-package"></a>身份验证包
 

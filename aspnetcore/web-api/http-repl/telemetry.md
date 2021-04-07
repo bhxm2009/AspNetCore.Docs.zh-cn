@@ -1,6 +1,6 @@
 ---
 title: HttpRepl 遥测
-author: scottaddie
+author: rick-anderson
 description: 了解 HttpRepl 收集的遥测数据。
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl/telemetry
-ms.openlocfilehash: 5ff22753f566c494e51dae67c8c4f6371211be78
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.openlocfilehash: 267a1233c216e823f6ffc086e94c198b4eb103bc
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94550603"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563615"
 ---
 # <a name="httprepl-telemetry"></a>HttpRepl 遥测
 

@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core 中基于资源的授权
-author: scottaddie
+author: rick-anderson
 description: 了解如何在 ASP.NET Core 应用中实现基于资源的授权。
 ms.author: scaddie
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/resourcebased
-ms.openlocfilehash: 61c97be03709f63f57a6383ab0c51ca9a511fbbb
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: ea1e0f719737732ccf47b3366e6089d5a653d6ab
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102585768"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563972"
 ---
 # <a name="resource-based-authorization-in-aspnet-core"></a>ASP.NET Core 中基于资源的授权
 

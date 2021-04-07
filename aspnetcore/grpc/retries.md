@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/retries
-ms.openlocfilehash: 4fda4968102740af8d1a7f37dcc588abd24ab70e
-ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
+ms.openlocfilehash: 116c201d728c3631f2be107b95e4fa38db35f074
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/25/2021
-ms.locfileid: "105050992"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638830"
 ---
 # <a name="transient-fault-handling-with-grpc-retries"></a>暂时性故障处理与 gRPC 重试
 
@@ -103,7 +103,11 @@ Console.WriteLine("From server: " + response.Message);
 
 ### <a name="when-retries-are-valid"></a>重试何时有效
 
-如果失败状态代码与配置的状态代码匹配并且先前的尝试次数少于最大尝试次数，则会重试调用。 在某些情况下，不可重试 gRPC 调用。 已提交调用时，就会出现这种情况。
+满足以下条件时，将重试调用：
+
+* 失败状态代码与 `RetryableStatusCodes` 中的值匹配。
+* 之前的尝试次数小于 `MaxAttempts`。
+* 此调用未提交。
 
 在以下两种情况下，将提交 gRPC 调用：
 
@@ -116,8 +120,8 @@ Console.WriteLine("From server: " + response.Message);
 
 流式处理调用可以与 gRPC 重试一起使用，但在将它们一起使用时，务必注意以下事项：
 
-* 服务器流式处理、双向流式处理： 在已收到第一个消息后，从服务器返回多个消息的流式处理 RPC 无法重试。
-* 客户端流式处理、双向流式处理： 传出消息超出客户端的最大缓冲区大小时，向服务器发送多个消息的流式处理 RPC 无法重试。
+* 服务器流式处理、双向流式处理： 在已收到第一个消息后，从服务器返回多个消息的流式处理 RPC 无法重试。 应用必须添加额外的逻辑才能手动重新建立服务器和双向流式传输调用。
+* 客户端流式处理、双向流式处理： 传出消息超出客户端的最大缓冲区大小时，向服务器发送多个消息的流式处理 RPC 无法重试。 可通过配置增加最大缓冲区大小。
 
 有关详细信息，请参阅[重试何时有效](#when-retries-are-valid)。
 

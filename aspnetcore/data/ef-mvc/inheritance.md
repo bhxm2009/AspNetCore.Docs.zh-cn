@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/inheritance
-ms.openlocfilehash: 299e00b223d287c4e2ece3d1e250581e2a7565e5
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: ece1e7160ade170c88972f6cd3ad28d545ea5678
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586366"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638765"
 ---
 # <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>教程：实现继承 - ASP.NET MVC 和 EF Core
 
@@ -56,22 +56,22 @@ ms.locfileid: "102586366"
 
 ![从 Person 类派生的 Student 和 Instructor 类](inheritance/_static/inheritance.png)
 
-有多种方法可以在数据库中表示此继承结构。 可以创建一个 Person 表，将学生和教师的相关信息包含在一个表中。 某些列可能仅适用于教师 (HireDate)，某些列仅适用于学生 (EnrollmentDate)，某些列同时适用于两者（LastName、FirstName）。 通常情况下，将有一个鉴别器列来指示每行所代表的类型。 例如，鉴别器列可能包含“Instructor”来指示教师，包含“Student”来指示学生。
+有多种方法可以在数据库中表示此继承结构。 可以创建一个 `Person` 表，将学生和教师的相关信息包含在一个表中。 某些列可能仅适用于教师 (HireDate)，某些列仅适用于学生 (EnrollmentDate)，某些列同时适用于两者（LastName、FirstName）。 通常情况下，将有一个鉴别器列来指示每行所代表的类型。 例如，鉴别器列可能包含“Instructor”来指示教师，包含“Student”来指示学生。
 
 ![每个层次结构一张表示例](inheritance/_static/tph.png)
 
-从单个数据库表生成实体继承结构的模式称为每个层次结构一张 (TPH) 继承。
+从单个数据库表生成实体继承结构的模式称为“每个层次结构一张表 (TPH)”继承。
 
-另一种方法是使数据库看起来更像继承结构。 例如，可以仅将姓名字段包含到 Person 表中，在单独的 Instructor 和 Student 表中包含日期字段。
+另一种方法是使数据库看起来更像继承结构。 例如，可以仅将姓名字段包含到 `Person` 表中，在单独的 `Instructor` 和 `Student` 表中包含日期字段。
 
 > [!WARNING]
-> EF Core 3.x 不支持每个类型一个表 (TPT)，但 TPT 已在 [EF Core 5.0](/ef/core/what-is-new/ef-core-5.0/plan) 中实现。
+> EF Core 3.x 不支持每个类型一张表 (TPT)，但 TPT 已在 [EF Core 5.0](/ef/core/what-is-new/ef-core-5.0/plan) 中实现。
 
 ![每种类型一个表继承](inheritance/_static/tpt.png)
 
-为每个实体类创建数据库表的模式称为每个类型一张表 (TPT) 继承。
+为每个实体类创建数据库表的模式称为“每个类型一张表 (TPT)”继承。
 
-另一种方法是将所有非抽象类型映射到单独的表。 类的所有属性（包括继承的属性）映射到相应表的列。 此模式称为每个具体类一张表 (TPC) 继承。 如果为前面所示的 Person、Student 和 Instructor 类实现了 TPC 继承，那么在实现继承之后，Student 和 Instructor 表看起来将与以前没什么不同。
+另一种方法是将所有非抽象类型映射到单独的表。 类的所有属性（包括继承的属性）映射到相应表的列。 此模式称为“每个具体类一张表 (TPC)”继承。 如果为前面所示的 `Person`、`Student` 和 `Instructor` 类实现了 TPC 继承，那么在实现继承之后，`Student` 和 `Instructor` 表看起来将与以前没什么不同。
 
 TPC 和 TPH 继承模式的性能通常比 TPT 继承模式好，因为 TPT 模式会导致复杂的联接查询。
 
