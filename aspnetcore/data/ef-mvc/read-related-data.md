@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: 9ea3bd7aaa075ae4601af51c7cc90f28a884a096
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: bf6fe42ae87637d0e8b9ce17d5d0c05d28b24501
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587887"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638752"
 ---
 # <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>教程：读取相关数据 - ASP.NET MVC 和 EF Core
 
@@ -51,7 +51,7 @@ ms.locfileid: "102587887"
 
 对象关系映射 (ORM) 软件（如 Entity Framework）可通过多种方式将相关数据加载到实体的导航属性中：
 
-* 预先加载。 读取该实体时，会同时检索相关数据。 此时通常会出现单一联接查询，检索所有必需数据。 可使用 `Include` 和 `ThenInclude` 方法指定 Entity Framework Core 中的预先加载。
+* [预先加载：](/ef/core/querying/related-data)读取该实体时，会同时检索相关数据。 此时通常会出现单一联接查询，检索所有必需数据。 可使用 `Include` 和 `ThenInclude` 方法指定 Entity Framework Core 中的预先加载。
 
   ![预先加载示例](read-related-data/_static/eager-loading.png)
 
@@ -59,11 +59,11 @@ ms.locfileid: "102587887"
 
   ![单独查询示例](read-related-data/_static/separate-queries.png)
 
-* 显式加载。 首次读取实体时，不检索相关数据。 如有需要，可编写检索相关数据的代码。 就像使用单独查询进行预先加载一样，显式加载时会向数据库发送多个查询。 二者的区别在于，代码通过显式加载指定要加载的导航属性。 在 Entity Framework Core 1.1 中，可使用 `Load` 方法执行显式加载。 例如：
+* [显式加载：](/ef/core/querying/related-data)首次读取实体时，不检索相关数据。 如有需要，可编写检索相关数据的代码。 就像使用单独查询进行预先加载一样，显式加载时会向数据库发送多个查询。 二者的区别在于，代码通过显式加载指定要加载的导航属性。 在 Entity Framework Core 1.1 中，可使用 `Load` 方法执行显式加载。 例如：
 
   ![显式加载示例](read-related-data/_static/explicit-loading.png)
 
-* 延迟加载。 首次读取实体时，不检索相关数据。 然而，首次尝试访问导航属性时，会自动检索导航属性所需的数据。 每次首次尝试从导航属性获取数据时，都向数据库发送查询。 Entity Framework Core 1.0 不支持延迟加载。
+* [推迟加载：](/ef/core/querying/related-data)首次读取实体时，不检索相关数据。 然而，首次尝试访问导航属性时，会自动检索导航属性所需的数据。 每次首次尝试从导航属性获取数据时，都向数据库发送查询。 Entity Framework Core 1.0 不支持延迟加载。
 
 ### <a name="performance-considerations"></a>性能注意事项
 
@@ -73,9 +73,9 @@ ms.locfileid: "102587887"
 
 ## <a name="create-a-courses-page"></a>创建“课程”页
 
-Course 实体包括导航属性，其中包含分配有课程的系的 Department 实体。 若要在课程列表中显示接受分配的系的名称，需从位于 `Course.Department` 导航属性中的 Department 实体获取 Name 属性。
+`Course` 实体包括导航属性，其中包含分配有课程的系的 `Department` 实体。 若要在课程列表中显示接受分配的系的名称，需从位于 `Name` 导航属性中的 `Department` 实体获取 `Course.Department` 属性。
 
-使用与带视图的 MVC 控制器相同的选项，及之前用于学生控制器的 Entity Framework 基架为 Course 实体类型创建名为 CoursesController 的控制器，如下图所示：
+使用与带视图的 MVC 控制器相同的选项，及之前用于 `StudentsController` 的 Entity Framework 基架为 `Course` 实体类型创建名为 `CoursesController` 的控制器，如下图所示：
 
 ![添加课程控制器](read-related-data/_static/add-courses-controller.png)
 
@@ -91,11 +91,11 @@ Course 实体包括导航属性，其中包含分配有课程的系的 Departmen
 
 已对基架代码进行了如下更改：
 
-* 将标题从“索引”更改为“课程”。
+* 将标题从“索引”更改为“课程”。 
 
 * 添加了显示 `CourseID` 属性值的“数字”列。 默认情况下，不针对主键进行架构，因为对最终用户而言，它们通常没有意义。 但在这种情况下主键是有意义的，而你需要将其呈现出来。
 
-* 更改“院系”列，显示院系名称。 该代码显示已加载到 `Department` 导航属性中的 Department 实体的 `Name` 属性：
+* 更改“院系”列，显示院系名称。 该代码显示已加载到 `Department` 导航属性中的 `Department` 实体的 `Name` 属性：
 
   ```html
   @Html.DisplayFor(modelItem => item.Department.Name)
@@ -107,17 +107,17 @@ Course 实体包括导航属性，其中包含分配有课程的系的 Departmen
 
 ## <a name="create-an-instructors-page"></a>创建“讲师”页
 
-本节将为 Instructor 实体创建一个控制器和视图，从而显示“讲师”页：
+本节将为 `Instructor` 实体创建一个控制器和视图，从而显示“讲师”页：
 
 ![“讲师索引”页](read-related-data/_static/instructors-index.png)
 
 该页面通过以下方式读取和显示相关数据：
 
-* 讲师列表显示 OfficeAssignment 实体的相关数据。 Instructor 与 OfficeAssignment 实体间存在一对零或一的关系。 将预先加载 OfficeAssignment 实体。 如前所述，需要主表所有检索行的相关数据时，预先加载通常更有效。 在这种情况下，你希望显示所有显示的讲师的办公室分配情况。
+* 讲师列表显示 `OfficeAssignment` 实体的相关数据。 `Instructor` 和 `OfficeAssignment` 实体之间存在一对零或一的关系。 将预先加载 `OfficeAssignment` 实体。 如前所述，需要主表所有检索行的相关数据时，预先加载通常更有效。 在这种情况下，你希望显示所有显示的讲师的办公室分配情况。
 
-* 用户选择一名讲师时，显示相关 Course 实体。 Instructor 和 Course 实体是多对多关系。 预先加载 Course 实体及其相关 Department 实体。 在这种情况下，单独查询可能更有效，因为仅需显示所选讲师的课程。 但此示例显示的是如何在本身就位于导航属性内的实体中预先加载导航属性。
+* 用户选择一名讲师时，显示相关 `Course` 实体。 `Instructor` 和 `Course` 实体之间存在多对多关系。 对 `Course` 实体及其相关的 `Department` 实体使用预先加载。 在这种情况下，单独查询可能更有效，因为仅需显示所选讲师的课程。 但此示例显示的是如何在本身就位于导航属性内的实体中预先加载导航属性。
 
-* 用户选择一门课程时，会显示 Enrollment 实体集的相关数据。 Course 和 Enrollment 实体是一对多关系。 单独查询 Enrollment 实体及其相关 Student 实体。
+* 用户选择一门课程时，会显示 `Enrollments` 实体集的相关数据。 `Course` 和 `Enrollment` 实体之间存在一对多的关系。 单独查询 `Enrollment` 实体及其相关 `Student` 实体。
 
 ### <a name="create-a-view-model-for-the-instructor-index-view"></a>创建“讲师索引”视图的视图模型
 
@@ -147,9 +147,11 @@ Course 实体包括导航属性，其中包含分配有课程的系的 Departmen
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ThenInclude)]
 
-由于视图始终需要 OfficeAssignment 实体，因此更有效的做法是在同一查询中获取。 在网页中选择讲师后，需要 Course 实体，因此只有在页面频繁显示选中课程时，单个查询才比多个查询更有效。
+由于视图始终需要 `OfficeAssignment` 实体，因此更有效的做法是在同一查询中获取。 在网页中选择讲师后，需要 Course 实体，因此只有在页面频繁显示选中课程时，单个查询才比多个查询更有效。
 
 代码重复 `CourseAssignments` 和 `Course`，因为你需要 `Course` 中的两个属性。 `ThenInclude` 调用的第一个字符串获取 `CourseAssignment.Course`、`Course.Enrollments` 和 `Enrollment.Student`。
+
+可在[此处](/ef/core/querying/related-data/eager#including-multiple-levels)了解有关包含多级相关数据的详细信息。
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ThenInclude&highlight=3-6)]
 
@@ -157,13 +159,13 @@ Course 实体包括导航属性，其中包含分配有课程的系的 Departmen
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ThenInclude&highlight=7-9)]
 
-选择讲师时，将执行以下代码。 从视图模型中的讲师列表检索所选讲师。 然后，该视图模型的 `Courses` 属性加载讲师 `CourseAssignments` 导航属性中的 Course 实体。
+选择讲师时，将执行以下代码。 从视图模型中的讲师列表检索所选讲师。 然后向视图模型的 `Courses` 属性加载来自讲师 `CourseAssignments` 导航属性的 `Course` 实体。
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?range=56-62)]
 
-`Where` 方法返回一个集合，但在这种情况下，向该方法传入条件后，只返回一个 Instructor 实体。 `Single` 方法将集合转换为单个 Instructor 实体，让你可以访问该实体的 `CourseAssignments` 属性。 `CourseAssignments` 属性包含多个 `CourseAssignment` 实体，而你只需要相关的 `Course` 实体。
+`Where` 方法返回一个集合，但在这种情况下，向该方法传入条件后，只返回一个 Instructor 实体。 `Single` 方法将集合转换为单个 `Instructor` 实体，让你可以访问该实体的 `CourseAssignments` 属性。 `CourseAssignments` 属性包含多个 `CourseAssignment` 实体，而你只需要相关的 `Course` 实体。
 
-如果知道集合只有一个项，则可在集合上使用 `Single` 方法。 如果集合为空或包含多个项，Single 方法将引发异常。 还可使用 `SingleOrDefault`，该方式在集合为空时返回默认值（本例中为 null）。 但在这种情况下，仍会引发异常（尝试在 null 引用上查找 `Courses` 属性时），并且异常消息不会清楚指出异常原因。 调用 `Single` 方法时，还可传入 Where 条件，而不是分别调用 `Where` 方法：
+如果知道集合只有一个项，则可在集合上使用 `Single` 方法。 如果集合为空或包含多个项，`Single` 方法将引发异常。 还可使用 `SingleOrDefault`，该方式在集合为空时返回默认值（本例中为 null）。 但在这种情况下，仍会引发异常（尝试在 null 引用上查找 `Courses` 属性时），并且异常消息不会清楚指出异常原因。 调用 `Single` 方法时，还可传入 Where 条件，而不是分别调用 `Where` 方法：
 
 ```csharp
 .Single(i => i.ID == id.Value)
@@ -236,9 +238,9 @@ Course 实体包括导航属性，其中包含分配有课程的系的 Departmen
 
 在刚刚添加的代码块后，添加以下代码。 选择课程后，代码将显示参与课程的学生列表。
 
-[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=103-125)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=101-125)]
 
-此代码读取视图模型的 Enrollment 属性，从而显示参与课程的学生列表。
+此代码读取视图模型的 `Enrollments` 属性，从而显示参与课程的学生列表。
 
 再次刷新该页并选择讲师。 然后选择一门课程，查看参与的学生列表及其成绩。
 
@@ -248,11 +250,11 @@ Course 实体包括导航属性，其中包含分配有课程的系的 Departmen
 
 在 InstructorsController.cs 中检索讲师列表时，指定了预先加载 `CourseAssignments` 导航属性。
 
-假设你希望用户在选中讲师和课程时尽量少查看注册情况。 此时建议只在有请求时加载注册数据。 若要查看如何执行显式加载的示例，请使用以下代码替换 `Index` 方法，这将删除预先加载 Enrollment 并显式加载该属性。 代码所作更改为突出显示状态。
+假设你希望用户在选中讲师和课程时尽量少查看注册情况。 此时建议只在有请求时加载注册数据。 若要查看如何执行显式加载的示例，请使用以下代码替换 `Index` 方法，这将删除预先加载 `Enrollments` 并显式加载该属性。 代码所作更改为突出显示状态。
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ExplicitLoading&highlight=23-29)]
 
-新代码将从检索 Instructor 实体的代码中删除注册数据的 ThenInclude 方法调用。 它还会删除 `AsNoTracking`。  如果选择了讲师和课程，突出显示的代码会检索所选课程的 Enrollment 实体，及每个 Enrollment 的 Student 实体。
+新代码将从检索 Instructor 实体的代码中删除注册数据的 `ThenInclude` 方法调用。 它还会删除 `AsNoTracking`。  如果选择了讲师和课程，突出显示的代码会检索所选课程的 `Enrollment` 实体，及每个 `Enrollment` 的 `Student` 实体。
 
 运行应用，立即转到“讲师”索引页，尽管已经更改了数据的检索方式，但该页上显示的内容没有任何不同。
 

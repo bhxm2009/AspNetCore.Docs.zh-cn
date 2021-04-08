@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: a881ff28d41a272ade559c60efbd884f2a3c4e3e
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: bbb783b8547ffec0cfad124f7c0e8f1a21e1e727
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587783"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105555066"
 ---
 # <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>教程：创建复杂数据模型 - ASP.NET MVC 和 EF Core
 
@@ -163,14 +163,14 @@ dotnet ef database update
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
 
-### <a name="the-required-attribute"></a>Required 特性
+### <a name="the-required-attribute&quot;></a>Required 特性
 
 `Required` 特性使名称属性成为必填字段。 值类型（DateTime、int、double、float 等）等不可为 null 的类型不需要 `Required` 特性。 系统会将不可为 NULL 的类型自动视为必填字段。
 
 `Required` 特性必须与 `MinimumLength` 结合使用才能强制执行 `MinimumLength`。
 
 ```csharp
-[Display(Name = "Last Name")]
+[Display(Name = &quot;Last Name")]
 [Required]
 [StringLength(50, MinimumLength=2)]
 public string LastName { get; set; }
@@ -230,7 +230,7 @@ public OfficeAssignment OfficeAssignment { get; set; }
 
 ### <a name="the-key-attribute"></a>Key 特性
 
-讲师与 OfficeAssignment 实体间存在一对零或一的关系。 办公室分配仅与分配有办公室的讲师相关，因此其主键也是 Instructor 实体的外键。 但 Entity Framework 无法自动识别 InstructorID 作为此实体的主键，因为其名称不符合 ID 或 classnameID 命名约定。 因此，`Key` 特性用于将其识别为主键：
+`Instructor` 和 `OfficeAssignment` 实体之间存在一对零或一关系。 办公室分配仅与分配有办公室的讲师相关，因此其主键也是 `Instructor` 实体的外键。 但 Entity Framework 无法自动识别 `InstructorID` 作为此实体的主键，因为其名称不符合 `ID` 或 `classnameID` 命名约定。 因此，`Key` 特性用于将其识别为主键：
 
 ```csharp
 [Key]
@@ -257,7 +257,7 @@ Instructor 实体具有可为 null `OfficeAssignment` 导航属性（因为可�
 
 Course 实体具有外键属性 `DepartmentID`，该属性指向相关 Department 实体，同时它还具有 `Department` 导航属性。
 
-如果拥有相关实体的导航属性，则 Entity Framework 不会要求为数据模型添加外键属性。  只要有需要，EF 就会自动在数据库中创建外键，并为其创建[阴影属性](/ef/core/modeling/shadow-properties)。 但如果数据模型包含外键，则更新会变得更简单、更高效。 例如，提取 Course 实体进行编辑时，如果未加载该实体，那么 Department 实体为 null，因此，更新 Course 实体时，必须先提取 Department 实体。 数据模型中包含外键属性 `DepartmentID` 时，更新前无需提取 Department 实体。
+如果拥有相关实体的导航属性，则 Entity Framework 不会要求为数据模型添加外键属性。  只要有需要，EF 就会自动在数据库中创建外键，并为其创建[阴影属性](/ef/core/modeling/shadow-properties)。 但如果数据模型包含外键，则更新会变得更简单、更高效。 例如，提取 `Course` 实体进行编辑时，如果未加载该实体，那么 `Department` 实体为 null，因此，更新 `Course` 实体时，必须先提取 `Department` 实体。 数据模型中包含外键属性 `DepartmentID` 时，更新前无需提取 `Department` 实体。
 
 ### <a name="the-databasegenerated-attribute"></a>DatabaseGenerated 特性
 
@@ -269,13 +269,13 @@ Course 实体具有外键属性 `DepartmentID`，该属性指向相关 Departmen
 public int CourseID { get; set; }
 ```
 
-默认情况下，Entity Framework 假定主键值由数据库生成。 大多数情况下，这是理想情况。 但对 Course 实体而言，需使用用户指定的课程编号，例如一个系为 1000 系列，另一个系为 2000 系列等。
+默认情况下，Entity Framework 假定主键值由数据库生成。 大多数情况下，这是理想情况。 但对 `Course` 实体而言，需使用用户指定的课程编号，例如一个系为 1000 系列，另一个系为 2000 系列等。
 
 `DatabaseGenerated` 特性也可用于生成默认值，如在用于记录行创建或更新日期的数据库列中。  有关详细信息，请参阅[生成的属性](/ef/core/modeling/generated-properties)。
 
 ### <a name="foreign-key-and-navigation-properties"></a>外键和导航属性
 
-Course 实体中的外键属性和导航属性可反映以下关系：
+`Course` 实体中的外键属性和导航属性可反映以下关系：
 
 向一个系分配课程后，出于上述原因，会出现 `DepartmentID` 外键和 `Department` 导航属性。
 
@@ -304,12 +304,12 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 [!code-csharp[](intro/samples/cu/Models/Department.cs?name=snippet_Begin)]
 
-### <a name="the-column-attribute"></a>Column 特性
+### <a name="the-column-attribute&quot;></a>Column 特性
 
-`Column` 特性之前用于更改列名称映射。 在 Department 实体的代码中，`Column` 特性用于更改 SQL 数据类型映射，以便使用数据库中的 SQL Server 货币类型来定义该列：
+`Column` 特性之前用于更改列名称映射。 在 `Department` 实体的代码中，`Column` 特性用于更改 SQL 数据类型映射，以便使用数据库中的 SQL Server `money` 类型来定义该列：
 
 ```csharp
-[Column(TypeName="money")]
+[Column(TypeName=&quot;money")]
 public decimal Budget { get; set; }
 ```
 
@@ -333,7 +333,7 @@ public ICollection<Course> Courses { get; set; }
 ```
 
 > [!NOTE]
-> 按照约定，Entity Framework 能针对不可为 null 的外键和多对多关系启用级联删除。 这可能导致循环级联删除规则，尝试添加迁移时该规则会造成异常。 例如，如果未将 Department.InstructorID 属性定义为可为 null，那么在删除讲师时，EF 会配置级联删除规则来删除系，这是并不希望发生的情况。 如果业务规则要求 `InstructorID` 属性不可为 null，则必须使用以下 Fluent API 语句禁用关系中的级联删除：
+> 按照约定，Entity Framework 能针对不可为 null 的外键和多对多关系启用级联删除。 这可能导致循环级联删除规则，尝试添加迁移时该规则会造成异常。 例如，如果未将 `Department.InstructorID` 属性定义为可为 null，那么在删除讲师时，EF 会配置级联删除规则来删除系，这是并不希望发生的情况。 如果业务规则要求 `InstructorID` 属性不可为 null，则必须使用以下 Fluent API 语句禁用关系中的级联删除：
 >
 > ```csharp
 > modelBuilder.Entity<Department>()
@@ -370,7 +370,7 @@ public Student Student { get; set; }
 
 ## <a name="many-to-many-relationships"></a>多对多关系
 
-Student 和 Course 实体间存在多对多关系，Enrollment 实体在数据库中充当带有效负载的多对多联接表。 “带有效负载”是指 Enrollment 表包含除联接表外键之外的其他数据（在此示例中为主键和 Grade 属性）。
+`Student` 和 `Course` 实体间存在多对多关系，`Enrollment` 实体在数据库中充当带有效负载的多对多联接表。 “带有效负载”是指 `Enrollment` 表包含除联接表外键之外的其他数据（在此示例中为主键和 `Grade` 属性）。
 
 下图显示这些关系在实体关系图中的外观。 （该图是使用 EF 6.x 的 Entity Framework Power Tools 生成的，教程未介绍如何创建该图，此处仅作为示例使用。）
 
@@ -378,7 +378,7 @@ Student 和 Course 实体间存在多对多关系，Enrollment 实体在数据�
 
 每条关系线的一端显示 1，另一端显示星号 (*)，这表示一对多关系。
 
-如果 Enrollment 表不包含年级信息，则它只需包含两个外键（CourseID 和 StudentID）。 在这种情况下，该表是数据库中不带有效负载的多对多联接表（或纯联接表）。 Instructor 和 Course 实体具有这种多对多关系，下一步是创建实体类，将其作为不带有效负载的联接表。
+如果 `Enrollment` 表不包含年级信息，则它只需包含两个外键：`CourseID` 和 `StudentID`。 在这种情况下，该表是数据库中不带有效负载的多对多联接表（或纯联接表）。 `Instructor` 和 `Course` 实体具有这种多对多关系，下一步是创建实体类，将其作为不带有效负载的联接表。
 
 （EF 6.x 支持多对多关系的隐式联接表，但 EF Core 不支持。 有关详细信息，请参阅 [EF Core GitHub 存储库中的讨论](https://github.com/aspnet/EntityFramework/issues/1368)。）
 
@@ -396,7 +396,7 @@ Student 和 Course 实体间存在多对多关系，Enrollment 实体在数据�
 
 ### <a name="composite-key"></a>组合键
 
-由于外键不可为 null，且它们共同唯一标识表的每一行，因此不需要单独的主键。 InstructorID 和 CourseID 属性应充当组合主键 。 标识 EF 组合主键的唯一方法是使用 Fluent API（无法借助特性来完成）。 下一节将介绍如何配置组合主键。
+由于外键不可为 null，且它们共同唯一标识表的每一行，因此不需要单独的主键。 `InstructorID` 和 `CourseID` 属性应充当组合主键 。 标识 EF 组合主键的唯一方法是使用 Fluent API（无法借助特性来完成）。 下一节将介绍如何配置组合主键。
 
 在一个课程可以有多个行，一个讲师可以有多个行的情况下，组合键可确保同一讲师和课程不会有多个行。 `Enrollment` 联接实体定义其自己的主键，因此可能会出现此类重复。 若要防止出现此类重复，可在外键字段上添加唯一索引，或使用类似于 `CourseAssignment` 的主组合键配置 `Enrollment`。 有关详细信息，请参阅[索引](/ef/core/modeling/indexes)。
 
@@ -433,7 +433,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ![实体关系图](complex-data-model/_static/diagram.png)
 
-除一对多关系线（1到 \*）外，此处还显示了 Instructor 和 OfficeAssignment 实体间的一对零或一关系线（1 到 0..1），以及 Instructor 和 Department 实体间的零对多或一对多关系线（0..1 到 *）。
+除一对多关系线（1到 \*）外，此处还显示了 `Instructor` 和 `OfficeAssignment` 实体间的一对零或一关系线（1 到 0..1），以及 Instructor 和 Department 实体间的零对多或一对多关系线（0..1 到 *）。
 
 ## <a name="seed-database-with-test-data"></a>使用测试数据设定数据库种子
 
@@ -462,7 +462,7 @@ Done. To undo this action, use 'ef migrations remove'
 
 > ALTER TABLE 语句与 FOREIGN KEY 约束“FK_dbo.Course_dbo.Department_DepartmentID”冲突。 冲突发生位置：数据库“ContosoUniversity”、表“dbo.Department”和列“DepartmentID”。
 
-有时使用现有数据执行迁移时，需将存根数据插入数据库，满足外键约束。 `Up` 方法中生成的代码将不可为 null 的 DepartmentID 外键添加到 Course 表中。 如果代码运行时，Course 表中已经有了行，则 `AddColumn` 操作失败，因为 SQL Server 不知道要向不可为 null 的列中放入什么值。 本教程将在新数据库上运行迁移，但在生产应用程序中，必须使迁移处理现有数据，因此下方通过示例介绍如何执行此操作。
+有时使用现有数据执行迁移时，需将存根数据插入数据库，满足外键约束。 `Up` 方法中生成的代码将不可为 null 的 `DepartmentID` 外键添加到 `Course` 表中。 如果代码运行时，Course 表中已经有了行，则 `AddColumn` 操作失败，因为 SQL Server 不知道要向不可为 null 的列中放入什么值。 本教程将在新数据库上运行迁移，但在生产应用程序中，必须使迁移处理现有数据，因此下方通过示例介绍如何执行此操作。
 
 为使此迁移处理现有数据，必须更改代码，赋予新列默认值，并创建一个名为“Temp”的存根系，作为默认系。 之后，Course 行将在 `Up` 方法运行后与“Temp”系建立联系。
 
@@ -476,7 +476,7 @@ Done. To undo this action, use 'ef migrations remove'
 
   [!code-csharp[](intro/samples/cu/Migrations/20170215234014_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
 
-在生产应用程序中，可编写代码或脚本来添加 Department 行并将 Course 行与新 Department 行相关联。 随后将不在需要“Temp”系或 Course.DepartmentID 列中的默认值。
+在生产应用程序中，可编写代码或脚本来添加 Department 行并将 Course 行与新 Department 行相关联。 随后将不在需要“Temp”系或 `Course.DepartmentID` 列中的默认值。
 
 保存更改并生成项目。
 
