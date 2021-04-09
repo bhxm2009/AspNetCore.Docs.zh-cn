@@ -352,7 +352,7 @@
               uid: blazor/components/css-isolation
             - name: 预呈现和集成组件
               uid: blazor/components/prerendering-and-integration
-            - name: 组件库
+            - name: 类库
               uid: blazor/components/class-libraries
         - name: 全球化和本地化
           uid: blazor/globalization-localization
