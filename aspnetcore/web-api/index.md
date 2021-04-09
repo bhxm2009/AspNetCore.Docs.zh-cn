@@ -1,6 +1,6 @@
 ---
 title: 使用 ASP.NET Core 创建 Web API
-author: scottaddie
+author: rick-anderson
 description: 了解在 ASP.NET Core 中创建 Web API 的基础知识。
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/index
-ms.openlocfilehash: fb7dfa53be1fee9904b4539a5c9da0700c2aa884
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: ba54a5c0a3540d68d9579ad3c470c5d2236973ea
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102585729"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563574"
 ---
 # <a name="create-web-apis-with-aspnet-core"></a>使用 ASP.NET Core 创建 Web API
 

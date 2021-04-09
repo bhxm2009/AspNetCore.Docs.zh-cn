@@ -1,6 +1,6 @@
 ---
 title: 从 ASP.NET Core 1.x 迁移到 2.0
-author: scottaddie
+author: rick-anderson
 description: 本文概述了将 ASP.NET Core 1.x 项目迁移到 ASP.NET Core 2.0 的先决条件和最常见步骤。
 ms.author: scaddie
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/1x-to-2x/index
-ms.openlocfilehash: 6d67924d87cdbe72cb08c5305dfe45c5b22b31bc
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9a175c8a3cd960404006aad559b2ca65b5a8c1e1
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93057110"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106564224"
 ---
 # <a name="migrate-from-aspnet-core-1x-to-20"></a>从 ASP.NET Core 1.x 迁移到 2.0
 
@@ -168,7 +168,7 @@ Unable to create an object of type '<Context>'. Add an implementation of 'IDesig
 
 <a name="view-compilation"></a>
 
-## <a name="review-no-locrazor-view-compilation-setting"></a>查看 Razor 视图编译设置
+## <a name="review-razor-view-compilation-setting"></a>查看 Razor 视图编译设置
 
 加快应用程序启动速度和缩小已发布的捆绑包至关重要。 为此，ASP.NET Core 2.0 中默认启用 [Razor 视图编译](xref:mvc/views/view-compilation)。
 
@@ -202,7 +202,7 @@ Visual Studio 2017 中创建的 ASP.NET Core 1.1 项目默认添加 Application 
 
 <a name="auth-and-identity"></a>
 
-## <a name="adopt-authenticationno-locidentity-improvements"></a>采用身份验证/Identity 改进
+## <a name="adopt-authenticationidentity-improvements"></a>采用身份验证/Identity 改进
 
 ASP.NET Core 2.0 具有新的身份验证模型和大量针对 ASP.NET Core Identity 的重大更改。 如果在启用个人用户帐户的情况下创建了项目，或者已手动添加身份验证或 Identity，请参阅[将身份验证和 Identity 迁移到 ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)。
 

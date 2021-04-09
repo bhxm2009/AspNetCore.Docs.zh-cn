@@ -1,6 +1,6 @@
 ---
 title: 通过 LibMan 在 ASP.NET Core 中获取客户端库
-author: scottaddie
+author: rick-anderson
 description: 了解如何使用库管理器 (LibMan) 在 ASP.NET Core 项目中安装客户端库资产。
 ms.author: scaddie
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/libman/index
-ms.openlocfilehash: 62b6859b0a8ad0f98a2684f21c0f68dbbd67c4c1
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 168390edd4fe7be353bbb0768cc7363ee45b77b5
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054653"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563818"
 ---
 # <a name="client-side-library-acquisition-in-aspnet-core-with-libman"></a>通过 LibMan 在 ASP.NET Core 中获取客户端库
 
