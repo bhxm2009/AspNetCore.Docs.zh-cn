@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 1173113b8bb035212cb9b84e7763970b9d5092a3
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: 28d1a99e57a07a8d63cbbb7f0ecc7f84d1adf446
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711604"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106564297"
 ---
 # <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>第 2 部分，在 ASP.NET Core 中向 Razor 页面应用添加模型
 
@@ -146,13 +146,13 @@ ms.locfileid: "104711604"
 * **对于 Windows**：运行下面的命令：
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * **对于 macOS 和 Linux**：运行下面的命令：
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 <a name="codegenerator"></a> 下表详细说明了 ASP.NET Core 代码生成器选项。
@@ -168,7 +168,7 @@ ms.locfileid: "104711604"
 使用 `-h` 选项获取 `aspnet-codegenerator razorpage` 命令方面的帮助：
 
 ```dotnetcli
-dotnet-aspnet-codegenerator razorpage -h
+dotnet aspnet-codegenerator razorpage -h
 ```
 
 有关详细信息，请查看 [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator)。
@@ -490,7 +490,7 @@ using Microsoft.EntityFrameworkCore;
 
 * 在“模型类”下拉列表中，选择“Movie (RazorPagesMovie.Models)” 。
 * 在“数据上下文类”行中，选择 +（加号）并将生成的名称从 RazorPagesMovie.Models.RazorPagesMovieContext 更改为 RazorPagesMovie.Data.RazorPagesMovieContext   。 不需要[此更新](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html)。 它创建具有正确命名空间的数据库上下文类。
-* 选择“添加”  。
+* 选择“添加”。
 
 ![上述说明的图像。](model/_static/3/arp.png)
 
@@ -558,7 +558,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 * 在“模型类”下拉列表中，选择或键入“Movie (RazorPagesMovie.Models)” 。
 * 在“数据上下文类”行中，键入新类的名称“RazorPagesMovie.Data.RazorPagesMovieContext”。  不需要[此更新](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html)。 它创建具有正确命名空间的数据库上下文类。
-* 选择“添加”  。
+* 选择“添加”。
 
 ![上述说明的图像。](model/_static/arpMac.png)
 

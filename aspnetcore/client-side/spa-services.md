@@ -1,6 +1,6 @@
 ---
 title: 使用 JavaScript Services 在 ASP.NET Core 中创建单页应用程序
-author: scottaddie
+author: rick-anderson
 description: 了解使用 JavaScript Services 创建由 ASP.NET Core 提供支持的单页应用程序 (SPA) 的好处。
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/spa-services
-ms.openlocfilehash: 1b9f5b4b4e066cdd3dd5fbfa666c7a087949979f
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: c0f18c1466bb140c82c9dfb41d773a6c68181168
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93054640"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563806"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>使用 JavaScript Services 在 ASP.NET Core 中创建单页应用程序
 

@@ -11,12 +11,12 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-ms.openlocfilehash: 1aa36c8d91dbd92485e85f223f2391303bebac42
-ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
+ms.openlocfilehash: 0ce606cc4800bcf5855b70a26272fceb3ad8e944
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/04/2021
-ms.locfileid: "102109699"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105554872"
 ---
 Blazor 是一个单页应用程序 (SPA) 客户端框架。 浏览器充当应用的主机，因此也基于导航和静态资产的 URI 请求，充当独立 Razor 组件的处理管道。 与在设有中间件处理管道的服务器上运行的 ASP.NET Core 应用不同的是，这里没有负责为 Razor 组件处理请求的中间件管道可以用来处理全局错误。 但是，应用可以使用错误处理组件作为级联值来集中处理错误。
 
@@ -82,4 +82,4 @@ Blazor 是一个单页应用程序 (SPA) 客户端框架。 浏览器充当应�
 
 > fail: BlazorSample.Shared.Error[0] Error:ProcessError - Type: System.NullReferenceException Message: Object reference not set to an instance of an object.
 
-如果 `ProcessError` 方法直接参与呈现，例如，显示自定义错误消息栏或更改所呈现元素的 CSS 样式，请在 `ProcessErrors` 方法末尾调用 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) 来重新呈现 UI。
+如果 `ProcessError` 方法直接参与呈现，例如，显示自定义错误消息栏或更改所呈现元素的 CSS 样式，请在 `ProcessErrors` 方法末尾调用 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) 来重新呈现 UI。

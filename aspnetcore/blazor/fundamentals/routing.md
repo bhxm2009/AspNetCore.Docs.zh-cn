@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: f3bc46da8e9b9ca1fe5afab7ccc1de9eaad16e8d
-ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
+ms.openlocfilehash: cfc540e00593c9a886b342cfe5998498b6500c31
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/25/2021
-ms.locfileid: "105051018"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081411"
 ---
 # <a name="aspnet-core-blazor-routing"></a>ASP.NET Core Blazor 路由
 
@@ -162,7 +162,7 @@ ms.locfileid: "105051018"
 
 ::: moniker-end
 
-使用 [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set) 而不是 [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-methods)，以允许应用使用不同的可选参数值导航到同一组件。 根据上述示例，当用户应该能够从 `/RouteParameter` 导航到 `/RouteParameter/amazing` 或从 `/RouteParameter/amazing` 导航到 `/RouteParameter` 时使用 `OnParametersSet`：
+使用 [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) 而不是 [`OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)，以允许应用使用不同的可选参数值导航到同一组件。 根据上述示例，当用户应该能够从 `/RouteParameter` 导航到 `/RouteParameter/amazing` 或从 `/RouteParameter/amazing` 导航到 `/RouteParameter` 时使用 `OnParametersSet`：
 
 ```csharp
 protected override void OnParametersSet()

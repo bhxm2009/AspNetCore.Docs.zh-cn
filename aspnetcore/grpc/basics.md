@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/basics
-ms.openlocfilehash: 4968ac889cd3b4e0780ce73dc729d0107a416932
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 37f3b0c902d272cf8970265c8e964a1b2a7ddf00
+ms.sourcegitcommit: 7e593abc85602429d94a20603936a4725838aeea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93061010"
+ms.lasthandoff: 04/04/2021
+ms.locfileid: "106293432"
 ---
 # <a name="grpc-services-with-c"></a>使用 C\# 的 gRPC 服务
 
@@ -76,7 +76,7 @@ gRPC 使用协定优先方法进行 API 开发。 默认情况下，协议缓冲
 
 客户端项目应直接引用 `Grpc.Tools` 以及使用 gRPC 客户端所需的其他包。 运行时不需要工具包，因此依赖项标记为 `PrivateAssets="All"`：
 
-[!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/GrpcGreeterClient.csproj?highlight=3&range=9-11)]
+[!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/GrpcGreeterClient.csproj?highlight=3&range=9-14)]
 
 ## <a name="generated-c-assets"></a>生成的 C# 资产
 

@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/fundamentals/handle-errors
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: d4c8054afc3818d58bc2a047a0aa74613ae6047b
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: c7eec0e8a72bac79d16ff8ed19da061de618533c
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102395092"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081398"
 ---
 # <a name="handle-errors-in-aspnet-core-blazor-apps"></a>处理 ASP.NET Core Blazor 应用中的错误
 
@@ -105,7 +105,7 @@ ms.locfileid: "102395092"
 
 <h3 id="lifecycle-methods-webassembly">生命周期方法</h3>
 
-在组件的生命周期内，Blazor 会调用 [ 生命周期方法 ](xref:blazor/components/lifecycle#lifecycle-methods)。 若要使组件处理生命周期方法中的错误，请添加错误处理逻辑。
+在组件的生命周期内，Blazor 会调用 [ 生命周期方法 ](xref:blazor/components/lifecycle)。 若要使组件处理生命周期方法中的错误，请添加错误处理逻辑。
 
 在下面的示例中，<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> 会调用方法来获取产品：
 
@@ -148,6 +148,20 @@ Razor 组件文件 (`.razor`) 中的声明性标记被编译到名为 <xref:Micr
 
 上述代码假定 `person` 不是 `null`。 通常，代码的结构保证了呈现组件时存在对象。 在这些情况下，不需要检查呈现逻辑中是否存在 `null`。 在前面的示例中，由于在实例化组件时创建了 `person`，因此可保证存在 `person`，如以下示例所示：
 
+::: moniker range=">= aspnetcore-5.0"
+
+```razor
+@code {
+    private Person person = new();
+
+    ...
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ```razor
 @code {
     private Person person = new Person();
@@ -155,6 +169,8 @@ Razor 组件文件 (`.razor`) 中的声明性标记被编译到名为 <xref:Micr
     ...
 }
 ```
+
+::: moniker-end
 
 <h3 id="event-handlers-webassembly">事件处理程序</h3>
 
@@ -375,7 +391,7 @@ Blazor 将大部分未经处理的异常视为发生该异常的线路的严重�
 
 <h3 id="lifecycle-methods-server">生命周期方法</h3>
 
-在组件的生命周期内，Blazor 会调用 [ 生命周期方法 ](xref:blazor/components/lifecycle#lifecycle-methods)。 如果任何生命周期方法以同步或异步方式引发异常，则该异常对于 Blazor Server 线路而言是严重异常。 若要使组件处理生命周期方法中的错误，请添加错误处理逻辑。
+在组件的生命周期内，Blazor 会调用 [ 生命周期方法 ](xref:blazor/components/lifecycle)。 如果任何生命周期方法以同步或异步方式引发异常，则该异常对于 Blazor Server 线路而言是严重异常。 若要使组件处理生命周期方法中的错误，请添加错误处理逻辑。
 
 在下面的示例中，<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> 会调用方法来获取产品：
 
@@ -418,6 +434,20 @@ Razor 组件文件 (`.razor`) 中的声明性标记被编译到名为 <xref:Micr
 
 上述代码假定 `person` 不是 `null`。 通常，代码的结构保证了呈现组件时存在对象。 在这些情况下，不需要检查呈现逻辑中是否存在 `null`。 在前面的示例中，由于在实例化组件时创建了 `person`，因此可保证存在 `person`，如以下示例所示：
 
+::: moniker range=">= aspnetcore-5.0"
+
+```razor
+@code {
+    private Person person = new();
+
+    ...
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ```razor
 @code {
     private Person person = new Person();
@@ -425,6 +455,8 @@ Razor 组件文件 (`.razor`) 中的声明性标记被编译到名为 <xref:Micr
     ...
 }
 ```
+
+::: moniker-end
 
 <h3 id="event-handlers-server">事件处理程序</h3>
 

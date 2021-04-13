@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 804ca260fd77f130499283d52a6034b9634a9c27
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: fca97179388eb9e8d3f896e9267e8e907fee55a8
+ms.sourcegitcommit: 68df2a4d236f9f3299622ed38c75bb51cbdb4856
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711121"
+ms.lasthandoff: 04/09/2021
+ms.locfileid: "107225561"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>教程：在 ASP.NET MVC Web 应用中使用 EF Core 入门
 
@@ -110,7 +110,7 @@ If you choose to use SQLite, download and install a third-party tool for managin
 
 EF SQL Server 包与其依赖项 `Microsoft.EntityFrameworkCore` 和 `Microsoft.EntityFrameworkCore.Relational` 一起提供 EF 的运行时支持。
 
-添加 [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet 包和 [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet 包。 在包管理器控制台 (PMC) 中，输入以下命令来添加 NuGet 包：
+添加 [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet 包。 在包管理器控制台 (PMC) 中，输入以下命令来添加 NuGet 包：
 
 ```powershell
 Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore

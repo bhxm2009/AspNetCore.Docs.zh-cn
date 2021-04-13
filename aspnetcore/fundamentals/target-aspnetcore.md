@@ -1,6 +1,6 @@
 ---
 title: 使用类库中的 ASP.NET Core API
-author: scottaddie
+author: rick-anderson
 description: 了解如何使用类库中的 ASP.NET Core API。
 ms.author: scaddie
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/target-aspnetcore
-ms.openlocfilehash: 454f2523a44f5c1aa12b9a27c21c6a3e933ab81a
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: 8e220efdcb9a071adfc3a8a57e3a221cd9e01dd3
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711474"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106564279"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>使用类库中的 ASP.NET Core API
 

@@ -1,6 +1,6 @@
 ---
 title: 在 Visual Studio 中将 LibMan 与 ASP.NET Core 配合使用
-author: scottaddie
+author: rick-anderson
 description: 了解如何通过 Visual Studio 在 ASP.NET Core 项目中使用 LibMan。
 ms.author: scaddie
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/libman/libman-vs
-ms.openlocfilehash: ae2bc34edaea2df6f329e47b00c7c02cc59d03bd
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 8aabdd3fc8b4e9ebeabec482514768d23a152263
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589265"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563873"
 ---
 # <a name="use-libman-with-aspnet-core-in-visual-studio"></a>在 Visual Studio 中将 LibMan 与 ASP.NET Core 配合使用
 

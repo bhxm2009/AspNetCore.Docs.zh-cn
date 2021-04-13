@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core 中的捆绑和缩小静态资产
-author: scottaddie
+author: rick-anderson
 description: 了解如何通过应用捆绑和缩小技术优化 ASP.NET Core Web 应用程序中的静态资源。
 ms.author: scaddie
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: d594bbf277907e22b0299b0451e480e9d533d506
-ms.sourcegitcommit: 00368bb6a5420983beaced5b62dabc1f94abdeba
+ms.openlocfilehash: 12701d02ed38e68c1833ee51d9ea87337d17065a
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/16/2021
-ms.locfileid: "103557798"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563584"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>ASP.NET Core 中的捆绑和缩小静态资产
 

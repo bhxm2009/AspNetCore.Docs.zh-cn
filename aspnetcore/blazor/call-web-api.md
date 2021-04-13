@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: 451b6f60a1e5f560606adb4fbaf8596d9d57ec64
-ms.sourcegitcommit: 00368bb6a5420983beaced5b62dabc1f94abdeba
+ms.openlocfilehash: 5628a7936968a87ca1ce47b0fbfe9f23404c5e9a
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/16/2021
-ms.locfileid: "103557810"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081307"
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>从 ASP.NET Core Blazor 调用 Web API
 
@@ -90,7 +90,7 @@ JSON 帮助程序方法将请求发送到 URI（以下示例中的 Web API）并
 
 * <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>：发送 HTTP GET 请求，并分析 JSON 响应正文来创建对象。
 
-  在下面的代码中，`todoItems` 由组件显示。 当组件完成呈现 ([`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-methods)) 时，会触发 `GetTodoItems` 方法。 有关完整的示例，请参阅示例应用。
+  在下面的代码中，`todoItems` 由组件显示。 当组件完成呈现 ([`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)) 时，会触发 `GetTodoItems` 方法。 有关完整的示例，请参阅示例应用。
 
   ```razor
   @using System.Net.Http

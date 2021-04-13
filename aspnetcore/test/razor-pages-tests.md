@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/razor-pages-tests
-ms.openlocfilehash: a67f51561d0a165db04418f2040ffe68e3ebe8ce
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 7f63426bdfc3492e2d529af8cf19cc539db4371c
+ms.sourcegitcommit: 7e593abc85602429d94a20603936a4725838aeea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588485"
+ms.lasthandoff: 04/04/2021
+ms.locfileid: "106293426"
 ---
 # <a name="razor-pages-unit-tests-in-aspnet-core"></a>ASP.NET Core 中的 Razor Pages 单元测试
 
@@ -390,7 +390,7 @@ DAL 中的 `GetMessagesAsync` 方法不会返回此方法调用的结果。 方�
 * <xref:test/integration-tests>
 * [xUnit.net](https://xunit.github.io/)
 * [使用 Visual Studio for Mac 在 macOS 上构建完整的 .NET Core 解决方案](/dotnet/core/tutorials/using-on-mac-vs-full-solution)
-* [Getting started with xUnit.net:Using .NET Core with the .NET SDK command line](https://xunit.github.io/docs/getting-started-dotnet-core)（xUnit.net 入门：将 .NET Core 与 .NET SDK 命令行配合使用）
+* [Getting started with xUnit.net:Using .NET Core with the .NET SDK command line](https://xunit.net/docs/getting-started/netcore/cmdline)（xUnit.net 入门：将 .NET Core 与 .NET SDK 命令行配合使用）
 * [Moq](https://github.com/moq/moq4)
 * [Moq Quickstart](https://github.com/Moq/moq4/wiki/Quickstart)（Moq 快速入门）
 * [JustMockLite](https://github.com/telerik/JustMockLite)：面向 .NET 开发人员的模拟框架。 （*不由 Microsoft 进行支持或维护*。）

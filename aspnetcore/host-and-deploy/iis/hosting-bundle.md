@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/hosting-bundle
-ms.openlocfilehash: a580c70d3141177be2508a0513f612eee56dbbf9
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 044b7ef98610e504eb4887dae88c8636c7c9a8fe
+ms.sourcegitcommit: fafcf015d64aa2388bacee16ba38799daf06a4f0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93343632"
+ms.lasthandoff: 03/30/2021
+ms.locfileid: "105957660"
 ---
 # <a name="the-net-core-hosting-bundle"></a>.NET Core 托管捆绑包
 
@@ -36,6 +36,8 @@ ms.locfileid: "93343632"
 > 如果在 IIS 之前安装了托管捆绑包，则必须修复捆绑包安装。 在安装 IIS 后再次运行托管捆绑包安装程序。
 >
 > 如果在安装 64 位 (x64) 版本的 .NET Core 之后安装了 Hosting Bundle，则可能看上去缺少 SDK（[未检测到 .NET Core SDK](xref:test/troubleshoot#no-net-core-sdks-were-detected)）。 要解决此问题，请参阅 <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>。
+
+[!INCLUDE[](~/includes/announcements.md)]
 
 ## <a name="direct-download-current-version"></a>直接下载（当前版本）
 
