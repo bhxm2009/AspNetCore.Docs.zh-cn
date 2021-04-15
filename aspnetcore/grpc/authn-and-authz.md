@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/authn-and-authz
-ms.openlocfilehash: 5120964459a81ef2d668877bb08ecde512c2389d
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 3ed9b120cfc0a64a2d82450a59c3070ef080386d
+ms.sourcegitcommit: f67ba959d3cbfe33b32fa6a5eae1a5ae9de18167
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587991"
+ms.lasthandoff: 04/02/2021
+ms.locfileid: "106179686"
 ---
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>gRPC for ASP.NET Core 中的身份验证和授权
 
@@ -118,6 +118,31 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
     });
     return channel;
 }
+```
+
+#### <a name="bearer-token-with-grpc-client-factory"></a>gRPC 客户端工厂的持有者令牌
+
+gRPC 客户端工厂可以创建使用 `ChannelCredentials` 发送持有者令牌的客户端。 在配置客户端时，请分配 `CallCredentials`，客户端应与 `ConfigureChannel` 方法一起使用。
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigureChannel(o =>
+    {
+        var credentials = CallCredentials.FromInterceptor((context, metadata) =>
+        {
+            if (!string.IsNullOrEmpty(_token))
+            {
+                metadata.Add("Authorization", $"Bearer {_token}");
+            }
+            return Task.CompletedTask;
+        });
+
+        o.Credentials = ChannelCredentials.Create(new SslCredentials(), credentials);
+    });
 ```
 
 ### <a name="client-certificate-authentication"></a>客户端证书身份验证

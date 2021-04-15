@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/performance
-ms.openlocfilehash: 5d19ace2e844f2159c1ba0e8bc92960bcf00d54e
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 09d959b7fee0b431bb36d5449402a442b2f453ae
+ms.sourcegitcommit: 68df2a4d236f9f3299622ed38c75bb51cbdb4856
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586990"
+ms.lasthandoff: 04/09/2021
+ms.locfileid: "107225535"
 ---
 # <a name="performance-best-practices-with-grpc"></a>GRPC 性能最佳做法
 
@@ -206,7 +206,7 @@ while (true)
 2. 对于多线程处理，`RequestStream.WriteAsync` 并不安全。 一次只能将一条消息写入流中。 通过单个流从多个线程发送消息需要制造者/使用者队列（如 <xref:System.Threading.Channels.Channel%601>）来整理消息。
 3. gRPC 流式处理方法仅限于接收一种类型的消息并发送一种类型的消息。 例如，`rpc StreamingCall(stream RequestMessage) returns (stream ResponseMessage)` 接收 `RequestMessage` 并发送 `ResponseMessage`。 Protobuf 对使用 `Any` 和 `oneof` 支持未知消息或条件消息，可以解决此限制。
 
-## <a name="send-binary-payloads"></a>发送二进制有效负载
+## <a name="binary-payloads"></a>二进制有效负载
 
 Protobuf 支持标量值类型为 `bytes` 的二进制有效负载。 C# 中生成的属性使用 `ByteString` 作为属性类型。
 
@@ -218,7 +218,13 @@ message PayloadResponse {
 }  
 ```
 
-`ByteString` 实例是使用 `ByteString.CopyFrom(byte[] data)` 创建的。 此方法会分配新的 `ByteString` 和新的 `byte[]`。 数据会复制到新的字节数组中。
+Protobuf 是一种二进制格式，它以最小开销有效地序列化大型二进制有效负载。  基于文本的格式（如 JSON）需要[将字节编码为 base64](https://en.wikipedia.org/wiki/Base64)，并将 33% 添加到消息大小。
+
+使用大型 `ByteString` 有效负载时，有一些最佳做法可以避免下面所讨论的不必要副本和分配。
+
+### <a name="send-binary-payloads"></a>发送二进制有效负载
+
+`ByteString` 实例通常使用 `ByteString.CopyFrom(byte[] data)` 创建。 此方法会分配新的 `ByteString` 和新的 `byte[]`。 数据会复制到新的字节数组中。
 
 通过使用 `UnsafeByteOperations.UnsafeWrap(ReadOnlyMemory<byte> bytes)` 创建 `ByteString` 实例，可以避免其他分配和复制操作。
 
@@ -232,3 +238,46 @@ payload.Data = UnsafeByteOperations.UnsafeWrap(data);
 字节不会通过 `UnsafeByteOperations.UnsafeWrap` 进行复制，因此在使用 `ByteString` 时，不得修改字节。
 
 `UnsafeByteOperations.UnsafeWrap` 要求使用 [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) 版本 3.15.0 或更高版本。
+
+### <a name="read-binary-payloads"></a>读取二进制有效负载
+
+通过使用 `ByteString.Memory` 和 `ByteString.Span` 属性，可以有效地从 `ByteString` 实例读取数据。
+
+```csharp
+var byteString = UnsafeByteOperations.UnsafeWrap(new byte[] { 0, 1, 2 });
+var data = byteString.Span;
+
+for (var i = 0; i < data.Length; i++)
+{
+    Console.WriteLine(data[i]);
+}
+```
+
+这些属性允许代码直接从 `ByteString` 读取数据，而无需分配或副本。
+
+大多数 .NET API 具有 `ReadOnlyMemory<byte>` 和 `byte[]` 重载，因此建议使用 `ByteString.Memory` 来使用基础数据。 但是，在某些情况下，应用可能需要将数据作为字节数组获取。 如果需要字节数组，则 <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray%2A?displayProperty=nameWithType> 方法可用于从 `ByteString` 获取数组，而无需分配数据的新副本。
+
+```csharp
+var byteString = GetByteString();
+
+ByteArrayContent content;
+if (MemoryMarshal.TryGetArray(byteString.Memory, out var segment))
+{
+    // Success. Use the ByteString's underlying array.
+    content = new ByteArrayContent(segment.Array, segment.Offset, segment.Count);
+}
+else
+{
+    // TryGetArray didn't succeed. Fall back to creating a copy of the data with ToByteArray.
+    content = new ByteArrayContent(byteString.ToByteArray());
+}
+
+var httpRequest = new HttpRequestMessage();
+httpRequest.Content = content;
+```
+
+前面的代码：
+
+* 尝试使用 <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray%2A?displayProperty=nameWithType> 从 `ByteString.Memory` 获取数组。
+* 如果成功检索，则使用 `ArraySegment<byte>`。 段具有对数组、偏移和计数的引用。
+* 否则，将回退到使用 `ByteString.ToByteArray()` 分配新数组。

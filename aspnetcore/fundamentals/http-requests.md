@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/http-requests
-ms.openlocfilehash: 2bc093af63f305dd9808e37011223043646852d5
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 2f0f7c5172e47ea4e44358191788c8153cbc2be5
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588043"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563765"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>在 ASP.NET Core 中使用 IHttpClientFactory 发出 HTTP 请求
 
@@ -1048,9 +1048,9 @@ public class ValuesController : ControllerBase
 
 * <xref:System.Net.Http.IHttpClientFactory> 已在[泛型主机的](xref:fundamentals/host/generic-host)服务容器中注册。
 * `MyService` 从服务创建客户端工厂实例，用于创建 `HttpClient`。 `HttpClient` 用于检索网页。
-* `Main` 可创建作用域来执行服务的 `GetPage` 方法，并将网页内容的前 500 个字符写入控制台。
+* 执行服务的 `GetPage` 方法以将网页内容的前 500 个字符写入控制台。 有关从 `Program.Main` 调用服务的详细信息，请参阅 <xref:fundamentals/dependency-injection#call-services-from-main>。
 
-[!code-csharp[](http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,22)]
 
 ## <a name="header-propagation-middleware"></a>标头传播中间件
 

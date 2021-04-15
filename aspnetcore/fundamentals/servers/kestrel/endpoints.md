@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/kestrel/endpoints
-ms.openlocfilehash: f9d82409f4b31a5564c7cdfa48beb303d784e213
-ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
+ms.openlocfilehash: d1b682b12e2cdcaf2a77b17f726ac569c46cf095
+ms.sourcegitcommit: f67ba959d3cbfe33b32fa6a5eae1a5ae9de18167
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/29/2021
-ms.locfileid: "99057143"
+ms.lasthandoff: 04/02/2021
+ms.locfileid: "106179725"
 ---
 # <a name="configure-endpoints-for-the-aspnet-core-kestrel-web-server"></a>为 ASP.NET Core Kestrel Web 服务器配置终结点
 
@@ -288,6 +288,13 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 [服务器名称指示 (SNI)](https://tools.ietf.org/html/rfc6066#section-3) 可用于承载相同 IP 地址和端口上的多个域。 为了运行 SNI，客户端在 TLS 握手过程中将进行安全会话的主机名发送至服务器，从而让服务器可以提供正确的证书。 在 TLS 握手后的安全会话期间，客户端将服务器提供的证书用于与服务器进行加密通信。
 
+可用两种方式配置 SNI：
+
+* 在代码中创建终结点，并通过 <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector%2A> 回调使用主机名选择证书。
+* 在[配置](xref:fundamentals/configuration/index)中配置主机名和 HTTPS 选项之间的映射。 例如，`appsettings.json` 文件中的 JSON。
+
+### <a name="sni-with-servercertificateselector"></a>具有 `ServerCertificateSelector` 的 SNI
+
 Kestrel 通过 `ServerCertificateSelector` 回调支持 SNI。 每次连接调用一次回调，从而允许应用检查主机名并选择合适的证书。 可以在项目的 Program.cs 文件的 `ConfigureWebHostDefaults` 方法调用中使用以下回调代码：
 
 ```csharp
@@ -330,7 +337,69 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
-SNI 支持要求：
+### <a name="sni-in-configuration"></a>配置中的 SNI
+
+Kestrel 支持配置中定义的 SNI。 可以使用包含主机名和 HTTPS 选项之间的映射的 `Sni` 对象来配置终结点。 连接主机名与选项匹配，并且这些选项用于该连接。
+
+以下配置将添加一个名为 `MySniEndpoint` 的终结点，该终结点使用 SNI 基于主机名选择 HTTPS 选项：
+
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "MySniEndpoint": {
+        "Url": "https://*",
+        "SslProtocols": ["Tls11", "Tls12"],
+        "Sni": {
+          "a.example.org": {
+            "Protocols": "Http1AndHttp2",
+            "SslProtocols": ["Tls11", "Tls12", "Tls13"],
+            "Certificate": {
+              "Subject": "<subject; required>",
+              "Store": "<certificate store; required>",
+            },
+            "ClientCertificateMode" : "NoCertificate"
+          },
+          "*.example.org": {
+            "Certificate": {
+              "Path": "<path to .pfx file>",
+              "Password": "<certificate password>"
+            }
+          },
+          "*": {
+            // At least one subproperty needs to exist per SNI section or it
+            // cannot be discovered via IConfiguration
+            "Protocols": "Http1",
+          }
+        }
+      }
+    },
+    "Certificates": {
+      "Default": {
+        "Path": "<path to .pfx file>",
+        "Password": "<certificate password>"
+      }
+    }
+  }
+}
+```
+
+可由 SNI 覆盖的 HTTPS 选项：
+
+* `Certificate` 配置[证书源](#certificate-sources)。
+* `Protocols` 配置允许的 [HTTP 协议](xref:Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols)。
+* `SslProtocols` 配置允许的 [SSL 协议](xref:System.Security.Authentication.SslProtocols)。
+* `ClientCertificateMode` 配置[客户端证书要求](xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode)。
+
+主机名支持通配符匹配：
+
+* 完全匹配。 例如，`a.example.org` 匹配 `a.example.org`。
+* 通配符前缀。 如果有多个通配符匹配项，则选择最长的模式。 例如，`*.example.org` 匹配 `b.example.org` 和 `c.example.org`。
+* 完整通配符。 `*` 匹配其他所有内容，包括不使用 SNI 且不发送主机名的客户端。
+
+匹配的 SNI 配置将应用于连接的终结点，并重写终结点上的值。 如果连接与已配置的 SNI 主机名不匹配，则连接将被拒绝。
+
+### <a name="sni-requirements"></a>SNI 要求
 
 * 在目标框架 `netcoreapp2.1` 或更高版本上运行。 在 `net461` 或最高版本上，将调用回调，但是 `name` 始终为 `null`。 如果客户端未在 TLS 握手过程中提供主机名参数，则 `name` 也为 `null`。
 * 所有网站在相同的 Kestrel 实例上运行。 Kestrel 在无反向代理时不支持跨多个实例共享一个 IP 地址和端口。
@@ -350,6 +419,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 ```
 
 默认值 `SslProtocols.None` 会导致 Kestrel 使用操作系统默认值来选择最佳协议。 除非你有特定原因要选择协议，否则请使用默认值。
+
 ## <a name="connection-logging"></a>连接日志记录
 
 调用 <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging%2A> 以发出用于进行连接上的字节级别通信的调试级别日志。 连接日志记录有助于排查低级通信中的问题，例如在 TLS 加密期间和代理后。 如果 `UseConnectionLogging` 放置在 `UseHttps` 之前，则会记录加密的流量。 如果 `UseConnectionLogging` 放置于 `UseHttps` 之后，则会记录解密的流量。 这是内置[连接中间件](#connection-middleware)。

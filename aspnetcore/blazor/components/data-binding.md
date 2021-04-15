@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: 5f1e9963a7b62b90ee492bebe9bfc357a8090caf
-ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
+ms.openlocfilehash: 6e2d295289d268ef306cae53a6fbdbaac309cb87
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/25/2021
-ms.locfileid: "105051031"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081541"
 ---
 # <a name="aspnet-core-blazor-data-binding"></a>ASP.NET Core Blazor 数据绑定
 

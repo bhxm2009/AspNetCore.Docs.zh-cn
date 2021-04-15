@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: index
-ms.openlocfilehash: 3e41336d084e25319f8b1ab4c4ab3175b758d23d
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: dfe6ab1a5d6473527620d14077403b69a5f0a84e
+ms.sourcegitcommit: fafcf015d64aa2388bacee16ba38799daf06a4f0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588797"
+ms.lasthandoff: 03/30/2021
+ms.locfileid: "105957635"
 ---
 # <a name="introduction-to-aspnet-core"></a>ASP.NET Core 简介
 
@@ -245,6 +245,10 @@ Host.CreateDefaultBuilder(args)
 可放心忽略（或删除）代码两侧的 `#region` 和 `#endregion` 指令。 如果计划运行主题中所述的示例方案，请不要更改这些指令中的代码。 试用其他方案时，可随时更改代码。
 
 有关详细信息，请参阅[参与 ASP.NET 文档：代码片段](https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md#code-snippets)。
+
+## <a name="breaking-changes-and-security-advisories"></a>重大更改和安全建议
+
+[!INCLUDE[](~/includes/announcements.md)]
 
 ## <a name="next-steps"></a>后续步骤
 

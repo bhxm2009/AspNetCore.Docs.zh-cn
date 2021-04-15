@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/rendering
-ms.openlocfilehash: 1d244434cd3aa7e1a49839cc0c6cecb61abbcdff
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: c3f2b54ad9dce22423071f7c36476a220c448e88
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711329"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081489"
 ---
 # <a name="aspnet-core-blazor-component-rendering"></a>ASP.NET Core Blazor 组件呈现
 
@@ -37,7 +37,7 @@ ms.locfileid: "104711329"
 * 从父组件应用一组已更新的[参数](xref:blazor/components/data-binding#binding-with-component-parameters)之后。
 * 为[级联参数](xref:blazor/components/cascading-values-and-parameters)应用已更新的值之后。
 * 通知事件并调用其自己的某个[事件处理程序](xref:blazor/components/event-handling)之后。
-* 调用自己的 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> 方法之后（请参阅 [Blazor 生命周期：状态更改](xref:blazor/components/lifecycle#state-changes)）。
+* 调用其自己的 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> 方法之后（请参阅 <xref:blazor/components/lifecycle#state-changes-statehaschanged>）。
 
 如果满足以下任一条件，则继承自 <xref:Microsoft.AspNetCore.Components.ComponentBase> 的组件会跳过因参数更新而触发的重新呈现：
 
@@ -59,7 +59,7 @@ ms.locfileid: "104711329"
 对于以下情况，代码不需要调用 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>：
 
 * 定期处理事件（无论是同步还是异步），因为 <xref:Microsoft.AspNetCore.Components.ComponentBase> 会触发大多数常规事件处理程序的呈现。
-* 实现 [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-methods) 或 [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set) 等典型生命周期逻辑（无论是同步还是异步），因为 <xref:Microsoft.AspNetCore.Components.ComponentBase> 会触发典型生命周期事件的呈现。
+* 实现 [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) 或 [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) 等典型生命周期逻辑（无论是同步还是异步），因为 <xref:Microsoft.AspNetCore.Components.ComponentBase> 会触发典型生命周期事件的呈现。
 
 但是，在本文以下部分所述的情况下，可能适合调用 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>：
 

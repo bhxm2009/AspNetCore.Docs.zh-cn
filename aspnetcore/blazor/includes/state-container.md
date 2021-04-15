@@ -11,32 +11,38 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-ms.openlocfilehash: 342cbccc5f9a61c0695d501ea2376403bfd459ca
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: 62d000082180163737ae95bf8fc829b9f026b8a8
+ms.sourcegitcommit: 7354c2029164702d075fd3786d96a92c6d49bc6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104719906"
+ms.lasthandoff: 04/01/2021
+ms.locfileid: "106178257"
 ---
 嵌套组件通常使用链式绑定来绑定数据，如 <xref:blazor/components/data-binding> 中所述。 嵌套组件和非嵌套组件可以使用已注册的内存中状态容器来共享对数据的访问。 自定义状态容器类可以使用可分配的 <xref:System.Action>，来向应用不同部分中的组件通知状态更改。 如下示例中：
 
 * 一对组件使用状态容器来跟踪属性。
-* 示例的组件是嵌套的，但嵌套并非此方法生效的必要条件。
+* 以下示例中的一个组件嵌套在另一个组件中，但此方法不需要嵌套就能工作。
 
 `StateContainer.cs`:
 
 ```csharp
+using System;
+
 public class StateContainer
 {
-    public string Property { get; set; } = "Initial value from StateContainer";
+    private string savedString;
+
+    public string Property
+    {
+        get => savedString;
+        set
+        {
+            savedString = value;
+            NotifyStateChanged();
+        }
+    }
 
     public event Action OnChange;
-
-    public void SetProperty(string value)
-    {
-        Property = value;
-        NotifyStateChanged();
-    }
 
     private void NotifyStateChanged() => OnChange?.Invoke();
 }
@@ -54,22 +60,21 @@ builder.Services.AddSingleton<StateContainer>();
 services.AddScoped<StateContainer>();
 ```
 
-`Pages/Component1.razor`:
+`Shared/Nested.razor`:
 
 ```razor
-@page "/Component1"
 @inject StateContainer StateContainer
 @implements IDisposable
 
-<h1>Component 1</h1>
+<h2>Nested component</h2>
 
-<p>Component 1 Property: <b>@StateContainer.Property</b></p>
+<p>Nested component Property: <b>@StateContainer.Property</b></p>
 
 <p>
-    <button @onclick="ChangePropertyValue">Change Property from Component 1</button>
+    <button @onclick="ChangePropertyValue">
+        Change the Property from the Nested component
+    </button>
 </p>
-
-<Component2 />
 
 @code {
     protected override void OnInitialized()
@@ -79,7 +84,8 @@ services.AddScoped<StateContainer>();
 
     private void ChangePropertyValue()
     {
-        StateContainer.SetProperty($"New value set in Component 1: {DateTime.Now}");
+        StateContainer.Property = 
+            $"New value set in the Nested component: {DateTime.Now}";
     }
 
     public void Dispose()
@@ -89,19 +95,24 @@ services.AddScoped<StateContainer>();
 }
 ```
 
-`Shared/Component2.razor`:
+`Pages/StateContainer.razor`:
 
 ```razor
+@page "/state-container"
 @inject StateContainer StateContainer
 @implements IDisposable
 
-<h2>Component 2</h2>
+<h1>State Container component</h1>
 
-<p>Component 2 Property: <b>@StateContainer.Property</b></p>
+<p>State Container component Property: <b>@StateContainer.Property</b></p>
 
 <p>
-    <button @onclick="ChangePropertyValue">Change Property from Component 2</button>
+    <button @onclick="ChangePropertyValue">
+        Change the Property from the State Container component
+    </button>
 </p>
+
+<Nested />
 
 @code {
     protected override void OnInitialized()
@@ -111,7 +122,8 @@ services.AddScoped<StateContainer>();
 
     private void ChangePropertyValue()
     {
-        StateContainer.SetProperty($"New value set in Component 2: {DateTime.Now}");
+        StateContainer.Property = 
+            $"New value set in the State Container component: {DateTime.Now}";
     }
 
     public void Dispose()

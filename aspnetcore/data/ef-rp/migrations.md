@@ -17,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/migrations
-ms.openlocfilehash: e6d1b9f041e892aaa37840c28fdb3153bf098b0d
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 7f1741e06a6e43fd80176113fbe4f249f6eeaa2b
+ms.sourcegitcommit: fafcf015d64aa2388bacee16ba38799daf06a4f0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93061101"
+ms.lasthandoff: 03/30/2021
+ms.locfileid: "105957493"
 ---
-# <a name="part-4-no-locrazor-pages-with-ef-core-migrations-in-aspnet-core"></a>第 4 部分，ASP.NET Core 中的 Razor 页面和 EF Core 迁移
+# <a name="part-4-razor-pages-with-ef-core-migrations-in-aspnet-core"></a>第 4 部分，ASP.NET Core 中的 Razor 页面和 EF Core 迁移
 
 作者：[Tom Dykstra](https://github.com/tdykstra)、[Jon P Smith](https://twitter.com/thereformedprog) 和 [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -36,7 +36,7 @@ ms.locfileid: "93061101"
 
 开发新应用时，数据模型会频繁更改。 每当模型发生更改时，都无法与数据库进行同步。 本教程从配置实体框架以创建数据库（如果不存在）开始。 数据模型每次发生更改时，必须删除该数据库。 下次应用运行时，对 `EnsureCreated` 的调用将重新创建数据库以匹配新的数据模型。 然后 `DbInitializer` 类将运行以设定新数据库的种子。
 
-这种使 DB 与数据模型保持同步的方法适用于多种情况，但将应用部署到生产环境的情况除外。 当应用在生产环境中运行时，应用通常会存储需要保留的数据。 每当发生更改（例如添加新列）时，应用都无法在具有测试数据库的环境下启动。 EF Core 迁移功能通过启用 EF Core 更新数据库架构而不是创建新数据库来解决此问题。
+这种使 DB 与数据模型保持同步的方法非常适用，但需要将应用部署到生产环境的情况除外。 当应用在生产环境中运行时，应用通常会存储需要保留的数据。 每当发生更改（例如添加新列）时，应用都无法在具有测试 DB 的环境下启动。 EF Core 迁移功能可通过使 EF Core 更新 DB 架构（而不是创建新数据库）来解决此问题。
 
 数据模型更改时，迁移不会删除并重新创建数据库，而是更新架构并保留现有数据。
 
@@ -79,6 +79,7 @@ Drop-Database
 ```powershell
 Add-Migration InitialCreate
 Update-Database
+ 
 ```
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
@@ -88,9 +89,24 @@ Update-Database
 ```dotnetcli
 dotnet ef migrations add InitialCreate
 dotnet ef database update
+ 
 ```
 
 ---
+
+### <a name="remove-ensurecreated"></a>删除 EnsureCreated
+
+本系列教程从使用 [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated) 开始。 `EnsureCreated` 不创建迁移历史记录表，因此不能与迁移一起使用。 它专门用于在频繁删除并重新创建 DB 的情况下进行测试或快速制作原型。
+
+从这个角度来看，教程将使用迁移。
+
+在 Program.cs 中，删除以下行：
+
+```csharp
+context.Database.EnsureCreated();
+```
+
+运行应用并验证数据库是否已设定种子。
 
 ## <a name="up-and-down-methods"></a>Up 和 Down 方法
 
@@ -100,11 +116,11 @@ EF Core `migrations add` 命令已生成用于创建数据库的代码。 此迁
 
 前面的代码适用于初始迁移。 代码：
 
-* 由 `migrations add InitialCreate` 命令生成。 
+* 由 `migrations add InitialCreate` 命令生成。
 * 由 `database update` 命令执行。
 * 为数据库上下文类指定的数据模型创建数据库。
 
-迁移名称参数（本示例中为“InitialCreate”）用于指定文件名。 迁移名称可以是任何有效的文件名。 最好选择能概括迁移中所执行操作的字词或短语。 例如，添加了系表的迁移可称为“AddDepartmentTable”。
+迁移名称参数（本示例中为 `InitialCreate`）用于指定文件名。 迁移名称可以是任何有效的文件名。 最好选择能概括迁移中所执行操作的字词或短语。 例如，添加了系表的迁移可称为“AddDepartmentTable”。
 
 ## <a name="the-migrations-history-table"></a>迁移历史记录表
 
@@ -116,20 +132,9 @@ EF Core `migrations add` 命令已生成用于创建数据库的代码。 此迁
 
 迁移会在 Migrations/SchoolContextModelSnapshot.cs 中创建当前数据模型的快照 。 添加迁移时，EF 会通过将当前数据模型与快照文件进行对比来确定已更改的内容。
 
-由于快照文件跟踪数据模型的状态，因此不能通过删除 `<timestamp>_<migrationname>.cs` 文件来删除迁移。 要返回最近的迁移，必须使用 `migrations remove` 命令。 该命令删除迁移并确保正确重置快照。 有关详细信息，请参阅 [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove)。
+由于快照文件跟踪数据模型的状态，因此不能通过删除 `<timestamp>_<migrationname>.cs` 文件来删除迁移。 若要返回最近的迁移，必须使用 [`migrations remove`](/ef/core/managing-schemas/migrations/managing#remove-a-migration) 命令。 `migrations remove` 删除迁移，并确保正确重置快照。 有关详细信息，请参阅 [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove)。
 
-## <a name="remove-ensurecreated"></a>删除 EnsureCreated
-
-本系列教程从使用 `EnsureCreated` 开始。 `EnsureCreated` 不创建迁移历史记录表，因此不能与迁移一起使用。 它专门用于在频繁删除并重新创建 DB 的情况下进行测试或快速制作原型。
-
-从这个角度来看，教程将使用迁移。
-
-在 Data/DBInitializer.cs 中，注释掉以下行：
-
-```csharp
-context.Database.EnsureCreated();
-```
-运行应用并验证数据库是否已设定种子。
+若要删除所有迁移，请参阅[重置所有迁移](/ef/core/miscellaneous/cli/dotnet#resetting-all-migrations)
 
 ## <a name="applying-migrations-in-production"></a>在生产环境中应用迁移
 
@@ -155,6 +160,7 @@ Login failed for user 'user name'.
 ### <a name="additional-resources"></a>其他资源
 
 * [EF Core CLI](/ef/core/miscellaneous/cli/dotnet)。
+* [dotnet ef 迁移 CLI 命令](/ef/core/miscellaneous/cli/dotnet)
 * [包管理器控制台 (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
 ## <a name="next-steps"></a>后续步骤
@@ -172,7 +178,7 @@ Login failed for user 'user name'.
 本教程使用 EF Core 迁移功能管理数据模型更改。
 
 如果遇到无法解决的问题，请下载[已完成应用](
-https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples)。
+https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples)。
 
 开发新应用时，数据模型会频繁更改。 每当模型发生更改时，都无法与数据库进行同步。 本教程首先配置 Entity Framework 以创建数据库（如果不存在）。 每当数据模型发生更改时：
 
@@ -180,7 +186,7 @@ https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intr
 * EF 都会创建一个新数据库来匹配该模型。
 * 应用使用测试数据为 DB 设定种子。
 
-这种使 DB 与数据模型保持同步的方法适用于多种情况，但将应用部署到生产环境的情况除外。 当应用在生产环境中运行时，应用通常会存储需要保留的数据。 每当发生更改（例如添加新列）时，应用都无法在具有测试 DB 的环境下启动。 EF Core 迁移功能可通过使 EF Core 更新 DB 架构而不是创建新 DB 来解决此问题。
+这种使 DB 与数据模型保持同步的方法非常适用，但需要将应用部署到生产环境的情况除外。 当应用在生产环境中运行时，应用通常会存储需要保留的数据。 每当发生更改（例如添加新列）时，应用都无法在具有测试 DB 的环境下启动。 EF Core 迁移功能可通过使 EF Core 更新 DB 架构而不是创建新 DB 来解决此问题。
 
 数据模型发生更改时，迁移将更新架构并保留现有数据，而无需删除或重新创建 DB。
 
@@ -308,7 +314,7 @@ EF Core 使用 `__MigrationsHistory` 表查看是否需要运行任何迁移。 
 ## <a name="troubleshooting"></a>疑难解答
 
 下载[已完成应用](
-https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/cu-part4-migrations)。
+https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/cu-part4-migrations)。
 
 应用会生成以下异常：
 
@@ -333,4 +339,3 @@ Login failed for user 'user name'.
 > [下一页](xref:data/ef-rp/complex-data-model)
 
 ::: moniker-end
-

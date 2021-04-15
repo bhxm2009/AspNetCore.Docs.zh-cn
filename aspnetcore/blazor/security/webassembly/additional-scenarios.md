@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: c2b2a6f049846dc2e4894b4cab8b0a1aa34762f9
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: 7320a9ec93b25d26fbf2ecbecfdd9a4ced908289
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102394845"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081359"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor WebAssembly 其他安全方案
 
@@ -399,7 +399,7 @@ IP 为用户发出的令牌通常在短时间（约 1 小时）内有效，因�
 
 当令牌请求失败时，需要决定在执行重定向之前是否要保存任何当前状态。 随着复杂程度的提高，可以使用以下几种方法：
 
-* 将当前页面状态存储在会话存储中。 在 [`OnInitializedAsync` 生命周期事件](xref:blazor/components/lifecycle#component-initialization-methods) (<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>) 期间，检查状态是否可以还原，然后再继续执行操作。
+* 将当前页面状态存储在会话存储中。 在 [`OnInitializedAsync` 生命周期方法](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) (<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>) 期间，检查状态是否可以还原，然后再继续执行操作。
 * 添加查询字符串参数，并使用该参数向应用发送信号，而该应用需要重新水化先前保存的状态。
 * 添加具有唯一标识符的查询字符串参数以将数据存储在会话存储中，而不会导致与其他项发生冲突。
 

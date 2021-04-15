@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/directory-structure
-ms.openlocfilehash: 918bc11e06b8f2bea5506d3b61f462e15998efa0
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 86abd51782b6b6abc54196831af4d0df527037c5
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059853"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081593"
 ---
 # <a name="aspnet-core-directory-structure"></a>ASP.NET Core 目录结构
 
@@ -40,8 +40,8 @@ ms.locfileid: "93059853"
 
 | 应用类型 | 目录结构 |
 | -------- | ------------------- |
-| [依赖于框架的可执行文件 (FDE)](/dotnet/core/deploying/#framework-dependent-executables-fde) | <ul><li>publish&dagger;<ul><li>Views&dagger; MVC 应用（如果未预编译视图）</li><li>Pages&dagger; MVC 或 Razor Pages 应用（如果未预编译页）</li><li>wwwroot&dagger;</li><li>\*.dll 文件</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>Windows 上的扩展名为 {ASSEMBLY NAME}{.EXTENSION} .exe，macOS 和 Linux 上没有扩展名</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config（IIS 部署）</li><li>createdump（[Linux createdump 实用工具](https://github.com/dotnet/coreclr/blob/master/Documentation/botr/xplat-minidump-generation.md#configurationpolicy)）</li><li>\*.so（Linux 共享对象库）</li><li>\*.a（macOS 存档）</li><li>\*.dylib（macOS 动态库）</li></ul></li></ul> |
-| [独立部署 (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>Views&dagger; MVC 应用（如果未预编译视图）</li><li>Pages&dagger; MVC 或 Razor Pages 应用（如果未预编译页）</li><li>wwwroot&dagger;</li><li>\*.dll 文件</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>{ASSEMBLY NAME}.exe</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config（IIS 部署）</li></ul></li></ul> |
+| [依赖于框架的可执行文件 (FDE)](/dotnet/core/deploying/#framework-dependent-executables-fde) | <ul><li>publish&dagger;<ul><li>Views&dagger; MVC 应用（如果未预编译视图）</li><li>Pages&dagger; MVC 或 Razor Pages 应用（如果未预编译页）</li><li>wwwroot&dagger;</li><li>\*.dll 文件</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>Windows 上的扩展名为 {ASSEMBLY NAME}{.EXTENSION}.exe，macOS 和 Linux 上没有扩展名</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config（IIS 部署）</li><li>createdump（[Linux createdump 实用工具](https://github.com/dotnet/coreclr/blob/master/Documentation/botr/xplat-minidump-generation.md#configurationpolicy)）</li><li>\*.so（Linux 共享对象库）</li><li>\*.a（macOS 存档）</li><li>\*.dylib（macOS 动态库）</li></ul></li></ul> |
+| [独立部署 (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>Views&dagger; MVC 应用（如果未预编译视图）</li><li>Pages&dagger; MVC 或 Razor Pages 应用（如果未预编译页）</li><li>wwwroot&dagger;</li><li>\*.dll 文件</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>Windows 上的扩展名为 {ASSEMBLY NAME}{.EXTENSION} .exe，macOS 和 Linux 上没有扩展名</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config（IIS 部署）</li></ul></li></ul> |
 
 &dagger;指示目录
 

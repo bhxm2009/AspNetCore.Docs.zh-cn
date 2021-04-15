@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/test
-ms.openlocfilehash: 1a7b1114934f4fe7006d60bdbd0f06792d2c6935
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: c9f7355f9152418ce6181d69aa0f43c1951a160e
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102394546"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563560"
 ---
 # <a name="test-components-in-aspnet-core-blazor"></a>在 ASP.NET Core Blazor 中测试组件
 
@@ -82,7 +82,7 @@ E2E 测试涉及启动多个进程、网络和磁盘 I/O 以及其他子系统�
 | 具有简单 JS 互操作逻辑的组件 | 单元测试 | 组件通常通过 JS 互操作查询 DOM 或触发动画。 在这种情况下，单元测试通常是首选，因为通过 <xref:Microsoft.JSInterop.IJSRuntime> 接口模拟 JS 交互非常简单。 |
 | 依赖于复杂 JS 代码的组件 | 单元测试和单独的 JS 测试 | 如果组件使用 JS 互操作调用大型或复杂的 JS 库，但 Blazor 组件和 JS 库之间的交互很简单，那么最好的方法可能是将组件和 JS 库（或代码）视为两个单独的部分，分别进行测试。 使用单元测试库测试 Blazor 组件，使用 JS 测试库测试 JS。 |
 | 具有依赖于浏览器 DOM 的 JS 操作的逻辑的组件 | E2E 测试 | 当组件的功能依赖于 JS 及其对 DOM 的操作时，在 E2E 测试中同时验证 JS 和 Blazor 代码。 这是 Blazor 框架开发人员使用 Blazor 的浏览器呈现逻辑采用的方法，该逻辑具有紧密耦合的 C# 和 JS 代码。 C# 和 JS 代码必须协同工作才能在浏览器中正确呈现 Blazor 组件。
-| 依赖于具有难以模拟的依赖项的第三方组件库的组件 | E2E 测试 | 当组件的功能依赖于具有难以模拟的依赖项的第三方组件库（如 JS 互操作）时，可能只能使用 E2E 测试来测试组件。 |
+| 依赖于具有难以模拟的依赖项的第三方类库的组件 | E2E 测试 | 当组件的功能依赖于具有难以模拟的依赖项的第三方类库（如 JS 互操作）时，可能只能使用 E2E 测试来测试组件。 |
 
 ## <a name="test-components-with-bunit"></a>使用 bUnit 测试组件
 

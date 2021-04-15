@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/fundamentals/signalr
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: ecac21c1f6f7cea0a221e1a78161b915ee2c755f
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: e5f3eee1e9aaadc55645b23086c0a53c068669cf
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711056"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081320"
 ---
 # <a name="aspnet-core-blazor-signalr-guidance"></a>ASP.NET Core Blazor SignalR 指南
 
@@ -398,6 +398,10 @@ public void ConfigureServices(IServiceCollection services)
 如果自定义线路处理程序的方法引发未处理异常，则该异常会导致 Blazor Server 线路产生严重错误。 若要容忍处理程序代码或被调用方法中的异常，请使用错误处理和日志记录将代码包装到一个或多个 [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) 语句中。
 
 当线路因用户断开连接而结束且框架正在清除线路状态时，框架会处置线路的 DI 范围。 处置范围时会处置所有实现 <xref:System.IDisposable?displayProperty=fullName> 的区分线路范围的 DI 服务。 如果有任何 DI 服务在处置期间引发未处理异常，则框架会记录该异常。
+
+## <a name="azure-signalr-service"></a>Azure SignalR 服务
+
+我们建议将 [Azure SignalR 服务](xref:signalr/scale#azure-signalr-service)用于 Microsoft Azure 中托管的 Blazor Server 应用。 该服务允许将 Blazor Server 应用扩展到大量并发 SignalR 连接。 此外，SignalR 服务的全球覆盖和高性能数据中心可帮助显著减少由于地理位置造成的延迟。 如需对 Azure SignalR 服务的预呈现支持，请将应用配置为使用粘滞会话。 有关详细信息，请参阅 <xref:blazor/host-and-deploy/server>。
 
 ## <a name="additional-resources"></a>其他资源
 

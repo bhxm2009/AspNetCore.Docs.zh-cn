@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: fe68c54ff16751058a3eeee3880a11657344c40a
-ms.sourcegitcommit: acfe51c35497a204f75c2a61125c9408c04493e6
+ms.openlocfilehash: 2e478ff3a601e1dad3164d0fe116ebd05c20cee7
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102605667"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563744"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>ASP.NET Core 3.0 的新增功能
 
@@ -44,7 +44,7 @@ Blazor 框架支持的方案：
 * 组件布局
 * 对依赖项注入的支持
 * 窗体和验证
-* 用 Razor 类库构建组件库
+* 在 Razor 类库中提供 Razor 组件
 * JavaScript 互操作
 
 有关详细信息，请参阅 <xref:blazor/index>。

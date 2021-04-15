@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/troubleshoot
-ms.openlocfilehash: 1fd89059183300993c7fa78aa8dab1bda247a530
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 5b10b1b547e691bbdd16ff1c418a9119442bc998
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586977"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106564262"
 ---
 # <a name="troubleshoot-grpc-on-net-core"></a>对 .NET Core 上的 gRPC 进行故障排除
 
@@ -184,5 +184,56 @@ WPF 项目存在一个[已知问题](https://github.com/dotnet/wpf/issues/810)�
 3. 在 WPF 应用程序中，添加对新项目的引用。
 
 WPF 应用程序可以使用来自新类库项目的 gRPC 生成的类型。
+
+## <a name="calling-grpc-services-hosted-in-a-sub-directory"></a>调用子目录中托管的 gRPC 服务
+
+发出 gRPC 调用时，将忽略 gRPC 通道地址的路径部分。 例如，当路由对服务的 gRPC 调用时，`GrpcChannel.ForAddress("https://localhost:5001/ignored_path")` 不使用 `ignored_path`。
+
+由于 gRPC 具有标准化的规范地址结构，因此会忽略地址路径。 gRPC 地址组合了包、服务和方法的名称：`https://localhost:5001/PackageName.ServiceName/MethodName`。
+
+在某些情况下，应用需要包含具有 gRPC 调用的路径。 例如，当 ASP.NET Core gRPC 应用托管在 IIS 目录中时，需要在请求中包含该目录。 如果路径是必需的，则可以使用下面指定的自定义 `SubdirectoryHandler` 方法将其添加到 gRPC 调用：
+
+```csharp
+/// <summary>
+/// A delegating handler that adds a subdirectory to the URI of gRPC requests.
+/// </summary>
+public class SubdirectoryHandler : DelegatingHandler
+{
+    private readonly string _subdirectory;
+
+    public SubdirectoryHandler(HttpMessageHandler innerHandler, string subdirectory)
+        : base(innerHandler)
+    {
+        _subdirectory = subdirectory;
+    }
+
+    protected override Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        var url = $"{request.RequestUri.Scheme}://{request.RequestUri.Host}";
+        url += $"{_subdirectory}{request.RequestUri.AbsolutePath}";
+        request.RequestUri = new Uri(url, UriKind.Absolute);
+
+        return base.SendAsync(request, cancellationToken);
+    }
+}
+```
+
+`SubdirectoryHandler` 在创建 gRPC 通道时使用。
+
+```csharp
+var handler = new SubdirectoryHandler(new HttpClientHandler(), "/MyApp");
+
+var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpHandler = handler });
+var client = new Greet.GreeterClient(channel);
+
+var reply = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
+```
+
+前面的代码：
+
+* 创建具有 `/MyApp` 路径的 `SubdirectoryHandler`。
+* 配置通道以使用 `SubdirectoryHandler`。
+* 使用 `SayHelloAsync` 调用 gRPC 服务。 gRPC 调用将发送到 `https://localhost:5001/MyApp/greet.Greeter/SayHello`。
 
 [!INCLUDE[](~/includes/gRPCazure.md)]

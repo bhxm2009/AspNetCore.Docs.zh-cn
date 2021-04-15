@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/templated-components
-ms.openlocfilehash: 6c94218f3808baca18f23a53688bafdd6354e760
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: d58bd87ba2b39ad7e6d57560a200c69e7937ec0d
+ms.sourcegitcommit: fafcf015d64aa2388bacee16ba38799daf06a4f0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589473"
+ms.lasthandoff: 03/30/2021
+ms.locfileid: "105957725"
 ---
 # <a name="aspnet-core-blazor-templated-components"></a>ASP.NET Core Blazor 模板化组件
 
@@ -111,10 +111,86 @@ ms.locfileid: "102589473"
 
 ::: moniker-end
 
-## <a name="generic-type-constraints"></a>泛型类型约束
+## <a name="infer-generic-types-based-on-ancestor-components"></a>基于上级组件推断泛型类型
+
+::: moniker range=">= aspnetcore-6.0"
+
+上级组件可以使用 `CascadingTypeParameter` 特性将类型参数按名称级联到下级。 此特性允许泛型类型推理自动使用指定的类型参数以及具有相同名称的类型参数的下级。
+
+例如，以下 `Chart` 组件接收股票价格数据，并将名为 `TLineData` 的泛型类型参数级联到其下级组件。
+
+`Shared/Chart.razor`:
+
+```razor
+@typeparam TLineData
+@attribute [CascadingTypeParameter(nameof(TLineData))]
+
+...
+
+@code {
+    [Parameter]
+    public IEnumerable<TLineData> Data { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
+```
+
+`Shared/Line.razor`:
+
+```razor
+@typeparam TLineData
+
+...
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public decimal Value { get; set; }
+
+    [Parameter]
+    public IEnumerable<TLineData> Data { get; set; }
+}
+```
+
+使用 `Chart` 组件时，不会为图表的每个 `Line` 组件指定 `TLineData`。
+
+`Pages/StockPriceHistory.razor`:
+
+```razor
+@page "/stock-price-history"
+
+<Chart Data="stockPriceHistory.GroupBy(x => x.Date)">
+    <Line Title="Open" Value="day => day.Values.First()" />
+    <Line Title="High" Value="day => day.Values.Max()" />
+    <Line Title="Low" Value="day => day.Values.Min()" />
+    <Line Title="Close" Value="day => day.Values.Last()" />
+</Chart>
+```
 
 > [!NOTE]
-> 未来版本将支持泛型类型约束。 有关详细信息，请参阅[允许泛型类型约束 (dotnet/aspnetcore #8433)](https://github.com/dotnet/aspnetcore/issues/8433)。
+> Visual Studio Code 中的 Razor 支持尚未更新为支持此功能，因此即使项目正确生成，你也可能会收到“不正确”错误。 即将发布的工具版本中将解决此问题。
+
+通过将 `@attribute [CascadingTypeParameter(...)]` 添加到组件中，符合以下条件的下级会自动使用指定的泛型类型参数：
+
+* 在同一个 `.razor` 文档中嵌套为组件的子内容。
+* 同时还使用完全相同的名称声明了 [`@typeparam`](xref:mvc/views/razor#typeparam)。
+* 没有为类型参数提供其他值，也没有为其推断。 如果提供或推断了其他值，则其优先于级联泛型类型。
+
+接收级联类型参数时，组件从具有 `CascadingTypeParameter` 和一个匹配名称的最接近的上级中获取参数值。 级联泛型类型参数在特定子树内被重写。
+
+匹配只按名称进行。 因此，建议使用通用名称（例如 `T` 或 `TItem`）来避免使用级联泛型类型参数。 如果开发人员选择级联一个类型参数，则会隐式承诺其名称是唯一的，不会与来自无关组件的其他级联类型参数冲突。
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
+> [!NOTE]
+> ASP.NET Core 6.0 或更高版本中支持推断泛型类型。 有关详细信息，请参阅本文中介绍的 ASP.NET Core 5.0 以上版本的内容。
+
+::: moniker-end
 
 ## <a name="additional-resources"></a>其他资源
 

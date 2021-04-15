@@ -4,7 +4,7 @@ author: rick-anderson
 description: Razor 页面和实体框架教程系列的第 3 部分。
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/22/2019
+ms.date: 3/3/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 51a1e2a90259898262ac655b7a0e8a55d766f0c7
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: e4490c7c2e5fa2e615583be8567df6377445a079
+ms.sourcegitcommit: fafcf015d64aa2388bacee16ba38799daf06a4f0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93061036"
+ms.lasthandoff: 03/30/2021
+ms.locfileid: "105957740"
 ---
-# <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>第 3 部分，ASP.NET Core 中的 Razor 页面和 EF Core - 排序、筛选、分页
+# <a name="part-3-razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>第 3 部分，ASP.NET Core 中的 Razor 页面和 EF Core - 排序、筛选、分页
 
-作者：[Tom Dykstra](https://github.com/tdykstra)、[Rick Anderson](https://twitter.com/RickAndMSFT) 和 [Jon P Smith](https://twitter.com/thereformedprog)
+作者：[Tom Dykstra](https://github.com/tdykstra)、[Jeremy Likness](https://twitter.com/jeremylikness) 和 [Jon P Smith](https://twitter.com/thereformedprog)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
@@ -62,7 +62,7 @@ Razor 页面使用 `NameSort` 和 `DateSort` 为列标题超链接配置相应�
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_Ternary)]
 
-该代码使用 C# [条件运算符 ?:](/dotnet/csharp/language-reference/operators/conditional-operator)。 `?:` 运算符是三元运算符，它采用三个操作数。 第一行指定当 `sortOrder` 为 NULL 或为空时，`NameSort` 设置为 `name_desc`。 如果 `sortOrder` 不*_为 NULL 或不为空，则 `NameSort` 设置为空字符串。
+该代码使用 C# [条件运算符 ?:](/dotnet/csharp/language-reference/operators/conditional-operator)。 `?:` 运算符是三元运算符，它采用三个操作数。 第一行指定当 `sortOrder` 为 NULL 或为空时，`NameSort` 设置为 `name_desc`。 如果 `sortOrder` 不为 NULL 或不为空，则 `NameSort` 设置为空字符串。
 
 通过这两个语句，页面可如下设置列标题超链接：
 
@@ -85,7 +85,7 @@ Razor 页面使用 `NameSort` 和 `DateSort` 为列标题超链接配置相应�
 
 ### <a name="add-column-heading-hyperlinks-to-the-student-index-page"></a>向“学生索引”页添加列标题超链接
 
-使用以下代码替换 _Students/Index.cshtml* 中的代码。 突出显示所作更改。
+使用以下代码替换 Students/Index.cshtml 中的代码。 突出显示所作更改。
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml?highlight=5,8,17-19,22,25-27,33)]
 
@@ -139,7 +139,7 @@ Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
 有关详细信息，请参阅 [How to use case-insensitive query with Sqlite provider](https://github.com/aspnet/EntityFrameworkCore/issues/11414)（如何在 Sqlite 提供程序中使用不区分大小写的查询）。
 
-### <a name="update-the-no-locrazor-page"></a>更新 Razor 页面
+### <a name="update-the-razor-page"></a>更新 Razor 页面
 
 替换 Pages/Students/Index.cshtml 中的代码，以添加“搜索”按钮。
 
@@ -173,17 +173,23 @@ https://localhost:5001/Students?SearchString=an
 
 在项目文件夹中，使用以下代码创建 `PaginatedList.cs`：
 
-[!code-csharp[Main](intro/samples/cu30/PaginatedList.cs)]
+[!code-csharp[Main](intro/samples/cu50/PaginatedList.cs)]
 
 上述代码中的 `CreateAsync` 方法会提取页面大小和页码，并将相应的 `Skip` 和 `Take` 语句应用于 `IQueryable`。 当在 `IQueryable` 上调用 `ToListAsync` 时，它将返回仅包含所请求页的列表。 属性 `HasPreviousPage` 和 `HasNextPage` 用于启用或禁用“上一页”和“下一页”分页按钮 。
 
 `CreateAsync` 方法用于创建 `PaginatedList<T>`。 构造函数不能创建 `PaginatedList<T>` 对象；构造函数不能运行异步代码。
 
-### <a name="add-paging-to-the-pagemodel-class"></a>向 PageModel 类添加分页
+### <a name="add-page-size-to-configuration"></a>向配置添加页面大小
+
+向 appsettings.json [配置](xref:fundamentals/configuration/index)文件添加 `PageSize`：
+
+[!code-json[Main](intro/samples/cu50/appsettings.json?highlight=2)]
+
+### <a name="add-paging-to-indexmodel"></a>向 IndexModel 添加分页
 
 替换 Students/Index.cshtml.cs 中的代码以添加分页。
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=15-20,23-30,57-59)]
+[!code-csharp[Main](intro/samples/cu50/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=5,15-20,28-43,70-72)]
 
 前面的代码：
 
@@ -192,7 +198,7 @@ https://localhost:5001/Students?SearchString=an
 * 在 `CurrentSort` 属性中保存排序顺序。
 * 如果有新的搜索字符串，则将页面索引重置为 1。
 * 使用 `PaginatedList` 类获取 Student 实体。
-* 将 `pageSize` 设置为 3。 真实的应用会使用[配置](xref:fundamentals/configuration/index)来设置页面大小值。
+* 从[配置](xref:fundamentals/configuration/index)中将 `pageSize` 设置为 3，如果配置失败，则设置为 4。
 
 出现以下情况时，`OnGetAsync` 接收到的所有参数均为 NULL：
 
@@ -217,19 +223,19 @@ https://localhost:5001/Students?SearchString=an
 
   `PaginatedList.CreateAsync` 调用中的 `pageIndex` 之后的两个问号表示 [NULL 合并运算符](/dotnet/csharp/language-reference/operators/null-conditional-operator)。 NULL 合并运算符定义可为 NULL 的类型的默认值。 若 `pageIndex` 具有值，则表达式 `pageIndex ?? 1` 返回其值，若其没有值，则表达式返回 1。
 
-### <a name="add-paging-links-to-the-no-locrazor-page"></a>向 Razor 页面添加分页链接
+### <a name="add-paging-links"></a>添加分页链接
 
 使用以下代码替换 Students/Index.cshtml 中的代码。 突出显示所作更改：
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=29-32,38-41,69-87)]
+[!code-cshtml[Main](intro/samples/cu50/Pages/Students/Index.cshtml?highlight=29-32,38-41,69-87)]
 
 列标题链接使用查询字符串将当前搜索字符串传递到 `OnGetAsync` 方法：
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=29-32)]
+[!code-cshtml[Main](intro/samples/cu50/Pages/Students/Index.cshtml?range=29-32)]
 
 分页按钮由标记帮助器显示：
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=73-87)]
+[!code-cshtml[Main](intro/samples/cu50/Pages/Students/Index.cshtml?range=73-87)]
 
 运行应用并导航到学生页面。
 
@@ -238,12 +244,12 @@ https://localhost:5001/Students?SearchString=an
 
 ![带有分页链接的“学生索引”页](sort-filter-page/_static/paging30.png)
 
-## <a name="add-grouping"></a>添加分组
+## <a name="grouping"></a>分组
 
-本节创建“关于”页面，页面中显示每个注册日期的注册学生数。 更新需使用分组并包括以下步骤：
+本部分创建 `About` 页面，页面中显示每个注册日期的注册学生数。 更新需使用分组并包括以下步骤：
 
-* 为“关于”页使用的数据创建视图模型。
-* 更新“关于”页以使用视图模型。
+* 为 `About` 页使用的数据创建视图模型。
+* 更新 `About` 页以使用视图模型。
 
 ### <a name="create-the-view-model"></a>创建视图模型
 
@@ -251,19 +257,19 @@ https://localhost:5001/Students?SearchString=an
 
 使用以下代码创建 SchoolViewModels/EnrollmentDateGroup.cs：
 
-[!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
+[!code-csharp[Main](intro/samples/cu50/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### <a name="create-the-no-locrazor-page"></a>创建 Razor 页面
+### <a name="create-the-razor-page"></a>创建 Razor 页面
 
 使用以下代码创建 Pages/About.cshtml 文件：
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/About.cshtml)]
+[!code-cshtml[Main](intro/samples/cu50/Pages/About.cshtml)]
 
 ### <a name="create-the-page-model"></a>创建页面模型
 
 用以下代码更新 Pages/About.cshtml.cs 文件：
 
-[!code-csharp[Main](intro/samples/cu30/Pages/About.cshtml.cs)]
+[!code-csharp[Main](intro/samples/cu50/Pages/About.cshtml.cs)]
 
 LINQ 语句按注册日期对学生实体进行分组，计算每组中实体的数量，并将结果存储在 `EnrollmentDateGroup` 视图模型对象的集合中。
 
@@ -289,7 +295,7 @@ LINQ 语句按注册日期对学生实体进行分组，计算每组中实体的
 
 ![“学生索引”页](sort-filter-page/_static/paging.png)
 
-如果遇到无法解决的问题，请下载[已完成应用](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples)。
+如果遇到无法解决的问题，请下载[已完成应用](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples)。
 
 ## <a name="add-sorting-to-the-index-page"></a>向索引页添加排序
 
@@ -473,7 +479,7 @@ http://localhost:5000/Students?SearchString=an
 
 `PaginatedList.CreateAsync` 中的两个问号表示 [NULL 合并运算符](/dotnet/csharp/language-reference/operators/null-conditional-operator)。 NULL 合并运算符定义可为 NULL 的类型的默认值。 `(pageIndex ?? 1)` 表达式表示返回 `pageIndex` 的值（若带有值）。 如果 `pageIndex` 没有值，则返回 1。
 
-## <a name="add-paging-links-to-the-student-no-locrazor-page"></a>向“学生”Razor 页面添加分页链接
+## <a name="add-paging-links-to-the-student-razor-page"></a>向“学生”Razor 页面添加分页链接
 
 更新 Students/Index.cshtml 中的标记。 突出显示所作更改：
 
@@ -527,7 +533,7 @@ ASP.NET Core 2.2 中的 Web 模板不包含“关于”页面。 如果使用的
 
 LINQ 语句按注册日期对学生实体进行分组，计算每组中实体的数量，并将结果存储在 `EnrollmentDateGroup` 视图模型对象的集合中。
 
-### <a name="modify-the-about-no-locrazor-page"></a>修改“关于”Razor 页面
+### <a name="modify-the-about-razor-page"></a>修改“关于”Razor 页面
 
 将 Pages/About.cshtml 文件中的代码替换为以下代码：
 
@@ -535,7 +541,7 @@ LINQ 语句按注册日期对学生实体进行分组，计算每组中实体的
 
 运行应用并导航到“关于”页面。 表格中会显示每个注册日期的学生计数。
 
-如果遇到无法解决的问题，请下载[本阶段的已完成应用](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part3-sorting)。
+如果遇到无法解决的问题，请下载[本阶段的已完成应用](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part3-sorting)。
 
 ![“关于”页面](sort-filter-page/_static/about.png)
 

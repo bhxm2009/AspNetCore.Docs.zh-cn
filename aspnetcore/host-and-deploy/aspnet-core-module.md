@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: 8574bc06b7c27fbb8caf834754188dba67bcb4e3
-ms.sourcegitcommit: acfe51c35497a204f75c2a61125c9408c04493e6
+ms.openlocfilehash: fd9c5bf94385d76aed22a09bd4cd248f1c1dcb6e
+ms.sourcegitcommit: fafcf015d64aa2388bacee16ba38799daf06a4f0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102605688"
+ms.lasthandoff: 03/30/2021
+ms.locfileid: "105957673"
 ---
 # <a name="aspnet-core-module"></a>ASP.NET Core 模块
 
@@ -41,11 +41,15 @@ ASP.NET Core 模块是插入 IIS 管道的本机 IIS 模块，能让 ASP.NET Cor
 
 ## <a name="install-aspnet-core-module"></a>安装 ASP.NET Core 模块
 
+ASP.NET Core 模块随 [.NET Core 托管捆绑包](xref:host-and-deploy/iis/hosting-bundle)中的 .NET Core 运行时一起安装。 ASP.NET Core 模块与 .NET 的 LTS 版本向前和向后兼容。
+
+[!INCLUDE[](~/includes/announcements.md)]
+
 使用以下链接下载安装程序：
 
 [当前 .NET Core 托管捆绑包安装程序（直接下载）](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-若要详细了解如何安装 ASP.NET Core 模块或不同版本的模块，请参阅[安装 .NET Core 托管捆绑包](xref:host-and-deploy/iis/hosting-bundle)。
+有关详细信息（包括安装模块的早期版本），请参阅 <xref:host-and-deploy/iis/hosting-bundle>。
 
 若要学习将 ASP.NET Core 应用发布到 IIS 服务器的教程，请参阅<xref:tutorials/publish-to-iis>。
 
@@ -153,7 +157,9 @@ ASP.NET Core 模块还可以：
 
 ## <a name="how-to-install-and-use-the-aspnet-core-module"></a>如何安装和使用 ASP.NET Core 模块
 
-有关如何安装 ASP.NET Core 模块的说明，请参阅[安装 .NET Core 托管捆绑包](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle)。
+有关如何安装 ASP.NET Core 模块的说明，请参阅[安装 .NET Core 托管捆绑包](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle)。 ASP.NET Core 模块与 .NET 的 LTS 版本向前和向后兼容。
+
+[!INCLUDE[](~/includes/announcements.md)]
 
 ## <a name="configuration-with-webconfig"></a>web.config 的配置
 
@@ -568,7 +574,9 @@ ASP.NET Core 模块还可以：
 
 ## <a name="how-to-install-and-use-the-aspnet-core-module"></a>如何安装和使用 ASP.NET Core 模块
 
-有关如何安装 ASP.NET Core 模块的说明，请参阅[安装 .NET Core 托管捆绑包](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle)。
+有关如何安装 ASP.NET Core 模块的说明，请参阅[安装 .NET Core 托管捆绑包](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle)。 ASP.NET Core 模块与 .NET 的 LTS 版本向前和向后兼容。
+
+[!INCLUDE[](~/includes/announcements.md)]
 
 ## <a name="configuration-with-webconfig"></a>web.config 的配置
 

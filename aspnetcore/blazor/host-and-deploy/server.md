@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/server
-ms.openlocfilehash: bac6f4a6595558f32779286bcc09c266663a2d24
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: fd5ea02be9396b2c1418ac82b6a4be79ec2b4849
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102394975"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081346"
 ---
 # <a name="host-and-deploy-blazor-server"></a>托管和部署 Blazor Server
 

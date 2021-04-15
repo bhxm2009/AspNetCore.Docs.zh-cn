@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: ce6804a58c5b17b57732713acc3aeca15042da0a
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 0b545294cd44159544360a8e2414de912f3465e6
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589707"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563836"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>ASP.NET Core 依赖注入
 
@@ -783,7 +783,7 @@ services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
 
 ## <a name="call-services-from-main"></a>从 main 调用服务
 
-使用 [IServiceScopeFactory.CreateScope](xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope*) 创建 <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> 以解析应用范围内的作用域服务。  此方法可以用于在启动时访问有作用域的服务以便运行初始化任务。 以下示例演示如何在 `Program.Main` 中获取 `MyScopedService` 的上下文：
+使用 <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope%2A?displayProperty=nameWithType> 创建 <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> 以解析应用范围内的作用域服务。  此方法可用于在启动时使用正确的服务生命周期访问范围内服务，以运行初始化任务。 以下示例演示如何在 `Program.Main` 中获取 `MyScopedService` 的上下文：
 
 ```csharp
 using System;
@@ -823,6 +823,8 @@ public class Program
             .UseStartup<Startup>();
 }
 ```
+
+不需要为暂时性服务创建范围，其中包括前面示例中的 `ILogger`（请参阅：<xref:fundamentals/logging/index#create-logs-in-main>）。 当从根解析时，暂时性服务并不会像限定范围的服务那样无意地解析为单一实例。 暂时性服务是在请求时创建的。 如果暂时性服务碰巧是可处置的，则在处置之前它都将以容器为根。 有关示例，请参阅 <xref:fundamentals/http-requests#use-ihttpclientfactory-in-a-console-app>。
 
 ## <a name="scope-validation"></a>作用域验证
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: adf22001e7d9b8ee4f36456cd4b07d2791a7331f
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: 3d3325583bd5442b2289c19b61bb69ef7a21ddd4
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102395145"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081502"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>调试 ASP.NET Core Blazor WebAssembly
 
@@ -46,7 +46,7 @@ ms.locfileid: "102395145"
 目前，无法执行以下操作：
 
 * 出现未经处理的异常时中断。
-* 于应用启动期间在调试代理运行之前命中断点。 这包括 `Program.Main` (`Program.cs`) 中的断点和组件的 [`OnInitialized{Async}` 方法](xref:blazor/components/lifecycle#component-initialization-methods) 中的断点，其中这些组件由请求自应用的第一页加载。
+* 于应用启动期间在调试代理运行之前命中断点。 这包括 `Program.Main` (`Program.cs`) 中的断点和组件的 [`OnInitialized{Async}` 生命周期方法](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)中的断点，其中这些组件由请求自应用的第一页加载。
 * 在非本地方案中调试（例如，[适用于 Linux 的 Windows 子系统 (WSL)](/windows/wsl/) 或 [Visual Studio Codespaces](/visualstudio/codespaces/overview/what-is-vsonline)）。
 * 在调试期间自动重新生成托管 Blazor WebAssembly 解决方案的后端 `*Server*` 应用，例如通过使用 [`dotnet watch run`](xref:tutorials/dotnet-watch) 运行应用。
 
@@ -117,7 +117,7 @@ Visual Studio for Mac 需要版本 8.8（内部版本 1532）或更高版本：
 1. 再次按 <kbd>F5</kbd> 以继续执行，并查看浏览器中呈现的天气预报表。
 
 > [!NOTE]
-> 在运行调试代理之前，在应用启动期间不会命中断点。 这包括 `Program.Main` (`Program.cs`) 中的断点和组件的 [`OnInitialized{Async}` 方法](xref:blazor/components/lifecycle#component-initialization-methods) 中的断点，其中这些组件由请求自应用的第一页加载。
+> 在运行调试代理之前，在应用启动期间不会命中断点。 这包括 `Program.Main` (`Program.cs`) 中的断点和组件的 [`OnInitialized{Async}` 生命周期方法](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)中的断点，其中这些组件由请求自应用的第一页加载。
 
 如果应用托管在不同于 `/` 的[应用程序基路径](xref:blazor/host-and-deploy/index#app-base-path)上，请更新 `Properties/launchSettings.json` 中的以下属性，以反映应用程序的基路径：
 
@@ -198,7 +198,7 @@ Visual Studio for Mac 需要版本 8.8（内部版本 1532）或更高版本：
 1. 在浏览器中，导航到 `Counter` 页，然后选择“单击此处”按钮以命中断点。
 
 > [!NOTE]
-> 在运行调试代理之前，在应用启动期间不会命中断点。 这包括 `Program.Main` (`Program.cs`) 中的断点和组件的 [`OnInitialized{Async}` 方法](xref:blazor/components/lifecycle#component-initialization-methods) 中的断点，其中这些组件由请求自应用的第一页加载。
+> 在运行调试代理之前，在应用启动期间不会命中断点。 这包括 `Program.Main` (`Program.cs`) 中的断点和组件的 [`OnInitialized{Async}` 生命周期方法](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)中的断点，其中这些组件由请求自应用的第一页加载。
 
 ## <a name="debug-hosted-blazor-webassembly"></a>调试托管 Blazor WebAssembly
 
@@ -314,7 +314,7 @@ Visual Studio for Mac 需要版本 8.8（内部版本 1532）或更高版本：
 1. 再次按 <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> 以继续执行，并查看浏览器中呈现的天气预报表。
 
 > [!NOTE]
-> 在运行调试代理之前，在应用启动期间不会命中断点。 这包括 `Program.Main` (`Program.cs`) 中的断点和组件的 [`OnInitialized{Async}` 方法](xref:blazor/components/lifecycle#component-initialization-methods) 中的断点，其中这些组件由请求自应用的第一页加载。
+> 在运行调试代理之前，在应用启动期间不会命中断点。 这包括 `Program.Main` (`Program.cs`) 中的断点和组件的 [`OnInitialized{Async}` 生命周期方法](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)中的断点，其中这些组件由请求自应用的第一页加载。
 
 有关详细信息，请参阅[使用 Visual Studio for Mac 进行调试](/visualstudio/mac/debugging)。
 
@@ -384,7 +384,7 @@ Blazor 提供调试代理，该代理实现 [Chrome DevTools Protocol](https://c
 
 ### <a name="breakpoints-in-oninitializedasync-not-hit"></a>`OnInitialized{Async}` 中的未命中断点
 
-Blazor 框架的调试代理需要一小段时间才能启动，因此 [`OnInitialized{Async}` 生命周期方法](xref:blazor/components/lifecycle#component-initialization-methods)中的断点可能不会命中。 建议在方法主体开头添加延迟，以便在命中断点之前，为调试代理指定一段时间来启动。 你可以根据 [`if` 编译器指令](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if)包括延迟，以确保应用的发布版本不存在延迟。
+Blazor 框架的调试代理需要一小段时间才能启动，因此 [`OnInitialized{Async}` 生命周期方法](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)中的断点可能不会命中。 建议在方法主体开头添加延迟，以便在命中断点之前，为调试代理指定一段时间来启动。 你可以根据 [`if` 编译器指令](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if)包括延迟，以确保应用的发布版本不存在延迟。
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 

@@ -3,7 +3,7 @@ title: 第 2 部分，ASP.NET Core 中的 Razor 页面和 EF Core - CRUD
 author: rick-anderson
 description: Razor 页面和实体框架教程系列第 2 部分。
 ms.author: riande
-ms.date: 07/22/2019
+ms.date: 3/3/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -17,16 +17,16 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 4a48fb094888d51aa6f881c82e4f20ffbc84c8e2
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 4b9a7fcd6eb23af7f7c679ab0faa512634273e00
+ms.sourcegitcommit: fafcf015d64aa2388bacee16ba38799daf06a4f0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96901166"
+ms.lasthandoff: 03/30/2021
+ms.locfileid: "105957454"
 ---
-# <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>第 2 部分，ASP.NET Core 中的 Razor 页面和 EF Core - CRUD
+# <a name="part-2-razor-pages-with-ef-core-in-aspnet-core---crud"></a>第 2 部分，ASP.NET Core 中的 Razor 页面和 EF Core - CRUD
 
-作者：[Tom Dykstra](https://github.com/tdykstra)、[Jon P Smith](https://twitter.com/thereformedprog) 和 [Rick Anderson](https://twitter.com/RickAndMSFT)
+作者：[Tom Dykstra](https://github.com/tdykstra)、[Jeremy Likness](https://twitter.com/jeremylikness) 和 [Jon P Smith](https://twitter.com/thereformedprog)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
@@ -36,15 +36,15 @@ ms.locfileid: "96901166"
 
 ## <a name="no-repository"></a>无存储库
 
-某些开发人员使用服务层或存储库模式在 UI (Razor Pages) 和数据访问层之间创建抽象层。 本教程不会这样做。 为最大程度降低复杂性并让本教程重点介绍 EF Core，将直接在页面模型类中添加 EF Core 代码。 
+某些开发人员使用服务层或存储库模式在 UI (Razor Pages) 和数据访问层之间创建抽象层。 本教程不会这样做。 为最大程度降低复杂性并让本教程重点介绍 EF Core，将直接在页面模型类中添加 EF Core 代码。
 
 ## <a name="update-the-details-page"></a>更新“详细信息”页
 
-“学生”页的基架代码不包括注册数据。 本部分将向“详细信息”页添加注册。
+“学生”页的基架代码不包括注册数据。 本部分将向 `Details` 页添加注册。
 
 ### <a name="read-enrollments"></a>读取注册
 
-为了在页面上显示学生的注册数据，你需要读取这些数据。 Pages/Students/Details.cshtml.cs 中的基架代码仅读取学生数据，但不读取注册数据：
+若要在页面上显示学生的注册数据，必须读取注册数据。 Pages/Students/Details.cshtml.cs 中的基架代码仅读取 `Student` 数据，但不读取 `Enrollment` 数据：
 
 [!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Pages/Students/Details1.cshtml.cs?name=snippet_OnGetAsync&highlight=8)]
 
@@ -62,7 +62,7 @@ ms.locfileid: "96901166"
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Details.cshtml?highlight=32-53)]
 
-上面的代码循环通过 `Enrollments` 导航属性中的实体。 它将针对每个注册显示课程标题和成绩。 课程标题从 Course 实体中检索，该实体存储在 Enrollments 实体的 `Course` 导航属性中。
+上面的代码循环通过 `Enrollments` 导航属性中的实体。 它将针对每个注册显示课程标题和成绩。 课程标题从 `Course` 实体中检索，该实体存储在 Enrollments 实体的 `Course` 导航属性中。
 
 运行应用，选择“学生”选项卡，然后单击学生的“详细信息”链接 。 随即显示出所选学生的课程和成绩列表。
 
@@ -173,11 +173,16 @@ ms.locfileid: "96901166"
 
 在此部分中，当对 `SaveChanges` 的调用失败时，将实现自定义错误消息。
 
-使用以下代码替换 *Pages/Students/Delete.cshtml.cs* 中的代码。 突出显示所作更改：
+使用以下代码替换 Pages/Students/Delete.cshtml.cs 中的代码：
 
-[!code-csharp[Main](intro/samples/cu50/Pages/Students/Delete.cshtml.cs?name=snippet_All&highlight=12-14,22,30-33,45-99)]
+[!code-csharp[Main](intro/samples/cu50/Pages/Students/Delete.cshtml.cs)]
 
-前面的代码将可选参数 `saveChangesError` 添加到 `OnGetAsync` 方法签名中。 `saveChangesError` 指示学生对象删除失败后是否调用该方法。 删除操作可能由于暂时性网络问题而失败。 数据库在云中时，更可能出现暂时性网络错误。 通过 UI 调用“删除”页 `OnGetAsync` 时，`saveChangesError` 参数为 `false`。 当 `OnPostAsync` 调用 `OnGetAsync`（由于删除操作失败）时，`saveChangesError` 参数为 `true`。
+前面的代码：
+
+* 添加[日志记录](xref:fundamentals/logging/index)。
+* 将可选参数 `saveChangesError` 添加到 `OnGetAsync` 方法签名中。 `saveChangesError` 指示学生对象删除失败后是否调用该方法。
+
+删除操作可能由于暂时性网络问题而失败。 数据库在云中时，更可能出现暂时性网络错误。 通过 UI 调用“删除”页 `OnGetAsync` 时，`saveChangesError` 参数为 `false`。 当 `OnPostAsync` 调用 `OnGetAsync`（由于删除操作失败）时，`saveChangesError` 参数为 `true`。
 
 `OnPostAsync` 方法检索所选实体，然后调用 [Remove](/dotnet/api/microsoft.entityframeworkcore.dbcontext.remove#Microsoft_EntityFrameworkCore_DbContext_Remove_System_Object_) 方法将实体的状态设置为 `Deleted`。 调用 `SaveChanges` 时生成 SQL `DELETE` 命令。 如果 `Remove` 失败：
 
@@ -186,7 +191,7 @@ ms.locfileid: "96901166"
 
 向 Pages/Students/Delete.cshtml 添加错误消息：
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
+[!code-cshtml[Main](intro/samples/cu50/Pages/Students/Delete.cshtml?highlight=10)]
 
 运行应用并删除学生以测试“删除”页。
 
@@ -296,7 +301,7 @@ ms.locfileid: "96901166"
 
 [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues.setvalues#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyValues_SetValues_System_Object_) 方法通过从另一个 [PropertyValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues) 对象读取值来设置此对象的值。 `SetValues` 使用属性名称匹配。 视图模型类型不需要与模型类型相关，它只需要具有匹配的属性。
 
-使用 `StudentVM` 时需要更新 [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/2-crud/Pages/Students/CreateVM.cshtml) 才能使用 `StudentVM` 而非 `Student`。
+使用 `StudentVM` 时需要更新 [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/2-crud/Pages/Students/CreateVM.cshtml) 才能使用 `StudentVM` 而非 `Student`。
 
 ## <a name="update-the-edit-page"></a>更新“编辑”页
 
@@ -376,7 +381,7 @@ ms.locfileid: "96901166"
 
 “索引”和“详细信息”页面使用 HTTP GET 方法 `OnGetAsync` 获取和显示请求数据
 
-## <a name="singleordefaultasync-vs-firstordefaultasync"></a>SingleOrDefaultAsync 与FirstOrDefaultAsync
+## <a name="singleordefaultasync-vs-firstordefaultasync"></a>`SingleOrDefaultAsync` 与 `FirstOrDefaultAsync`
 
 生成的代码使用 [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_)其推荐度通常高于 [SingleOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_)。
 
@@ -502,7 +507,7 @@ Pages/Students/Details.cshtml.cs 的 `OnGetAsync` 方法使用 `FirstOrDefaultAs
 
 [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues.setvalues#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyValues_SetValues_System_Object_) 方法通过从另一个 [PropertyValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues) 对象读取值来设置此对象的值。 `SetValues` 使用属性名称匹配。 视图模型类型不需要与模型类型相关，它只需要具有匹配的属性。
 
-使用 `StudentVM` 时需要更新 [CreateVM.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21/Pages/Students/CreateVM.cshtml) 才能使用 `StudentVM` 而非 `Student`。
+使用 `StudentVM` 时需要更新 [CreateVM.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu21/Pages/Students/CreateVM.cshtml) 才能使用 `StudentVM` 而非 `Student`。
 
 在 Razor Pages 中，`PageModel` 派生类就是视图模型。
 
@@ -565,7 +570,7 @@ DB 上下文会随时跟踪内存中的实体是否已与其在 DB 中的对应�
 * 会捕获 DB 异常。
 * 通过 `saveChangesError=true` 调用“删除”页 `OnGetAsync` 方法。
 
-### <a name="update-the-delete-no-locrazor-page"></a>更新“删除”Razor 页面
+### <a name="update-the-delete-razor-page"></a>更新“删除”Razor 页面
 
 将以下突出显示的错误消息添加到“删除”Razor 页面。
 <!--

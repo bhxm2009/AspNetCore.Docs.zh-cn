@@ -4,7 +4,7 @@ author: jamesnk
 description: 了解如何使用客户端工厂创建 gRPC 客户端。
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 03/19/2021
+ms.date: 04/01/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/clientfactory
-ms.openlocfilehash: ea5181bd44a5deafdc6634b31b9efeda2884b58c
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: ba03efe902f8510eaa81bbafaf948ef25a8e351a
+ms.sourcegitcommit: f67ba959d3cbfe33b32fa6a5eae1a5ae9de18167
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711498"
+ms.lasthandoff: 04/02/2021
+ms.locfileid: "106179712"
 ---
 # <a name="grpc-client-factory-integration-in-net"></a>.NET 中的 gRPC 客户端工厂集成
 
@@ -114,6 +114,8 @@ services
         o.Credentials = new CustomCredentials();
     });
 ```
+
+gRPC 侦听器或通道凭据可用于随每个请求发送 `Authorization` 元数据。 有关配置身份验证的详细信息，请参阅[发送具有 gRPC 客户端工厂的持有者令牌](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory)。
 
 ## <a name="deadline-and-cancellation-propagation"></a>截止时间和取消传播
 

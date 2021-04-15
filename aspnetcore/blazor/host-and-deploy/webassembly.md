@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: bb45b763fb24b5270c92b3ffd18f3fbc3ba1093b
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 280b54eb2d40e0058589df6eeaf6717e76f3879f
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589421"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563846"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>托管和部署 ASP.NET Core Blazor WebAssembly
 
@@ -301,156 +301,25 @@ dotnet publish -p:BlazorEnableCompression=false
 
   先前添加到服务器应用的 `Startup.Configure` 方法的中间件会将向 `/WeatherForecast` 发出的传入请求修改为 `/FirstApp/WeatherForecast` 或 `/SecondApp/WeatherForecast`，具体取决于端口 (5001/5002) 或域 (`firstapp.com`/`secondapp.com`)。 为了将天气数据从服务器应用返回到客户端应用，需要前面的控制器路由。
 
-### <a name="static-assets-and-class-libraries"></a>静态资产和类库
+### <a name="static-assets-and-class-libraries-for-multiple-blazor-webassembly-apps"></a>多个 Blazor WebAssembly 应用的静态资产和类库
 
-对于静态资产，请使用以下方法：
+使用以下方法来引用静态资产：
 
-* 如果资产位于客户端应用的 `wwwroot` 文件夹中，请正常提供其路径：
+* 如果资产位于客户端应用的 `wwwroot` 文件夹中，请正常提供路径：
 
   ```razor
   <img alt="..." src="/{ASSET FILE NAME}" />
   ```
 
-* 如果资产位于 [Razor 类库 (RCL)](xref:blazor/components/class-libraries) 的 `wwwroot` 文件夹中，请按照 [RCL 文章](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl)中的指导，在客户端应用程序中引用静态资产：
+  `{ASSET FILE NAME}` 占位符是资产的文件名称。
+
+* 如果资产位于 [Razor 类库 (RCL)](xref:blazor/components/class-libraries) 的 `wwwroot` 文件夹中，请按照 <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl> 中的指导，在客户端应用中引用静态资产：
 
   ```razor
   <img alt="..." src="_content/{LIBRARY NAME}/{ASSET FILE NAME}" />
   ```
 
-<!-- HOLD for reactivation at 5.x
-
-::: moniker range=">= aspnetcore-5.0"
-
-Components provided to a client app by a class library are referenced normally. If any components require stylesheets or JavaScript files, use either of the following approaches to obtain the static assets:
-
-* The client app's `wwwroot/index.html` file can link (`<link>`) to the static assets.
-* The component can use the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) to obtain the static assets.
-
-The preceding approaches are demonstrated in the following examples.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
--->
-
-通常引用按类库提供给客户端应用的组件。 如果任何组件需要样式表或 JavaScript 文件，客户端应用的 `wwwroot/index.html` 文件必须包含正确的静态资产链接。 下面的示例中演示了这些方法。
-
-<!-- HOLD for reactivation at 5.x
-
-::: moniker-end
-
--->
-
-将以下 `Jeep` 组件添加到其中一个客户端应用中。 `Jeep` 组件使用：
-
-* 来自客户端应用的 `wwwroot` 文件夹中的图像 (`jeep-cj.png`)。
-* 来自[已添加的 Razor 组件库](xref:blazor/components/class-libraries) (`JeepImage`) `wwwroot` 文件夹中的图像 (`jeep-yj.png`)。
-* 将 `JeepImage` 库添加到解决方案中后，RCL 项目模板会自动创建示例组件 (`Component1`)。
-
-```razor
-@page "/Jeep"
-
-<h1>1979 Jeep CJ-5&trade;</h1>
-
-<p>
-    <img alt="1979 Jeep CJ-5&trade;" src="/jeep-cj.png" />
-</p>
-
-<h1>1991 Jeep YJ&trade;</h1>
-
-<p>
-    <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
-</p>
-
-<p>
-    <em>Jeep CJ-5</em> and <em>Jeep YJ</em> are a trademarks of 
-    <a href="https://www.fcagroup.com">Fiat Chrysler Automobiles</a>.
-</p>
-
-<JeepImage.Component1 />
-```
-
-> [!WARNING]
-> 除非图像归你所有，否则不要公开发布车辆的图像。 否则，可能会侵犯版权。
-
-<!-- HOLD for reactivation at 5.x
-
-::: moniker range=">= aspnetcore-5.0"
-
-The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements):
-
-```razor
-<div class="my-component">
-    <Link href="_content/JeepImage/styles.css" rel="stylesheet" />
-
-    <h1>JeepImage.Component1</h1>
-
-    <p>
-        This Blazor component is defined in the <strong>JeepImage</strong> package.
-    </p>
-
-    <p>
-        <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
-    </p>
-</div>
-```
-
-An alternative to using the [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) is to load the stylesheet from the client app's `wwwroot/index.html` file. This approach makes the stylesheet available to all of the components in the client app:
-
-```html
-<head>
-    ...
-    <link href="_content/JeepImage/styles.css" rel="stylesheet" />
-</head>
-```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
--->
-
-还可以向库的 `Component1` 组件 (`Component1.razor`) 添加库的 `jeep-yj.png` 图像：
-
-```razor
-<div class="my-component">
-    <h1>JeepImage.Component1</h1>
-
-    <p>
-        This Blazor component is defined in the <strong>JeepImage</strong> package.
-    </p>
-
-    <p>
-        <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
-    </p>
-</div>
-```
-
-客户端应用的 `wwwroot/index.html` 文件要求库的样式表添加以下 `<link>` 标记：
-
-```html
-<head>
-    ...
-    <link href="_content/JeepImage/styles.css" rel="stylesheet" />
-</head>
-```
-
-<!-- HOLD for reactivation at 5.x
-
-::: moniker-end
-
--->
-
-向客户端应用的 `NavMenu` 组件中的 `Jeep` 组件 (`Shared/NavMenu.razor`) 添加导航：
-
-```razor
-<li class="nav-item px-3">
-    <NavLink class="nav-link" href="Jeep">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Jeep
-    </NavLink>
-</li>
-```
+  占位符 `{LIBRARY NAME}` 是库的名称。 `{ASSET FILE NAME}` 占位符是资产的文件名称。
 
 有关 RCL 的详细信息，请参阅：
 
@@ -468,6 +337,10 @@ An alternative to using the [`Link` component](xref:blazor/fundamentals/signalr#
 可以将 Blazor WebAssembly 应用部署到 Windows 上的 Azure 应用服务，该服务在 [IIS](#iis) 上托管应用。
 
 目前不支持将独立的 Blazor WebAssembly 应用部署到适用于 Linux 的 Azure 应用服务。 目前无法提供用于托管应用的 Linux 服务器映像。 正在进行此工作以支持此场景。
+
+### <a name="azure-static-web-app"></a>Azure 静态 Web 应用
+
+有关详细信息，请参阅[教程：在 Azure Static Web Apps 中使用 Blazor 生成静态 Web 应用](/azure/static-web-apps/deploy-blazor)。
 
 ### <a name="iis"></a>IIS
 

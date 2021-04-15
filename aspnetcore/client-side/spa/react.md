@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: spa/react
-ms.openlocfilehash: 6c3539d96329489189f49a3af0c718791824be6b
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: c3b7119590d568455f9e0410d1c2d4076f8f2443
+ms.sourcegitcommit: 7354c2029164702d075fd3786d96a92c6d49bc6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93054445"
+ms.lasthandoff: 04/01/2021
+ms.locfileid: "106164235"
 ---
 # <a name="use-the-react-project-template-with-aspnet-core"></a>通过 ASP.NET Core 使用 React 项目模板
 
@@ -36,9 +36,9 @@ React 项目模板不适用于服务器端呈现 (SSR)。 对于带有 React 和
 
 ## <a name="create-a-new-app"></a>创建新应用
 
-如果已安装 ASP.NET Core 2.1，则无需安装 React 项目模板。
+如果已安装 ASP.NET Core 2.1 或更高版本，则无需安装 React 项目模板。
 
-在空目录中使用命令 `dotnet new react` 从命令提示符创建一个新项目。 例如，以下命令在 my-new-app 目录中创建应用并切换到该目录：
+在空目录中使用命令 `dotnet new react` 从命令提示符创建一个新项目。 例如，以下命令在 my-new-app  目录中创建应用并切换到该目录：
 
 ```dotnetcli
 dotnet new react -o my-new-app
@@ -49,7 +49,7 @@ cd my-new-app
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-打开生成的 .csproj 文件，并从此文件正常运行应用。
+打开生成的 .csproj  文件，并从此文件正常运行应用。
 
 生成过程会在首次运行时还原 npm 依赖关系，这可能需要几分钟的时间。 后续版本要快得多。
 
@@ -73,7 +73,7 @@ ClientApp 目录是标准的 CRA React 应用。 有关详细信息，请参阅�
 
 ## <a name="install-npm-packages"></a>安装 npm 包
 
-要安装第三方 npm 程序包，请使用 ClientApp 子目录中的命令提示符。 例如：
+要安装第三方 npm 程序包，请使用 ClientApp  子目录中的命令提示符。 例如：
 
 ```console
 cd ClientApp
