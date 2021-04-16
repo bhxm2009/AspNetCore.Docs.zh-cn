@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/entity-framework-6
-ms.openlocfilehash: 44211ac7fa2acc7a7a9471ef362cff02f94fa2b6
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: b25c6bf414c82ce4cdf617a435434ecd9b746542
+ms.sourcegitcommit: 32203a42260e70d007c17a2b748b1bd5b9b662c1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588264"
+ms.lasthandoff: 04/13/2021
+ms.locfileid: "107298594"
 ---
 # <a name="aspnet-core-and-entity-framework-6"></a>ASP.NET Core 和 Entity Framework 6
 ::: moniker range=">= aspnetcore-3.0"
