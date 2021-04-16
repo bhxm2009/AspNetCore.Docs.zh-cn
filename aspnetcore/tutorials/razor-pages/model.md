@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 28d1a99e57a07a8d63cbbb7f0ecc7f84d1adf446
-ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
+ms.openlocfilehash: 366b2cbfc18a8666040ff9e3c5f1b2bb5a6a9f84
+ms.sourcegitcommit: 32203a42260e70d007c17a2b748b1bd5b9b662c1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/07/2021
-ms.locfileid: "106564297"
+ms.lasthandoff: 04/13/2021
+ms.locfileid: "107298607"
 ---
 # <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>第 2 部分，在 ASP.NET Core 中向 Razor 页面应用添加模型
 
@@ -138,21 +138,10 @@ ms.locfileid: "106564297"
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-<!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
--->
-
-* 打开项目目录（包含 Program.cs、Startup.cs 和 .csproj 文件）中的命令行界面。
-
-* **对于 Windows**：运行下面的命令：
+* 打开项目目录（包含 Program.cs、Startup.cs 和 .csproj 文件）中的命令行界面。 运行以下命令：
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
-  ```
-
-* **对于 macOS 和 Linux**：运行下面的命令：
-
-  ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
   ```
 
 <a name="codegenerator"></a> 下表详细说明了 ASP.NET Core 代码生成器选项。
