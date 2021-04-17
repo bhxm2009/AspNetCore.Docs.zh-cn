@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: 2d921a0c72fb7c03cd88966077e2d33e4b19ffa1
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 999f699dbfc03b9d4afbd4850d5d12579951d9e2
+ms.sourcegitcommit: 8f4313c762a0b7c30e5ce328b3afe146838f53d9
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102585911"
+ms.lasthandoff: 04/17/2021
+ms.locfileid: "107591505"
 ---
 # <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>在 ASP.NET Core 项目中添加、下载和删除自定义用户数据 Identity
 
@@ -108,7 +108,7 @@ dotnet new webapp -o WebApp1
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
-将对 [VisualStudio](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) 的包引用添加到项目 ( .csproj) 文件中。 在项目目录中运行以下命令：
+将对 [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) 的包引用添加到项目 ( .csproj) 文件中。 在项目目录中运行以下命令：
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -126,6 +126,8 @@ dotnet aspnet-codegenerator identity -h
 ```dotnetcli
 dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account.Manage.Index
 ```
+
+PowerShell 使用分号作为命令分隔符。 使用 PowerShell 时，请在文件列表中转义分号，或将文件列表置于双引号中。
 
 ---
 

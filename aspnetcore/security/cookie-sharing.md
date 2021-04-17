@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cookie-sharing
-ms.openlocfilehash: 0d43bbbc44015aff040b12dfacb260fe50492e54
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 5351c71056d25189ef30af10203c3971e21d90ec
+ms.sourcegitcommit: 8f4313c762a0b7c30e5ce328b3afe146838f53d9
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252989"
+ms.lasthandoff: 04/17/2021
+ms.locfileid: "107591700"
 ---
-# <a name="share-authentication-no-loccookies-among-aspnet-apps"></a>cookie在 ASP.NET 应用之间共享身份验证
+# <a name="share-authentication-cookies-among-aspnet-apps"></a>cookie在 ASP.NET 应用之间共享身份验证
 
 作者：[Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -42,11 +42,11 @@ ms.locfileid: "98252989"
   * 在 ASP.NET Core 应用中， <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> 用于设置密钥存储位置。
   * 在 .NET Framework 应用中， Cookie 身份验证中间件使用的实现 <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider> 。 `DataProtectionProvider` 为身份验证负载数据的加密和解密提供数据保护服务 cookie 。 该 `DataProtectionProvider` 实例与应用程序的其他部分所使用的数据保护系统隔离。 [DataProtectionProvider (DirectoryInfo，Action \<IDataProtectionBuilder>) ](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) 接受 <xref:System.IO.DirectoryInfo> 来指定数据保护密钥存储的位置。
 * `DataProtectionProvider` 需要 DataProtection NuGet 包 [AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) ：
-  * 在 ASP.NET Core 1.x 应用程序中，请参阅 [AspNetCore 元包](xref:fundamentals/metapackage-app)。
+  * 在 ASP.NET Core 1.x 应用程序中，引用 [Microsoft.AspNetCore.App 元包](xref:fundamentals/metapackage-app)。
   * 在 .NET Framework 应用中，将包引用添加到 [AspNetCore. DataProtection](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/)。
 * <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> 设置常见的应用名称。
 
-## <a name="share-authentication-no-loccookies-with-no-locaspnet-core-identity"></a>与共享身份验证 cookieASP.NET Core Identity
+## <a name="share-authentication-cookies-with-aspnet-core-identity"></a>与共享身份验证 cookieASP.NET Core Identity
 
 使用 ASP.NET Core Identity 时：
 
@@ -68,7 +68,9 @@ services.ConfigureApplicationCookie(options => {
 
 **注意：** 上述说明不适用于 `ITicketStore` (`CookieAuthenticationOptions.SessionStore`) 。  有关详细信息，请参阅[此 GitHub 问题](https://github.com/dotnet/AspNetCore.Docs/issues/21163)。
 
-## <a name="share-authentication-no-loccookies-without-no-locaspnet-core-identity"></a>共享身份 cookie 验证 ASP.NET Core Identity
+[!INCLUDE[](~/includes/cookies-not-compressed.md)]
+
+## <a name="share-authentication-cookies-without-aspnet-core-identity"></a>共享身份 cookie 验证 ASP.NET Core Identity
 
 如果 cookie 直接使用，则 ASP.NET Core Identity 在中配置数据保护和身份验证 `Startup.ConfigureServices` 。 在下面的示例中，"身份验证类型" 设置为 `Identity.Application` ：
 
@@ -84,7 +86,9 @@ services.AddAuthentication("Identity.Application")
     });
 ```
 
-## <a name="share-no-loccookies-across-different-base-paths"></a>cookie跨不同的基路径共享
+[!INCLUDE[](~/includes/cookies-not-compressed.md)]
+
+## <a name="share-cookies-across-different-base-paths"></a>cookie跨不同的基路径共享
 
 身份验证 cookie 使用[HttpRequest](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase)作为其默认值[ Cookie 。路径](xref:Microsoft.AspNetCore.Http.CookieBuilder.Path)。 如果应用的 cookie 必须在不同的基路径间共享，则 `Path` 必须重写：
 
@@ -99,7 +103,7 @@ services.ConfigureApplicationCookie(options => {
 });
 ```
 
-## <a name="share-no-loccookies-across-subdomains"></a>cookie跨子域共享
+## <a name="share-cookies-across-subdomains"></a>cookie跨子域共享
 
 承载跨子域共享的应用时 cookie ，请在中指定一个公共域[ Cookie 。域](xref:Microsoft.AspNetCore.Http.CookieBuilder.Domain)属性。 若要 cookie 在上跨应用共享 `contoso.com` ，例如 `first_subdomain.contoso.com` 和 `second_subdomain.contoso.com` ，请将 `Cookie.Domain` 指定 `.contoso.com` 为：
 
@@ -116,81 +120,9 @@ services.AddDataProtection()
     .ProtectKeysWithCertificate("{CERTIFICATE THUMBPRINT}");
 ```
 
-## <a name="share-authentication-no-loccookies-between-aspnet-4x-and-aspnet-core-apps"></a>cookie在 ASP.NET 4.x 和 ASP.NET Core 应用之间共享身份验证
+## <a name="share-authentication-cookies-between-aspnet-4x-and-aspnet-core-apps"></a>cookie在 ASP.NET 4.x 和 ASP.NET Core 应用之间共享身份验证
 
-使用 Katana Authentication 中间件的 ASP.NET 4.x 应用程序 Cookie 可以配置为生成 cookie 与 ASP.NET Core Cookie authentication 中间件兼容的身份验证。 这允许在多个步骤中升级大型站点的单个应用，同时跨站点提供平稳的 SSO 体验。
-
-当应用使用 Katana Cookie Authentication 中间件时，它会调用 `UseCookieAuthentication` 项目的 *Startup.Auth.cs* 文件。 使用 Visual Studio 2013 和更高版本创建的 ASP.NET 4.x web 应用项目在 Cookie 默认情况下使用 Katana Authentication 中间件。 尽管 `UseCookieAuthentication` ASP.NET Core 应用已过时且不受支持，但 `UseCookieAuthentication` 在使用 Katana Authentication 中间件的 ASP.NET 4.x 应用中调用 Cookie 是有效的。
-
-ASP.NET 4.x 应用必须面向 .NET Framework 4.5.1 或更高版本。 否则，无法安装所需的 NuGet 包。
-
-若要 cookie 在 ASP.NET 4.x 应用和 ASP.NET Core 应用之间共享身份验证，请按在 [ cookie ASP.NET Core 应用间共享身份验证](#share-authentication-cookies-with-aspnet-core-identity) 中的说明配置 ASP.NET Core 应用，并按如下所示配置 ASP.NET 4.x 应用。
-
-确认应用的包已更新到最新版本。 将 [Owin](https://www.nuget.org/packages/Microsoft.Owin.Security.Interop/) 包安装到每个 ASP.NET 1.x 应用程序中。
-
-查找并修改对的调用 `UseCookieAuthentication` ：
-
-* 更改该 cookie 名称以匹配该 Cookie 示例) 中 ASP.NET Core Authentication 中间件 (使用的名称 `.AspNet.SharedCookie` 。
-* 在下面的示例中，"身份验证类型" 设置为 `Identity.Application` 。
-* 向 `DataProtectionProvider` 通用数据保护密钥存储位置提供已初始化的实例。
-* 确认应用名称设置为在 cookie 示例) 中共享身份验证 (的所有应用使用的通用应用名称 `SharedCookieApp` 。
-
-如果未设置 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier` 和 `http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider` ，则将设置 <xref:System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier> 为区分唯一用户的声明。
-
-*App_Start/startup.auth.cs*：
-
-```csharp
-app.UseCookieAuthentication(new CookieAuthenticationOptions
-{
-    AuthenticationType = "Identity.Application",
-    CookieName = ".AspNet.SharedCookie",
-    LoginPath = new PathString("/Account/Login"),
-    Provider = new CookieAuthenticationProvider
-    {
-        OnValidateIdentity =
-            SecurityStampValidator
-                .OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
-                    validateInterval: TimeSpan.FromMinutes(30),
-                    regenerateIdentity: (manager, user) =>
-                        user.GenerateUserIdentityAsync(manager))
-    },
-    TicketDataFormat = new AspNetTicketDataFormat(
-        new DataProtectorShim(
-            DataProtectionProvider.Create("{PATH TO COMMON KEY RING FOLDER}",
-                (builder) => { builder.SetApplicationName("SharedCookieApp"); })
-            .CreateProtector(
-                "Microsoft.AspNetCore.Authentication.Cookies." +
-                    "CookieAuthenticationMiddleware",
-                "Identity.Application",
-                "v2"))),
-    CookieManager = new ChunkingCookieManager()
-});
-
-System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier =
-    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
-```
-
-生成用户标识时， () 的身份验证类型 `Identity.Application` 必须与 `AuthenticationType` `UseCookieAuthentication` *App_Start/startup.auth.cs* 中的 "设置" 中定义的类型匹配。
-
-*模型/ IdentityModels.cs*：
-
-```csharp
-public class ApplicationUser : IdentityUser
-{
-    public async Task<ClaimsIdentity> GenerateUserIdentityAsync(
-        UserManager<ApplicationUser> manager)
-    {
-        // The authenticationType must match the one defined in 
-        // CookieAuthenticationOptions.AuthenticationType
-        var userIdentity = 
-            await manager.CreateIdentityAsync(this, "Identity.Application");
-
-        // Add custom user claims here
-
-        return userIdentity;
-    }
-}
-```
+使用 Katana Authentication 中间件的 ASP.NET 4.x 应用程序 Cookie 可以配置为生成 cookie 与 ASP.NET Core Cookie authentication 中间件兼容的身份验证。 有关详细信息，请参阅 [ cookie 在 ASP.NET 4.x 和 ASP.NET Core 应用之间共享身份验证， (dotnet/AspNetCore.Doc#21987) ](https://github.com/dotnet/AspNetCore.Docs/issues/21987)。
 
 ## <a name="use-a-common-user-database"></a>使用公共用户数据库
 

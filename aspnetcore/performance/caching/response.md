@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 539ddb118279adb3a53394cdb0c2e5169092ebc0
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: ee296b4b6a1e8c764969bae94043d4fc91b6513c
+ms.sourcegitcommit: 8f4313c762a0b7c30e5ce328b3afe146838f53d9
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589226"
+ms.lasthandoff: 04/17/2021
+ms.locfileid: "107591609"
 ---
 # <a name="response-caching-in-aspnet-core"></a>ASP.NET Core 中的响应缓存
 
@@ -53,10 +53,10 @@ ms.locfileid: "102589226"
 
 下表显示了在缓存中扮演角色的其他缓存标头。
 
-| 标头                                                     | 函数 |
+| Header                                                     | 函数 |
 | ---------------------------------------------------------- | -------- |
 | [年龄](https://tools.ietf.org/html/rfc7234#section-5.1)     | 在源服务器上生成或成功验证响应以来的时间量（以秒为单位）。 |
-| [完](https://tools.ietf.org/html/rfc7234#section-5.3) | 响应被视为过时的时间。 |
+| [Expires](https://tools.ietf.org/html/rfc7234#section-5.3) | 响应被视为过时的时间。 |
 | [杂](https://tools.ietf.org/html/rfc7234#section-5.4)  | 存在，以便向后兼容 HTTP/1.0 缓存以设置 `no-cache` 行为。 如果该 `Cache-Control` 标头存在，则将 `Pragma` 忽略该标头。 |
 | [大](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | 指定不能发送缓存的响应，除非 `Vary` 缓存响应的原始请求和新请求中的所有标头字段都匹配。 |
 
@@ -66,7 +66,7 @@ ms.locfileid: "102589226"
 
 `Cache-Control`如果考虑 HTTP 缓存的目标，则始终考虑客户端请求标头是有意义的。 在官方规范下，缓存旨在减少在客户端、代理和服务器网络中满足请求的延迟和网络开销。 它不一定是控制源服务器上的负载的一种方法。
 
-使用 [响应缓存中间件](xref:performance/caching/middleware) 时，无开发人员对此缓存行为的控制，因为中间件遵循官方缓存规范。 [中间件的计划增强功能](https://github.com/dotnet/AspNetCore/issues/2612) 是在 `Cache-Control` 决定为缓存的响应提供服务时，将中间件配置为忽略请求标头的机会。 计划的增强功能提供了一种更好地控制服务器负载的机会。
+使用 [响应缓存中间件](xref:performance/caching/middleware) 时，无开发人员对此缓存行为的控制，因为中间件遵循官方缓存规范。 支持使用 *输出缓存* 来更好地控制服务器负载是 ASP.NET Core 未来版本的设计方案。 有关详细信息，请参阅 [添加对输出缓存 (dotnet/aspnetcore #27387) 的支持 ](https://github.com/dotnet/aspnetcore/issues/27387)。
 
 ## <a name="other-caching-technology-in-aspnet-core"></a>ASP.NET Core 中的其他缓存技术
 
