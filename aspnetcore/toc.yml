@@ -79,7 +79,13 @@
               uid: tutorials/first-mvc-app/details
         - name: Blazor
           displayName: tutorial
-          uid: tutorials/build-a-blazor-app
+          items:
+            - name: 生成你的第一个 Blazor 应用
+              href: 'https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro'
+            - name: 生成 Blazor 待办事项列表应用
+              uid: tutorials/build-a-blazor-app
+            - name: 使用 Blazor 的 SignalR
+              uid: tutorials/signalr-blazor
     - name: Web API 应用
       items:
         - name: 创建 Web API
@@ -306,6 +312,8 @@
           uid: blazor/hosting-models
         - name: 教程
           items:
+            - name: 生成你的第一个 Blazor 应用
+              href: 'https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro'
             - name: 生成 Blazor 待办事项列表应用
               uid: tutorials/build-a-blazor-app
             - name: 使用 Blazor 的 SignalR
