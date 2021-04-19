@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: 662456af59c453df66ca48139a6de40d0e2cbf0d
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 19431a7f5f4afb9fd2b0c925a302f3e1575a2ad1
+ms.sourcegitcommit: 79126facbd939cd21bd3efd02dd5daa4985c6d6e
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589187"
+ms.lasthandoff: 04/19/2021
+ms.locfileid: "107715772"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>使用受授权保护的用户数据创建 ASP.NET Core web 应用
 
@@ -154,7 +154,7 @@ MVC 控制器和 Razor 页面要求对所有用户进行身份验证的另一种
 
 ### <a name="configure-the-test-account"></a>配置测试帐户
 
-`SeedData`类创建两个帐户：管理员和管理器。 使用 [机密管理器工具](xref:security/app-secrets) 来设置这些帐户的密码。 将项目目录中的密码设置 (包含 *Program.cs*) 的目录：
+`SeedData`类创建两个帐户：管理员和管理器。 使用 [机密管理器工具](xref:security/app-secrets) 来设置这些帐户的密码。 将项目目录中的密码设置 (包含 *程序 .cs*) 的目录：
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -227,7 +227,7 @@ Entity Framework Core 使用 AddScoped 的服务必须使用[](/dotnet/api/micro
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/DI_BasePageModel.cs)]
 
-上述代码：
+前面的代码：
 
 * 添加 `IAuthorizationService` 服务以访问授权处理程序。
 * 添加 Identity `UserManager` 服务。
@@ -334,7 +334,7 @@ Entity Framework Core 使用 AddScoped 的服务必须使用[](/dotnet/api/micro
 * 经理可以批准/拒绝联系人数据。 此 `Details` 视图显示 " **批准** " 和 " **拒绝** " 按钮。
 * 管理员可以批准/拒绝和编辑/删除所有数据。
 
-| User                | 应用程序的种子 | 选项                                  |
+| 用户                | 应用程序的种子 | 选项                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | 否                | 编辑/删除自己的数据。                |
 | manager@contoso.com | 是               | 批准/拒绝和编辑/删除自己的数据。 |
@@ -490,7 +490,7 @@ dotnet ef database update
 
 ### <a name="configure-the-test-account"></a>配置测试帐户
 
-`SeedData`类创建两个帐户：管理员和管理器。 使用 [机密管理器工具](xref:security/app-secrets) 来设置这些帐户的密码。 将项目目录中的密码设置 (包含 *Program.cs*) 的目录：
+`SeedData`类创建两个帐户：管理员和管理器。 使用 [机密管理器工具](xref:security/app-secrets) 来设置这些帐户的密码。 将项目目录中的密码设置 (包含 *程序 .cs*) 的目录：
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -563,7 +563,7 @@ Entity Framework Core 使用 AddScoped 的服务必须使用[](/dotnet/api/micro
 
 [!code-csharp[](secure-data/samples/final2.1/Pages/Contacts/DI_BasePageModel.cs)]
 
-上述代码：
+前面的代码：
 
 * 添加 `IAuthorizationService` 服务以访问授权处理程序。
 * 添加 Identity `UserManager` 服务。
@@ -661,7 +661,7 @@ Entity Framework Core 使用 AddScoped 的服务必须使用[](/dotnet/api/micro
 * 经理可以批准/拒绝联系人数据。 此 `Details` 视图显示 " **批准** " 和 " **拒绝** " 按钮。
 * 管理员可以批准/拒绝和编辑/删除所有数据。
 
-| User                | 应用程序的种子 | 选项                                  |
+| 用户                | 应用程序的种子 | 选项                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | 否                | 编辑/删除自己的数据。                |
 | manager@contoso.com | 是               | 批准/拒绝和编辑/删除自己的数据。 |
@@ -718,7 +718,7 @@ Entity Framework Core 使用 AddScoped 的服务必须使用[](/dotnet/api/micro
 
 ### <a name="additional-resources"></a>其他资源
 
-* [在 Azure 应用服务中生成 .NET Core 和 SQL 数据库 Web 应用](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
+* [教程：在 Azure 应用服务中生成 ASP.NET Core 和 Azure SQL 数据库应用](/azure/app-service/tutorial-dotnetcore-sqldb-app)
 * [ASP.NET Core 授权实验室](https://github.com/blowdart/AspNetAuthorizationWorkshop)。 此实验室更详细地介绍了本教程中所介绍的安全功能。
 * <xref:security/authorization/introduction>
 * [自定义基于策略的授权](xref:security/authorization/policies)
