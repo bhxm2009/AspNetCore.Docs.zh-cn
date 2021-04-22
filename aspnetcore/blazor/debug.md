@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 3d3325583bd5442b2289c19b61bb69ef7a21ddd4
-ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
+ms.openlocfilehash: 2d34ee6f4382302a03d0ca9cfb4a06405ab6e2f5
+ms.sourcegitcommit: 8f4313c762a0b7c30e5ce328b3afe146838f53d9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/31/2021
-ms.locfileid: "106081502"
+ms.lasthandoff: 04/17/2021
+ms.locfileid: "107591648"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>调试 ASP.NET Core Blazor WebAssembly
 
@@ -392,7 +392,7 @@ Blazor 框架的调试代理需要一小段时间才能启动，因此 [`OnIniti
 protected override void OnInitialized()
 {
 #if DEBUG
-    Thread.Sleep(10000)
+    Thread.Sleep(10000);
 #endif
 
     ...
@@ -405,7 +405,7 @@ protected override void OnInitialized()
 protected override async Task OnInitializedAsync()
 {
 #if DEBUG
-    await Task.Delay(10000)
+    await Task.Delay(10000);
 #endif
 
     ...

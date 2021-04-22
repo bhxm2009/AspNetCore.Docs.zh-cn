@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: 049e7764766a4d5d535f7d7959a3554b040607c5
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: beda06440682e0dcbd21a29338f79058cebe2357
+ms.sourcegitcommit: 8f4313c762a0b7c30e5ce328b3afe146838f53d9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588498"
+ms.lasthandoff: 04/17/2021
+ms.locfileid: "107591518"
 ---
 # <a name="part-3-scaffolded-razor-pages-in-aspnet-core"></a>第 3 部分，ASP.NET Core 中已搭建基架的 Razor 页面
 
@@ -50,7 +50,7 @@ ms.locfileid: "102588498"
 
 检查 Pages/Movies/Index.cshtml.cs 页面模型：
 
-[!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs)]
+[!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippetFull)]
 
 Razor 页面派生自 `PageModel`。 按照约定，`PageModel` 派生的类称为 `<PageName>Model`。 此构造函数使用[依赖关系注入](xref:fundamentals/dependency-injection)将 `RazorPagesMovieContext` 添加到页面：
 

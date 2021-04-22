@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: tutorials/signalr-blazor
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: e9bb79eb5bd8f56fe8014981de76e210eb35c2de
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 2e0ed3ee59f90ada3a46353a63fa384d664b4afa
+ms.sourcegitcommit: 8f4313c762a0b7c30e5ce328b3afe146838f53d9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589525"
+ms.lasthandoff: 04/17/2021
+ms.locfileid: "107591492"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor"></a>结合使用 ASP.NET Core SignalR 和 Blazor
 
@@ -124,7 +124,7 @@ ms.locfileid: "102589525"
 
 1. 在“高级”下选中“托管的 ASP.NET Core”复选框。
 
-1. 选择“创建”。
+1. 选择“创建”  。
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -223,66 +223,6 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 若要添加较早版本的包，请提供 `--version {VERSION}` 选项，其中 `{VERSION}` 占位符为要添加的包的版本。
 
 ---
-
-::: moniker range="< aspnetcore-5.0"
-
-## <a name="add-the-systemtextencodingsweb-package"></a>添加 System.Text.Encodings.Web 包
-
-本部分仅适用于 ASP.NET Core 版本 3.x 的应用。
-
-由于在 ASP.NET Core 3.x 应用中使用 [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json) 5.x 时出现包解析问题，`BlazorWebAssemblySignalRApp.Server` 项目需要 [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) 的包引用。 在未来的 .NET 5 修补程序版本中，将解决基础问题。 有关详细信息，请参阅 [System.Text.Json 定义无依赖项的 netcoreapp3.0（dotnet/运行时 #45560）](https://github.com/dotnet/runtime/issues/45560)。
-
-若要将 [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) 添加到 ASP.NET Core 3.1 托管 Blazor 解决方案的 `BlazorWebAssemblySignalRApp.Server` 项目，请按照所选工具的指导进行操作：
-
-# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
-
-1. 在“解决方案资源管理器”中，右键单击 `BlazorWebAssemblySignalRApp.Server` 项目，然后选择“管理 NuGet 包” 。
-
-1. 在“管理 NuGet 包”对话框中，确认“包源”设置为“`nuget.org`” 。
-
-1. 选择“浏览”后，在搜索框中键入“`System.Text.Encodings.Web`”。
-
-1. 在搜索结果中，选择 [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) 包。 选择与正在使用的共享框架相匹配的包版本。 选择“安装”  。
-
-1. 如果出现“预览更改”对话框，则选择“确定”。
-
-1. 如果出现“许可证接受”对话框，如果你同意许可条款，请选择“我接受”。
-
-# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code/)
-
-在“集成终端”（工具栏上的“视图”>“终端”）中，执行以下命令：
-
-```dotnetcli
-dotnet add Server package System.Text.Encodings.Web
-```
-
-若要添加较早版本的包，请提供 `--version {VERSION}` 选项，其中 `{VERSION}` 占位符为要添加的包的版本。
-
-# <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
-
-1. 在“解决方案资源管理器”中，右键单击 `BlazorWebAssemblySignalRApp.Server` 项目，然后选择“管理 NuGet 包” 。
-
-1. 在“管理 NuGet 包”对话框中，确认源下拉列表设置为“`nuget.org`”。
-
-1. 选择“浏览”后，在搜索框中键入“`System.Text.Encodings.Web`”。
-
-1. 在搜索结果中，选择 [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) 包旁边的复选框，选择与正在使用的共享框架相匹配的包的正确版本，然后选择“添加包”。
-
-1. 出现“许可证接受”对话框时，如果你同意许可条款，请选择“接受”。
-
-# <a name="net-core-cli"></a>[.NET Core CLI](#tab/netcore-cli/)
-
-在解决方案文件夹的命令行界面中执行以下命令：
-
-```dotnetcli
-dotnet add Server package System.Text.Encodings.Web
-```
-
-若要添加较早版本的包，请提供 `--version {VERSION}` 选项，其中 `{VERSION}` 占位符为要添加的包的版本。
-
----
-
-::: moniker-end
 
 ## <a name="add-a-signalr-hub"></a>添加 SignalR 集线器
 

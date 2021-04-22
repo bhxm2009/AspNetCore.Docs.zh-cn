@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: 12cc308f08be0961f1b14579753d653927bcf683
-ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
+ms.openlocfilehash: e1189a0c196e0026f616cc4204e7b6f3c3c06ae1
+ms.sourcegitcommit: 79126facbd939cd21bd3efd02dd5daa4985c6d6e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/31/2021
-ms.locfileid: "106081554"
+ms.lasthandoff: 04/19/2021
+ms.locfileid: "107715759"
 ---
 # <a name="aspnet-core-razor-component-lifecycle"></a>ASP.NET Core Razor 组件生命周期
 
@@ -70,7 +70,7 @@ Razor 组件处理一组同步和异步生命周期方法中的 Razor 组件生�
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> 设置由组件的父组件在呈现树或路由参数中提供的参数。
 
-每次调用 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> 时，方法的 <xref:Microsoft.AspNetCore.Components.ParameterView> 参数都包含该组件的[组件参数](xref:blazor/components/index#parameters)值集。 通过重写 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> 方法，开发人员代码可以直接与 <xref:Microsoft.AspNetCore.Components.ParameterView> 参数交互。
+每次调用 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> 时，方法的 <xref:Microsoft.AspNetCore.Components.ParameterView> 参数都包含该组件的[组件参数](xref:blazor/components/index#component-parameters)值集。 通过重写 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> 方法，开发人员代码可以直接与 <xref:Microsoft.AspNetCore.Components.ParameterView> 参数交互。
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> 的默认实现使用 [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) 或 [`[CascadingParameter]` 特性](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute)（在 <xref:Microsoft.AspNetCore.Components.ParameterView> 中具有对应的值）设置每个属性的值。 在 <xref:Microsoft.AspNetCore.Components.ParameterView> 中没有对应值的参数保持不变。
 
