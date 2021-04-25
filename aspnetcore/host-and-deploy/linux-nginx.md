@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 732be8c878f74fc2edb1ceb81a6e50e1f4a10b09
-ms.sourcegitcommit: f67ba959d3cbfe33b32fa6a5eae1a5ae9de18167
+ms.openlocfilehash: 81bb2d176fe47c673f2f340b97bb2c25c2c640ea
+ms.sourcegitcommit: 8f4313c762a0b7c30e5ce328b3afe146838f53d9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/02/2021
-ms.locfileid: "106179738"
+ms.lasthandoff: 04/17/2021
+ms.locfileid: "107591479"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>使用 Nginx 在 Linux 上托管 ASP.NET Core
 
@@ -434,7 +434,8 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 > [!NOTE]
 > Blazor WebAssembly 应用需要更大的 `burst` 参数值才能容纳应用发出的更大量的请求。 有关详细信息，请参阅 <xref:blazor/host-and-deploy/webassembly#nginx>。
 
-> [注意] 前面的示例禁用在线证书状态协议 (OCSP) 装订。 如果启用，请确认证书支持该功能。 有关启用 OCSP 的详细信息和指南，请参阅[模块 ngx_http_ssl_module（Nginx 文档）](http://nginx.org/en/docs/http/ngx_http_ssl_module.html)一文中的以下属性：
+> [!NOTE]
+> 上面的示例禁用了在线证书状态协议 (OCSP) 装订。 如果启用，请确认证书支持该功能。 有关启用 OCSP 的详细信息和指南，请参阅[模块 ngx_http_ssl_module（Nginx 文档）](http://nginx.org/en/docs/http/ngx_http_ssl_module.html)一文中的以下属性：
 >
 > * `ssl_stapling`
 > * `ssl_stapling_file`

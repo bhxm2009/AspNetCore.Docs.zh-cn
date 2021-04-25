@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: f7d47e26b429f31817b5e04f3104449c9748d94f
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: 7f6d5fbd4dbd61dbd4aaaa3ecee93039b5ba885b
+ms.sourcegitcommit: 8f4313c762a0b7c30e5ce328b3afe146838f53d9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711277"
+ms.lasthandoff: 04/17/2021
+ms.locfileid: "107591635"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>使用 Apache 在 Linux 上托管 ASP.NET Core
 
@@ -433,7 +433,8 @@ sudo yum install mod_rewrite
 >
 > 需要 Apache HTTP 服务器版本 2.4.43 或更高版本，才能使用 OpenSSL 1.1.1 运行 TLS 1.3 Web 服务器。
 
-> [注意] 前面的示例禁用在线证书状态协议 (OCSP) 装订。 有关启用 OCSP 的更多信息和指南，请参阅 [OCSP 装订（Apache 文档）](https://httpd.apache.org/docs/trunk/ssl/ssl_howto.html#ocspstapling)。
+> [!NOTE]
+> 上面的示例禁用了在线证书状态协议 (OCSP) 装订。 有关启用 OCSP 的更多信息和指南，请参阅 [OCSP 装订（Apache 文档）](https://httpd.apache.org/docs/trunk/ssl/ssl_howto.html#ocspstapling)。
 
 保存文件，并测试配置：
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: 5628a7936968a87ca1ce47b0fbfe9f23404c5e9a
-ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
+ms.openlocfilehash: 0c729d5726893b108a99468c71d20b6b7bff0f6b
+ms.sourcegitcommit: 8f4313c762a0b7c30e5ce328b3afe146838f53d9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/31/2021
-ms.locfileid: "106081307"
+ms.lasthandoff: 04/17/2021
+ms.locfileid: "107591466"
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>从 ASP.NET Core Blazor 调用 Web API
 
@@ -104,7 +104,7 @@ JSON 帮助程序方法将请求发送到 URI（以下示例中的 Web API）并
   }
   ```
 
-* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>：发送 HTTP POST 请求（包括 JSON 编码的内容），并分析 JSON 响应正文来创建对象。
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>：向指定 URI 发送 POST 请求（请求正文中包含序列化为 JSON 的值）。
 
   在下面的代码中，`newItemName` 由组件的绑定元素提供。 通过选择 `<button>` 元素来触发 `AddItem` 方法。 有关完整的示例，请参阅示例应用。
 

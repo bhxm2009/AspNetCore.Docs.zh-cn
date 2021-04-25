@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/netstandard
-ms.openlocfilehash: b3df1d3b5565dc5c03988c29d2befbe1ea164f54
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: f7923029ffc31a1a8949b8ffd79048829e51f48a
+ms.sourcegitcommit: 8f4313c762a0b7c30e5ce328b3afe146838f53d9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711473"
+ms.lasthandoff: 04/17/2021
+ms.locfileid: "107591674"
 ---
 # <a name="use-grpc-client-with-net-standard-20"></a>将 gRPC 客户端与 .NET Standard 2.0 一起使用
 
@@ -84,7 +84,7 @@ builder.Services
 使用 `WinHttpHandler` 的要求和限制：
 
 * Windows 10 内部版本 19622 或更高版本。
-* 引用 [System.Net.Http.WinHttpHandler](https://www.nuget.org/packages/System.Net.Http.WinHttpHandler/) NuGet 包。
+* 引用 [System.Net.Http.WinHttpHandler](https://www.nuget.org/packages/System.Net.Http.WinHttpHandler/) 版本 6.0.0-preview.3.21201.4 或更高版本。
 * 仅支持一元和服务器流式处理 gRPC 调用。
 * 仅支持通过 TLS 进行 gRPC 调用。
 
@@ -101,7 +101,7 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 > [!NOTE]
 > .NET Framework 支持尚处于早期阶段，需要使用预发行版软件。
 > * Windows 10 内部版本 19622 或更高版本可作为 [Windows 预览体验成员](https://insider.windows.com/)内部版本提供。
-> * NuGet.org 当前未提供所需的 `System.Net.Http.WinHttpHandler` 版本。应使用[此 NuGet 源](https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet6/nuget/v3/index.json)上提供的最新预发行版本。
+> * [System.Net.Http.WinHttpHandler](https://www.nuget.org/packages/System.Net.Http.WinHttpHandler/) 版本 6.0.0-preview.3.21201.4 或更高版本。
 
 ## <a name="grpc-c-core-library"></a>gRPC C# 核心库
 

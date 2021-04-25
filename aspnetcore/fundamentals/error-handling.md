@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: 1687195bc5d80d50289db51a5e8ac6113ca8b05f
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 105eabc25e0a9e833e195f658c77668b2afd157c
+ms.sourcegitcommit: 8f4313c762a0b7c30e5ce328b3afe146838f53d9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586119"
+ms.lasthandoff: 04/17/2021
+ms.locfileid: "107591453"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>处理 ASP.NET Core 中的错误
 
@@ -38,13 +38,13 @@ ms.locfileid: "102586119"
 
 ## <a name="developer-exception-page"></a>开发人员异常页
 
-开发人员异常页显示请求异常的详细信息。 ASP.NET Core 模板会生成以下代码：
+“开发人员异常”页显示未经处理的请求异常的详细信息。 ASP.NET Core 模板会生成以下代码：
 
 [!code-csharp[](error-handling/samples/5.x/ErrorHandlingSample/Startup.cs?name=snippet&highlight=3-6)]
 
 当应用在[开发环境](xref:fundamentals/environments)中运行时，前面突出显示的代码启用开发人员异常页。
 
-模板在中间件管道的前面部分放置 <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A>，以便它可以捕获在后面的中间件中引发的异常。
+这些模板将 <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A> 置于中间件管道的前面部分，以便它能够捕获随后中间件中抛出的未经处理的异常。
 
 仅当应用程序在开发环境中运行时，前面的代码才启用开发人员异常页。 当应用在生产环境中运行时，不应公开显示详细的异常信息。 有关配置环境的详细信息，请参阅 <xref:fundamentals/environments>。
 
@@ -59,7 +59,7 @@ ms.locfileid: "102586119"
 
 若要为[生产环境](xref:fundamentals/environments)配置自定义错误处理页，请调用 <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>。 此异常处理中间件：
 
-* 捕获并记录异常。
+* 捕获并记录未经处理的异常。
 * 使用指示的路径在备用管道中重新执行请求。 如果响应已启动，则不会重新执行请求。 模板生成的代码使用 `/Error` 路径重新执行请求。
 
 在下面的示例中，<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> 在非开发环境中添加异常处理中间件：
